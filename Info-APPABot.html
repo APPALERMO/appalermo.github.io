@@ -1,0 +1,64 @@
+<html>
+
+    <font family="Verdana" size="6">
+        <p id="titolo" style="color: red;">
+            Questa pagina è attualmente in manutenzione
+        </p>
+    </font>    
+
+    <br>
+    <button id="tornaindietro" class="bottonetornaindietro">Torna Indietro</button>
+
+    
+
+    <style>
+
+        #titolo {
+            text-align: center;
+            font-weight: 700;
+            font-size: 35px;
+
+        }
+
+        .bottonetornaindietro{
+            display: block;
+            border-top: 20px;
+            border-radius: 15px;
+            margin: 0 0 0 auto;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            float: left;
+            transition: transform 0.7s;
+        }
+
+        .bottonetornaindietro:hover{
+            transform: scale(1.2);
+        }
+
+
+        #visualizza{
+            color: #007af5;
+            transition: font-size 0.7s;
+        }
+
+        #visualizza:hover{
+            font-size: 23px;
+        }
+
+        #codice{
+            font-family: Consolas, monospace;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+    </style>
+
+    <script>
+        const button = document.getElementById('tornaindietro');
+
+        button.addEventListener('click', () => {
+        window.location.assign('contenuto.html');
+        });
+    </script>
+</html>
