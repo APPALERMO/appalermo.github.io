@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Caduta Libera</title>
+		<script>
+			document.getElementById("massa").value = 1;
+			document.getElementById("altezza").value = 1;
+			document.getElementById("velocita").value = 1;
+        </script>
+	</head>
+	<body>
+		<h1>
+			<center>
+				Calcola l'energia cinetica e potenziale gravitazionale
+			</center>
+		</h1>
+		<div class="strumentazione">
+			<label for="massa">Massa (kg):</label>
+			<input type="number" id="massa" ><br>
+			<label for="altezza">Altezza (m):</label>
+			<input type="number" id="altezza" ><br>
+			<label for="velocita">Velocità (m/s):</label>
+			<input type="number" id="velocita" ><br>
+			<button onclick="calcola()">Calcola</button>
+		</div>
+		<div id="risultati">
+			<div id="energia"></div>
+			<div id="tempoVelocita"></div>
+		</div>
+		<div class="simulazione">
+			<div class="corpo" id="corpo"></div>
+			<div class="pavimento" id="pavimento"></div>
+			<button style="position:absolute;left:1%;top:100%;" onclick="startSimulation()">Avvia Simulazione</button>
+		</div>
+	</body>
+	
+	<script>
+		const massa = document.getElementById("massa").value;
+		const altezza = document.getElementById("altezza");
+		const velocita = document.getElementById("velocita").value;
+		const box = document.getElementById("corpo");
+		const pavimento = document.getElementById("pavimento");
+		
+		function calcola() {
+			const massa = document.getElementById("massa").value;
+			const altezza = document.getElementById("altezza").value;
+			const velocita = document.getElementById("velocita").value;
+		
+			const energiaCinetica = 0.5 * massa * velocita * velocita;
+			const energiaPotenzialeGravitazionale = massa * 9.81 * altezza;
+			const Lavoro = massa * 9.81 * altezza;
+		
+			const energia = document.getElementById("energia");
+			energia.innerHTML = `
+				<p><b>Lavoro Compiuto</b>: ${Lavoro.toFixed(2)}J</p>
+				<p><b>Energia cinetica</b>: ${energiaCinetica.toFixed(2)} J</p>
+				<p><b>Energia potenziale gravitazionale</b>: ${energiaPotenzialeGravitazionale.toFixed(2)} J</p>
+			`;
+			
+		}
+		
+		function startSimulation(){
+			var position = 0;
+			var gravity = 9.81;
+			const altezzaIniziale = altezza.value;
+			var tempoCaduta = Math.sqrt((2 * altezza.value) / gravity)
+			var velocity = gravity * tempoCaduta;
+			// console.log(velocity)
+			var time = 0.01;
+			var maxHeight = pavimento.offsetTop - box.offsetTop;
+			
+			corpo.style.top = `${-altezzaIniziale * 10}px`;
+			corpo.animate([
+			    { top: `${-altezzaIniziale * 10}px` },
+			    { top: "calc(100% - 20px)" }
+			], {
+			    duration: tempoCaduta * 1000,
+			    easing: "linear"
+			}).onfinish = () => {
+			    corpo.style.position = "absolute";
+			    corpo.style.left = "47%";
+			    corpo.style.top = "87%";
+			    
+			    const risultati = document.getElementById("tempoVelocita");
+				risultati.innerHTML = `
+			        <p><b>Tempo di Caduta</b>: ${tempoCaduta} s</p>
+			        <p><b>Velocità ottenuta</b>: ${velocity} m/s</p>
+				`
+			    
+			};
+			
+	
+		}
+	
+	</script>
+	
+	<style>
+	
+		.simulazione{
+			position: absolute;
+			left: 67.2%;
+			top: 10%;
+			height: 300px;
+			width: 500px;
+		}
+		
+		.strumentazione{
+			position: relative;
+			left: 5px;
+			width: 300px;
+		}
+		
+		.strumentazione label, button{
+			font-family: Arial, sans-serif;
+		}
+		
+		.pavimento{
+			position: relative;
+			background-color: black;
+			height: 10px;
+			width: 500px;
+			top: 96%;
+		}
+		
+		.corpo{
+			position: absolute;
+			background-color: black;
+			left: 47%;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+		}
+		
+		#risultati {
+			position: relative;
+			margin-top: 20px;
+			left: 10px;
+		}
+		
+	</style>
+</html>
