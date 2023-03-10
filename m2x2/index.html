@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Calcolo Matrici 2x2</title>
+    </head>
+        
+    <p style="position: absolute;top: calc(-12% - 1.5px);left: +23px;font-size: 100px;user-select: none;">{</p>
+    
+    <div class="calcoli">
+        <div class="eq1">
+            <input type="text" id="x1"> x +
+            <input type="text" id="y1"> y =
+            <input type="text" id="t1"> 
+            
+        </div>
+        
+        <br>
+        <br>
+        
+        <div>
+            <input type="text" id="x2"> x +
+            <input type="text" id="y2"> y =
+            <input type="text" id="t2">
+        </div>
+    </div>
+    
+    <div class="risultati">
+        <p id="risultati"></p>
+    </div>
+    
+    <button onclick="start()" class="btCP">Calcola Punto</button>
+    <script src="script.js"></script>
+    
+    <style>
+        .calcoli{
+            position: absolute;  
+            top: 5%;
+            left: 4%;
+        }
+        
+        .risultati{
+            position: absolute;
+            left: 35%;
+            width: 650px;
+            height: 170px;
+        }
+        
+        input{
+            width: 50px;
+            text-align: center;
+        }
+        
+        .btCP{
+            position: absolute;
+            left: 20%;
+            top: 9%;
+        }
+    
+    </style>
+    
+</html>
