@@ -1,0 +1,48 @@
+.containerg{
+    position: absolute;
+    width: 80px;
+    left: 38%;
+}
+
+.staccehtto{
+    position: absolute;
+    left: 48%;
+    width: 5px;
+    height: 51%;
+    background-color: #000;
+}
+.containerp{
+    position: absolute;
+    width: 80px;
+    left: 53%;
+}
+
+.icon{
+    height: 64px;
+    width: 64px;
+    margin: 10px;
+    user-select: none;
+}
+
+#riprova{
+    position: absolute;
+    border-radius: 5px;
+    top: 66%;
+    left: calc(46% + 5px);
+    border-top: 2px solid black;
+    border-left: 2px solid black;;
+    border-right: 2px solid black;;
+}
+
+.notifica{
+    position: absolute;
+    background: rgba(128, 128, 128, 0.719);
+    top:25%;
+    left: calc(39% + 3px);
+    width: 300px;
+    height: 100px;
+    border: 1px solid blue;
+    border-radius: 10px;
+    visibility: hidden;
+    
+}

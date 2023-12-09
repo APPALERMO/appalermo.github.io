@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Mappa Geografica ∼ @APPA_py</title>
+
+    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=An4rnDTS6ca4vLZlK0nDFgjxPnCUuRhVqsbg7QotgZXgo1b5Xa8QXHZU1S_Rc3Gf' async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+        var map;
+        var pushpin;
+        var ArrayPoint = [];
+        var ArrayTestoNotifica = [];
+        var apiKey = "An4rnDTS6ca4vLZlK0nDFgjxPnCUuRhVqsbg7QotgZXgo1b5Xa8QXHZU1S_Rc3Gf";
+
+        function GetMap() {
+            map = new Microsoft.Maps.Map('#map', {
+                center: new Microsoft.Maps.Location(0, 0),
+                zoom: 2,
+                credential: "An4rnDTS6ca4vLZlK0nDFgjxPnCUuRhVqsbg7QotgZXgo1b5Xa8QXHZU1S_Rc3Gf"
+            });
+
+            pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
+            // map.entities.push(pushpin);
+
+            Microsoft.Maps.Events.addHandler(map, 'mousemove', function(e) {
+                document.getElementById("coordinates").innerHTML =
+                    "<b>Latitudine: </b>" + e.location.latitude + ", <b>Longitudine: </b>" + e.location.longitude;
+                });
+        }
+
+        function moveToCoordinates() {
+            var input = document.getElementById("coordinate-input").value;
+            var coordinates = input.split(",");
+            var lat = parseFloat(coordinates[0]);
+            var lng = parseFloat(coordinates[1]);
+
+            var center = new Microsoft.Maps.Location(lat, lng);
+            map.setView({center: center, zoom: 13});
+            
+            var pushpin = new Microsoft.Maps.Pushpin(center);
+            map.entities.push(pushpin);
+
+            var popup;
+
+            Microsoft.Maps.Events.addHandler(pushpin, "mouseover", function(){
+                var onclickInfoCity = 'onclick="addtoDistance(' + pushpin.getLocation().latitude + ', ' + pushpin.getLocation().longitude + ')"';
+                var content =  '<div style="display: block;" id="menuInfoLocalita" class="menuInfoLocalita">' +
+                                    '<h1>Coordinate</h1>' +
+                                    '<b>Latitudine: </b>' + pushpin.getLocation().latitude + '<br>' +
+                                    '<b>Longitudine: </b>' + pushpin.getLocation().longitude + '<br>' +
+                                    '<button class="bottoneInfoLocalita"' + onclickInfoCity + '>Aggiungi Punto</button>' +
+                                    '<button class="bottoneInfoLocalita" onclick="closePopUp()">Chiudi PopUp</button>' + 
+                               '</div>';
+
+                popup = new Microsoft.Maps.Infobox(pushpin.getLocation(), {
+                htmlContent: content,
+                visible: true
+            });
+            map.entities.push(popup);
+        });
+
+        
+
+            Microsoft.Maps.Events.addHandler(pushpin, "click", function(){  
+                let menuInfoLocalitaID = document.getElementById("menuInfoLocalita");  
+                menuInfoLocalitaID.remove()
+                var PointCount = ArrayPoint.length;
+    
+                if(PointCount == 1){
+                    PointCount--;
+                }
+                var PointCount = ArrayPoint.length;
+                PointCount--;
+                //pushpin.getLocation().latitude
+                // pushpin.getLocation().longitude
+                    
+                var itemtofind = [pushpin.getLocation().latitude, pushpin.getLocation().longitude];
+                
+                for(var i = 0;ArrayPoint.length;i++){
+                    if(ArrayPoint[i][0] === itemtofind[0] && ArrayPoint[i][1] === itemtofind[1]){
+                            ArrayPoint.splice(i,1);
+                            break;
+                            
+                    }
+                
+                }
+                
+                // ArrayPoint.splice(PointCount,1);
+    
+                try{
+                    if(PointCount < 2){
+                        let divF = document.getElementById("calcoladistanza");
+                        divF.remove();
+                    }
+                }catch(error){}
+    
+    
+                map.entities.remove(pushpin);
+                
+                
+            });
+            
+            document.getElementById("coordinate-input").value = "";
+        }
+        
+        function addtoDistance(lat, lon){
+            ArrayPoint.push([lat, lon]);
+            var PointCount = ArrayPoint.length;
+            closePopUp();
+
+            if(PointCount == 2){
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML = "Calcola Distanza";
+                newDiv.className = "pMappa";
+                newDiv.id = "calcoladistanza";
+                newDiv.setAttribute("onclick", "calculateDistance()");
+
+                var divPadre = document.getElementById("rightClickMenu");
+                divPadre.appendChild(newDiv);
+            }
+
+            Microsoft.Maps.Events.addHandler(pushpin, "click", function(){
+                if(PointCount == 1){
+                    PointCount--;
+                }
+                PointCount--;
+                
+                if (PointCount<0) PointCount++;
+                
+                var itemtofind = [pushpin.getLocation().latitude, pushpin.getLocation().longitude];
+                
+                for(var i = 0;ArrayPoint.length;i++){
+                    if(ArrayPoint[i][0] === itemtofind[0] && ArrayPoint[i][1] === itemtofind[1]){
+                            ArrayPoint.splice(i,1);
+                            break;
+                    }
+                
+                }
+                
+                try{
+                    if(PointCount < 2){
+                        divPadre.removeChild(newDiv);
+                    }
+                }catch(error){
+
+                }
+
+                map.entities.remove(pushpin);
+            });
+
+        }
+        
+        function getCoordinates() {
+            event.preventDefault();
+            var city = document.getElementById("city").value;
+            var bingMapsUrl = "https://dev.virtualearth.net/REST/v1/Locations?q=" + city + "&key=" + apiKey;
+
+            fetch(bingMapsUrl)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                var coordinates = data.resourceSets[0].resources[0].geocodePoints[0].coordinates;
+                var latitude = coordinates[0];
+                var longitude = coordinates[1];
+                document.getElementById("coordinates").innerHTML = "<b>Latitudine:</b> " + latitude + ", <b>Longitudine: </b>" + longitude;
+                document.getElementById("city").value = "";
+                document.getElementById("coordinate-input").value = latitude + ", " + longitude;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+            
+        }
+
+        function copyToClipBoard(){
+            const string = document.getElementById("coordinates").textContent;
+            const coordinatectc = string.match(/[-\d.]+/g);
+            let rightClickMenu = document.getElementById("rightClickMenu");
+            navigator.clipboard.writeText(coordinatectc[0] + ", " + coordinatectc[1]);
+            rightClickMenu.classList.toggle("hidden");
+        }
+
+        function setPoint(){
+            const string = document.getElementById("coordinates").textContent;
+            const coordinatesp = string.match(/[-\d.]+/g);
+        
+
+            var lat = parseFloat(coordinatesp[0]);
+            var lon = parseFloat(coordinatesp[1]);
+            ArrayPoint.push([lat, lon]);
+            var PointCount = ArrayPoint.length;
+
+            var center = new Microsoft.Maps.Location(lat, lon);
+
+            var pushpin = new Microsoft.Maps.Pushpin(center);
+            map.entities.push(pushpin);
+            
+            let rightClickMenu = document.getElementById("rightClickMenu");
+            rightClickMenu.classList.toggle("hidden");
+            
+            if(PointCount == 2){
+                var newDiv = document.createElement("div");
+                newDiv.innerHTML = "Calcola Distanza";
+                newDiv.className = "pMappa";
+                newDiv.id = "calcoladistanza";
+                newDiv.setAttribute("onclick", "calculateDistance()");
+
+                var divPadre = document.getElementById("rightClickMenu");
+                divPadre.appendChild(newDiv);
+            }
+
+            Microsoft.Maps.Events.addHandler(pushpin, "click", function(){
+                var PointCount = ArrayPoint.length;
+
+                if(PointCount == 1){
+                    PointCount--;
+                }
+                PointCount--;
+                
+                if (PointCount<0) {PointCount++;}
+                var itemtofind = [pushpin.getLocation().latitude, pushpin.getLocation().longitude];
+                    
+                for(var i = 0;ArrayPoint.length;i++){
+                    if(ArrayPoint[i][0] === itemtofind[0] && ArrayPoint[i][1] === itemtofind[1]){
+                            ArrayPoint.splice(i,1);
+                            break;
+                    }
+                
+                }
+                // console.log(PointCount + " setPoint");
+                
+
+                try {
+                    if(PointCount < 2){
+                        var divPadre = document.getElementById("rightClickMenu");
+                        var newDiv = document.getElementById("calcoladistanza")
+                        divPadre.removeChild(newDiv);               
+                    }   
+                } catch (error) {
+                    // var PointCount = ArrayPoint.length;
+                    // console.log(PointCount);
+                    
+                    // var itemtofind = [pushpin.getLocation().latitude, pushpin.getLocation().longitude];
+                    
+                    // for(var i = 0;ArrayPoint.length;i++){
+                    //     if(ArrayPoint[i][0] === itemtofind[0] && ArrayPoint[i][1] === itemtofind[1]){
+                    //             console.log(ArrayPoint[i]);
+                    //             ArrayPoint.splice(i,1);
+                                
+                    //     }
+                    
+                    // }
+                }
+                
+                var itemtofind = [pushpin.getLocation().latitude, pushpin.getLocation().longitude];
+                    
+                try {
+                
+                    for(var i = 0;ArrayPoint.length;i++){
+                        if(ArrayPoint[i][0] === itemtofind[0] && ArrayPoint[i][1] === itemtofind[1]){
+                                ArrayPoint.splice(i,1);
+                                break;
+                        }
+                    
+                    }
+                    
+                } catch (error) {}    
+
+                map.entities.remove(pushpin);
+            });
+            
+            
+    }
+
+    function notificaions(text){
+        let menuNotification = document.getElementById("notifica");
+        let textNotification = document.getElementById("testoNotifica");
+
+        textNotification.innerHTML = text;
+        menuNotification.style.display = "block";
+    }
+
+
+    function closePopUp(){
+        let menuInfoLocalitaID = document.getElementById("menuInfoLocalita");  
+        menuInfoLocalitaID.remove()
+    }
+
+
+    async function calculateDistance() {
+        var PointCount = ArrayPoint.length;
+        if (PointCount == 2)
+        {
+            var origin = ArrayPoint[0][0] + "," + ArrayPoint[0][1];
+            var destination = ArrayPoint[1][0] + "," + ArrayPoint[1][1];
+            const API_KEY = "An4rnDTS6ca4vLZlK0nDFgjxPnCUuRhVqsbg7QotgZXgo1b5Xa8QXHZU1S_Rc3Gf";
+            const URL = `https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?origins=${origin}&destinations=${destination}&travelMode=driving&key=${API_KEY}`;
+            try {
+                rightClickMenu.classList.toggle("hidden");
+                const response = await axios.get(URL);
+                const data = response.data;
+                const result = data.resourceSets[0].resources[0].results[0];
+                var testoNotifics = `La distanza tra i due luoghi è circa: ${result.travelDistance} km`;
+                ArrayTestoNotifica.push(testoNotifics);
+                notificaions(testoNotifics);
+
+            } catch (error) {
+                console.error(error);
+            }
+        }else{
+            let divF = document.getElementById("calcoladistanza");
+            divF.remove();
+        }
+
+    }
+
+    </script>
+
+  </head>
+
+  <div class="affiancati">
+    Coordinate: <input type="text" id="coordinate-input">
+    <button onclick="moveToCoordinates()" id="bottonconfcood" type="submit">Andiamo!</button>
+  </div>
+  
+  <div class="affiancati-piu">
+    Luogo: <input type="text" id="city">
+    <button id="submitCity" type="submit" onclick="getCoordinates()">Cerca!</button>
+  </div>
+
+
+  <body onload="GetMap()">
+    <center>
+        <div id="coordinates" style="display: inline-block;"></div>
+    </center>
+    
+    <div id='map' style='width: 100%; height: 690px;'></div>
+    <div id="rightClickMenu" class="hidden">
+        <div class="pMappa" onclick="copyToClipBoard()">Copia Coordinate</div>
+        <div class="pMappa" onclick="setPoint()">Inserisci un punto</div>
+    </div>
+
+    <div id="notifica" class="hidden">
+        <p id="testoNotifica">Hey, perché stai guardando qui?</p>
+        <hr>
+        <div style="width: 30;">
+            <button id="confButtonNot" class="buttonNotifica">Capito!</button>
+            <button id="moreInfoNot" class="buttonNotifica">Mostra più info!</button>
+        </div>
+        
+    </div>
+    
+    <div id="itineraryContainer"></div>
+    
+  </body>
+
+  <script>
+
+    function getNameFromCood(lat, lon){
+        const url = `https://dev.virtualearth.net/REST/v1/Locations/${lat},${lon}?o=json&language=it&key=${apiKey}`;
+
+        return fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const location = data.resourceSets[0].resources[0];
+            return location.address.locality || location.address.adminDistrict || location.address.countryRegion;
+        })
+        .catch(error => {
+            console.log(error);
+            return "?";
+        });
+    }
+    const inputCity = document.getElementById("city");
+    const sbButton = document.getElementById("submitCity");
+    const buttonconfcooods = document.getElementById("bottonconfcood");
+    const inputCood = document.getElementById("coordinate-input");
+
+    inputCity.addEventListener("keypress", function(event){
+        if(event.keyCode === 13){
+            sbButton.click();
+            setTimeout(function(){
+                buttonconfcooods.click();
+            },550);
+            
+        }
+    });
+
+    inputCood.addEventListener("keypress", function(event){
+        if(event.keyCode === 13){
+            buttonconfcooods.click();
+        }
+    });
+   
+
+    let rightClickMenu = document.getElementById("rightClickMenu");
+
+    document.addEventListener("contextmenu", function(event) {
+        event.preventDefault();
+        let x = event.clientX;
+        let y = event.clientY;
+        rightClickMenu.style.top = y + "px";
+        rightClickMenu.style.left = x + "px";
+        rightClickMenu.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", function(event) {
+        if (!event.target.closest("#rightClickMenu")) {
+            rightClickMenu.classList.add("hidden");
+        }
+    });
+
+    const confButtonNot = document.getElementById("confButtonNot");
+    const moreInfoNot = document.getElementById("moreInfoNot");
+
+    const notificaID = document.getElementById("notifica");
+    const testoNotificaID = document.getElementById("testoNotifica");
+
+    var testoCorrente = "Mostra più info!";
+
+    confButtonNot.addEventListener("click", function(){
+        if(testoCorrente !== "Mostra più info!"){
+            notificaID.style.height = "85px";
+            moreInfoNot.innerHTML = "Mostra più info!";
+            testoCorrente = "Mostra più info!";
+        }
+        notificaID.style.display = "none";
+    });
+
+    moreInfoNot.addEventListener("click", function(){
+        var testo = testoNotificaID.innerText;
+        if(testoCorrente === "Mostra più info!"){
+            notificaID.style.transition = "height 0.7s";
+            getNameFromCood(ArrayPoint[0][0], ArrayPoint[0][1]).then(log1 =>{
+                notificaID.style.height = "250px";
+                getNameFromCood(ArrayPoint[1][0], ArrayPoint[1][1]).then(log2 =>{
+                    testoNotificaID.innerHTML = `${testo}<br><br><b>Coordinate Primo Punto:</b><br> ${ArrayPoint[0][0]}, ${ArrayPoint[0][1]}<br><b>Luogo: </b>${log1}<br><br><b>Coordinate Secondo Punto: <br></b> ${ArrayPoint[1][0]}, ${ArrayPoint[1][1]}<br><b>Luogo: </b> ${log2}`;
+                });
+                moreInfoNot.innerHTML = "Torna Indietro";
+                testoCorrente = "Torna Indietro";
+            });     
+
+        }else{
+            notificaID.style.height = "85px";
+            moreInfoNot.innerHTML = "Mostra più info!";
+            testoCorrente = "Mostra più info!";
+            testoNotificaID.innerHTML = ArrayTestoNotifica[0];
+        }   
+    });
+
+
+  </script>
+
+
+  <style>
+    html{
+        background-color: #F0F0F0;
+    }
+    .affiancati{
+      display: flex;
+      position: absolute;
+      left: 50px;
+      top: 5px;
+      width: 100px; 
+      height: 20px;
+
+    }
+
+    .affiancati-piu{
+      display: flex;
+      position: absolute;
+      right: 0;
+      margin-right: 200px;
+      top: 5px;
+      width: 100px; 
+      height: 20px;
+    }
+    
+    
+    .hidden {
+        display: none;
+    }
+
+    #rightClickMenu {
+        position: absolute;
+        background-color: #F0F0F0;
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
+
+    .pMappa{
+        width: 100%;
+        left:0;
+        padding-bottom: 10px;
+        padding-top:10px;
+        user-select: none;
+    }
+    .pMappa:hover{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    #notifica{
+        position: fixed;
+        top: 45%;
+        left: 50%;
+        transform: translate(-60%, -80%);
+        width: 340px;
+        height: 85px;
+        background-color: #f0f0f0ff;
+        border: 1px solid rgb(60, 0, 255);
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    .buttonNotifica{
+        margin: 10px;
+        border-radius: 7px;
+        left: 200px;
+    }
+
+
+    .menuInfoLocalita{
+        background-color: #ffff; 
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+        padding: 10px; 
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+
+    .bottoneInfoLocalita{
+        border-radius: 5px;
+        margin-top: 3px;
+        margin-right: 5px;
+    }
+
+    .height245{
+        height: 245px;
+    }
+
+  </style>
+
+</html>

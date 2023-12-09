@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" href="style.css">
+    <title>Sistema di Conversioni</title>
+</head>
+<body>
+    <center>
+        <h3>Inserire il numero da convertire</h3>
+        <input type="text" id="inputNumber">
+        
+        <p class="text">Base di partenza:</p>
+        <input type="radio" id="base" name="base" value="10" checked> Decimale    
+        <input type="radio" id="base" name="base" value="2"> Binario
+        <input type="radio" id="base" name="base" value="8"> Ottale
+        <input type="radio" id="base" name="base" value="16"> Esadecimale
+        
+        <br><br>
+        
+        <p class="text">Convertire in:</p>
+        <input type="radio" id="convert_to" name="convert_to" value="10"> Decimale
+        <input type="radio" id="convert_to" name="convert_to" value="2"> Binario 
+        <input type="radio" id="convert_to" name="convert_to" value="8"> Ottale
+        <input type="radio" id="convert_to" name="convert_to" value="16"> Esadecimale <br>
+        <input type="radio" id="convert_to" name="convert_to" value="allBase"> Tutte le Basi
+        
+        
+        <br><br><br>
+        
+        <button onclick="confirm()" class="button">Vedi Risultati</button>
+        
+        
+        <h1 id="risultati"></h1>
+        
+    </center>
+</body>
+    <script src="script.js"></script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Caduta Libera</title>
+		<script>
+			document.getElementById("massa").value = 1;
+			document.getElementById("altezza").value = 1;
+			document.getElementById("velocita").value = 1;
+        </script>
+        
+	</head>
+	<body>
+		<h1>
+			<center>
+				Calcola l'energia cinetica e potenziale gravitazionale
+			</center>
+		</h1>
+		<div class="strumentazione">
+			<label for="massa">Massa (kg):</label>
+			<input type="number" id="massa" ><br>
+			<label for="altezza">Altezza (m):</label>
+			<input type="number" id="altezza" ><br>
+			<label for="velocita">Velocità (m/s):</label>
+			<input type="number" id="velocita" ><br>
+			<button onclick="calcola()">Calcola</button>
+		</div>
+		<div id="risultati">
+			<div id="energia"></div>
+			<div id="tempoVelocita"></div>
+		</div>
+		<div class="simulazione">
+			<div class="corpo" id="corpo"></div>
+			<div class="pavimento" id="pavimento"></div>
+			<button style="position:absolute;left:1%;top:100%;" onclick="startSimulation()">Avvia Simulazione</button>
+		</div>
+	</body>
+	
+	<script src="script.js"></script>
+	
+	<style>
+	
+		.simulazione{
+			position: absolute;
+			left: 67.2%;
+			top: 10%;
+			height: 300px;
+			width: 500px;
+		}
+		
+		.strumentazione{
+			position: relative;
+			left: 5px;
+			width: 300px;
+		}
+		
+		.strumentazione label, button{
+			font-family: Arial, sans-serif;
+		}
+		
+		.pavimento{
+			position: relative;
+			background-color: black;
+			height: 10px;
+			width: 500px;
+			top: 96%;
+		}
+		
+		.corpo{
+			position: absolute;
+			background-color: black;
+			left: 47%;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+		}
+		
+		#risultati {
+			position: relative;
+			margin-top: 20px;
+			left: 10px;
+		}
+		
+	</style>
+</html>

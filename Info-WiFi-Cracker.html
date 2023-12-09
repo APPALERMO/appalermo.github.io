@@ -1,0 +1,113 @@
+<html>
+    
+    <font family="Verdana" size="6">
+        <p id="titolo">
+            Come è nata l'idea
+        </p>
+    </font>
+
+    <font family="Verdana">
+
+        <p>
+            L'idea è partita stupidamente quando non mi ricordavo la password di un vecchio wifi che io non usavo più ma che serviva ad un mio amico
+            però poi la situazione è sfugita di mano, da uno scopo benevolo ad uno non molto ben intenzionato, io decisi di crearlo lo stesso. Ore e ore a integrare
+            il tutto con classi e alla fine è uscito quello che è uscito, ogni tanto li faccio mini update, un esempio è quello di aver aggiungo un file che ti crea il JSON
+            delle info estratte.
+        </p>
+    </font>
+
+    <br>
+
+    <font family="Verdana" size="6">
+        <p id="titolo">
+            Fase di Sviluppo
+        </p>
+    </font>
+
+    <font family="Verdana">
+
+        <p>
+            Per sviluppare il pacchetto in realtà è stato più semplice del previsto, perchè il contenuto lo avevo preparato giù in un file a parte quindi per 
+            creare il frutto del Tool era solo integrarlo con la classe, poi ho dovuto aggiungere delle variabili d'appoggio fornite dall'utente, senza sennò sarebbe stato 
+            un caos totale, anche se in alcuni punti sarebbe stato più semplice avere variabili fisse e non dinamiche però il bello di un pacchetto è quello di essere dinamico 
+            e gestirlo come si vuole e non statico che è così punto e basta. Ho inziato col creare la funzione principale ovvero l'estrattore e da li specificare 
+            la lista dei wifi, della password e il dizionario delle reti, tutti e tre vuoti perché poi vengono riempite in seguito. Dalla funzione principale ho creato la funzione
+            che tratta l'estrazione delle singole reti wifi, che se salvata in una variabile restituisce le reti salvate. Poi ho implementato la funzione dell'estrazione delle password 
+            che estrare le password dalla lista dei wifi. Infine, ho creato la funzione definitiva che ti restituisce il dizionario con il nome della rete e la relativa password.  
+        </p>
+    </font>
+    <br>
+
+    <font family="Verdana" size="6">
+        <p id="titolo">
+            Come Utilizzare il Pacchetto
+        </p>
+    </font>
+
+    <font family="Verdana">
+
+        <p>
+            L'utilizzo è molto semplice, una volta scaricato il <a href="https://github.com/APPALERMO" target="_blank" id="visualizza">pacchetto</a> si inserisce la cartella "Tool" nella cartella del progetto. Per utilizzare 
+            le funzioni offerte dal pacchetto si crea il file che si vuole usare, come prima riga di codice importiamo la cartella Tool, ora per utilizzare la funzione principale del pacchetto scriviamo
+            <p id="codice">extractor = Tool.extractor((variabile lista wifi), (variabile lista password), (variabile dizionario reti))</p> una volta fatto abbiamo 3 possibilità<br>
+            1. Prelevare le sole reti wifi<br>
+            2. Prelevare le sole password<br>
+            3. Prelevare sia reti che password e salvarle con una sintassi simile a questa: {WIFI: PASSWORD}<br>
+            Le rispettive possibilità sono le seguenti: <br>
+            <p id="codice">wifi = extractor.extractWifi()<br>passwords = extractor.extractPassword()<br>webs = extractor.extractWeb()<br>print(webs)</p><br>
+            Quando noi abbiamo eseguito il print della variabile "webs" abbiamo ottenuto il risultato voluto, ovvero una lista (in termine tecnico  è un dizionario) con 
+            WiFi e Password.<br>
+        </p>
+    </font>
+
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- Utilizzare la GUI</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Stavolta, per utilizzare la GUI il procedimento è un po più complesso ma allo stesso tempo semplice. Iniziamo dall'importare il metodo "ToolGUI" dal file "gui.py" della cartella Tool.
+            Una volta fatto dovremmo avviare la GUI con il metodo "manloop()" per far aprire la GUI, ecco il codice:
+            <p id="codice">from Tool.gui import ToolGUI<br>GUI = ToolGUI()<br>GUI.mainloop()</p>
+            Ecco come abbiamo avviato la nostra GUI, essa ha qualche funzionalità in più, ovvero quella che puoi salvare in un file JSON i dati veri e propri del computer e quello di inserire una spia 
+            solo che quello non lo tratterò qui perché è un file completamente diverso e usarlo per scopi non buoni è sbagliato. <br>
+        </p>
+    </font>
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- Utilizzare la versione Web</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Per utilizzare la versione Web del Tool il procedimento è un po più difficile. Iniziamo con installare le librerie richieste, in questo caso flask. Una volta fatto
+            importiamo il metodo "webSite" dal file "web.py" nella cartella Tool. Una volta fatto eseguiamo il sito. Questo è il codice
+            <p id="codice">from Tool.web import webSite<br>webSite = webSite()<br>webSite.run()</p>
+            Se la console non restiuirà errori inerenti ai pacchetti non installati, potremmo aprire il sito web al seguente URL: <a href="https://localhost:5000/" target="_blank">https://localhost:5000/</a>.
+        </p>
+    </font>
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- File di Supporto</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Come file di supporto possiamo trovare il file "createJson.py" e il file "notifica.py".<br> Il file "createJson.py" è un file di appoggio per la gui e per il sito web che ti aiuta
+            a creare il file JSON con informazioni del computer.<br>Invece il file "notifica.py" è un file di supporto che crea una notifica personalizzata senza utilizzare le notifiche di windows, di solito è un avviso per 
+            aver salvato con successo il file o non averlo salvato.
+        </p>
+    </font>
+
+    <br>
+    <script src="script.js"></script>
+    <button id="tornaindietro" class="bottonetornaindietro" onclick="location.reload()">Torna Indietro</button>
+    
+</html>
