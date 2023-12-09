@@ -30,18 +30,19 @@
             <br>
             Se invece salviamo su una variabile il metodo WordWideMap, possiamo anche ottenere le coordinate dal nome della città. Volendo possiamo far esprire al programma 
             l'output in formato tuple. Vi lascio un esempio di codice qua sotto:
-            <p id="codice">
-                from WordWideMap import WordWideMap <br>
+            <code>
+                from WordWideMap import WordWideMap <br><br>
                 wwm = WordWideMap([latitudine], [longitudine]) <br>
                 city_name = wwm.cityName() <br>
                 print(city_name) <br>
                 <br>
                 wwm = WordWideMap() <br>
                 dubai_coordinates = wwm.nameToCoordinates("Dubai") <br>
+                dubai_coordinates_tuple = wwm.nameToCoordinates("Dubai", istuple=True) <br> <br>
                 print(dubai_coordinates) <br>
-                dubai_coordinates_tuple = wwm.nameToCoordinates("Dubai", istuple=True) <br>
                 print(dubai_coordinates_tuple)
-            </p>
+            </code>
+            
             Come possiamo notare l'output del primo sarà espresso normalmente con le coordinate, l'altro sarà espresso invece in tuple
         </p>
     </font>
@@ -55,14 +56,15 @@
     <font family="Verdana">
         <p>
             Guardacaso possiamo anche calcolare la distanza tra due luoghi, la distanza sarà espressa in Km (kilometri), ora ti mostro come fare:
-            <p id="codice">
-                from WordWideMap import WordWideMap <br>
+            <code>
+                from WordWideMap import WordWideMap <br><br>
                 Milano = (45.463688, 9.188141) <br>
-                Roma = (41.902782, 12.496366) <br>
+                Roma = (41.902782, 12.496366) <br><br>
                 wwm = WordWideMap() <br>
-                distance = wwm.distanceCalculate(Milano, Roma)
+                distance = wwm.distanceCalculate(Milano, Roma) <br> <br>
                 print(distance) <br>
-            </p>
+            </code>
+            
             Le coordinate le dovremmo esprire in una variabile di tipo tuple, questo è necessario perché il programma prenderà in automatico le coordinate dal tuple.
         </p>
     </font>
@@ -79,14 +81,14 @@
             in modo che: se dobbiamo lavorare con le coordinate abbiamo questa possibilità. Poi abbiamo il metodo per convertire da coordinate decimali in gradi. <br>
             Un altro tipo di conversione (molto semplice) è quello di convertire i metri in kilometri e i kilometri in metri. <br>
             Per utilizzare il convertore: dalla cartella WordWideMap con tanto di file importare il metodo <span id="codice">Converter</span>, ora ti farà un esempio pratico:
-            <p id="codice">
-                from WorldWideMap.converter import Converter <br>
+            <code>
+                from WorldWideMap.converter import Converter <br><br>
                 # Rome Coordinates: 41°53′57.12″ | 12°32′42.00″ <br>
                 converter = Converter() <br>
                 lat = converter.degrees_to_decimal(41, 53, 57.12) <br>
-                lon = converter.degrees_to_decimal(12, 32, 42.00) <br>
+                lon = converter.degrees_to_decimal(12, 32, 42.00) <br> <br>
                 print("Lat: {}, Lon: {}".format(lat, lon)) <br>
-            </p>
+            </code>
             Il programma poi ci resituisce le coordinate da gradi in decimale.
         </p>
     </font>
@@ -103,10 +105,11 @@
             Come tutti i miei pacchetti anche qui abbiamo la gestione di esso su GUI, ora ti spiego come usarla: <br>
             Dal file gui.py situata nel pacchetto WordWideMap importiamo <span id="codice">GuiMappa</span>, una volta fatto utiliziamo il metodo start
             per avviare la gui: <span id="codice">GuiMappa.start()</span>. Ora ti mostro un esempio:
-            <p id="codice">
-                from WordWideMap.gui import GuiMappa <br>
+            <code>
+                from WordWideMap.gui import GuiMappa <br><br>
                 GuiMappa.start()
-            </p>
+            </code>
+            
             Il programma poi aprirà la gui linkata qua sotto:
             <p>
                 <img src="media/FotoGUIWordWideMap.png" width="650" class="img-border">
