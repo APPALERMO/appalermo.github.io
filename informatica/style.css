@@ -10,6 +10,7 @@
     top: 48%;
     left: -0.41%;
     transform: translate(0,-50%);
+    transition: 0.5s ease-out;
 }
 
 .item{
@@ -27,6 +28,8 @@
     background-color: black;
     transform-origin: top left;
 }
+
+
 .freccia > div.punta{
     position: absolute;
     border-left: 10px white solid;
@@ -80,7 +83,7 @@ p{
     width: 100%;
     user-select: none;
     text-align: center;
-    max-width: 200px;
+    max-width: 500px;
     word-wrap: break-word;
 }
 
