@@ -1,1 +1,2 @@
-<h2>Resta sempre aggiornato</h2> 📅 | <b>Data</b>: 09/12/2023<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Nuova versione del sito, con migioramenti nelle prestazione anche da mobile!</div> </div><br><br>
+<h2>Sito Web 2.0</h2> 📅 | <b>Data</b>: 09/12/2023<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Nuova versione del sito, con migioramenti nelle prestazione anche da mobile!</div> </div><br><br>
+<h2>Diagramma a Blocchi</h2> 📅 | <b>Data</b>: 11/12/2023<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Migliorato il sistema di posizionamento dei vari oggetti, introducendo uno spazio parzialmente infinito</div> </div><br><br>
