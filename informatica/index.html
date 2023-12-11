@@ -3,6 +3,7 @@
 <head>
     <title>Diagramma a blocchi</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 </head>
 <body oncontextmenu="return false">
@@ -22,7 +23,7 @@
         
     </div>
     
-    <div id="contextMenu" class="menu" style="display:none">
+    <div id="contextMenu" class="menu" style="display:none; user-select: none;">
         <button id="bt-move" onclick="hideMenu()">Muovi</button>
         <button id="bt-canc" onclick="hideMenu()">Cancella</button>
     </div>
