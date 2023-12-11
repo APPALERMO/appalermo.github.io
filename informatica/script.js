@@ -221,7 +221,7 @@ const create = (element) =>{
             
             p = document.createElement("p")
             p.style.textAlign = "center"
-            p.style.border = "1px black solid"
+            p.style.border = "3px black solid"
             p.style.borderRadius = "50%"
             
             p.textContent  = "INIZIO"
@@ -238,7 +238,7 @@ const create = (element) =>{
             
             p = document.createElement("p")
             p.style.textAlign = "center"
-            p.style.border = "1px black solid"
+            p.style.border = "3px black solid"
             p.style.borderRadius = "50%"
             
             p.textContent  = "FINE"
@@ -257,10 +257,22 @@ const create = (element) =>{
     
 }
 
+const getScroll = () => {
+    let scrollX = $(document).scrollLeft()
+    let scrollY = $(document).scrollTop()
+    
+    return [scrollX,scrollY]
+}
+
 divItem.addEventListener("click", (event)=>{
     // console.log(event.target.id)
     tag = event.target.id
     create(tag)
+})
+
+document.addEventListener("scroll", () =>{
+    // divItem.style.left = `cacl(${getScroll()[0]}px -0.41%)` 
+    divItem.style.top = `calc(${getScroll()[1]}px + 48%)`
 })
 
 
@@ -271,25 +283,22 @@ document.getElementById("bt-move").addEventListener("click", ()=>{ moveElement(x
 document.getElementById("bt-canc").addEventListener("click", ()=>{ remvElement(x) }) // parte per rimuovere un elemento
 // document.getElementById("bt-editText").addEventListener("click", (event) => console.log(event))
 
+
 document.addEventListener("click", (event)=>{
     if(event.target.classList != "item"){
         if(temp_x != -1 && temp_y != -1 && temp.length === 0) temp.push([temp_x, temp_y])
-        else if(temp.length <= 1) temp.push([event.clientX, event.clientY])
+        else if(temp.length <= 1) temp.push([event.clientX + getScroll()[0], event.clientY + getScroll()[1]])
     }
 })
 
-
-window.onscroll = (event) =>{
-    console.log(document.body.scrollTop)
-}
 
 document.addEventListener("mousemove", (event)=>{
     if(temp.length === 1){
         let x1 = temp[0][0],
             y1 = temp[0][1]
         
-        let x2 = event.clientX,
-            y2 = event.clientY
+        let x2 = event.clientX + getScroll()[0],
+            y2 = event.clientY + getScroll()[1]
         
         if(createArrow){
             const [f,a] = partsOfArrow
@@ -328,12 +337,12 @@ document.addEventListener("mousemove", (event)=>{
     let s = document.getElementById("mover")
     
     if(s){
+    
         s.style.position = "absolute"
-        s.style.left = `${event.clientX-(s.offsetWidth/2)}px`
-        s.style.top = `${event.clientY-(s.offsetHeight/2)}px`
+        s.style.left = `${(event.clientX + getScroll()[0])-(s.offsetWidth/2)}px`
+        s.style.top = `${(event.clientY + getScroll()[1])-(s.offsetHeight/2)}px`
         
         // console.log("MOVIMENTO: ",`${event.clientX-(s.offsetWidth/2)}px`, `${event.clientY-(s.offsetHeight/2)}px`)
-        
         if(!isadded){
             t = true
             s.addEventListener("mousedown",(event)=>{
@@ -364,8 +373,8 @@ document.addEventListener("mousemove", (event)=>{
                     
                     if(x.id != "mover") divMenu.style.display = `flex`
                     
-                    divMenu.style.top = `${event.clientY}px`
-                    divMenu.style.left= `${event.clientX}px`
+                    divMenu.style.left= `${event.clientX + getScroll()[0]}px`
+                    divMenu.style.top = `${event.clientY + getScroll()[1]}px`
                 }
             })
             isadded = true
