@@ -71,8 +71,8 @@ const create = (element) =>{
                         
                         f.style.width = `${distance}px`
                         f.style.transform = `rotate(${angle}deg)`
-                        f.style.top = `${y1}px`
-                        f.style.left = `${x1}px`
+                        f.style.top = `5px`
+                        f.style.left = `0px`
                         
                         a.style.width = "0"
                         a.style.left = "99%"
@@ -92,7 +92,30 @@ const create = (element) =>{
                         temp.length = 0 //azzeramento array
                         partsOfArrow.length = 0
                         
-                        schema.appendChild(f)
+                        const arrowContainer = document.createElement("div")
+                        arrowContainer.appendChild(f)
+                        arrowContainer.addEventListener("mousedown", (event) =>{
+                            if(event.buttons === 2){
+                                
+                                x = event.target.offsetParent 
+                                if(x === document.body) x = event.target
+                                
+                                if(x.id != "mover") divMenu.style.display = `flex`
+                                
+                                divMenu.style.left = `${event.clientX + getScroll()[0]}px`
+                                divMenu.style.top = `${event.clientY + getScroll()[1]}px`
+                            }
+                        })
+                        
+                        arrowContainer.style.height = "15px" 
+                        arrowContainer.style.width = `${distance}px` 
+                        arrowContainer.style.position = "absolute"
+                        
+                        arrowContainer.style.top = `${y1-5}px`
+                        arrowContainer.style.left = `${x1}px`
+                        
+                        
+                        schema.appendChild(arrowContainer)
                         document.removeEventListener("click", sePoint, false)
                         createArrow = false
                     } 
@@ -137,7 +160,7 @@ const create = (element) =>{
             blo.classList.add("blo")
             
             const inpp = document.createElement("input")
-            inpp.style.transform = "skewX(0deg)"
+            // inpp.style.transform = "skewX(0deg)"
             
             inpp.addEventListener("keypress", (event) =>{
                 if(event.key === "Enter"){
@@ -281,7 +304,38 @@ const moveElement = (element) => element.id = "mover"
 
 document.getElementById("bt-move").addEventListener("click", ()=>{ moveElement(x) }) // parte per muovere un elemento
 document.getElementById("bt-canc").addEventListener("click", ()=>{ remvElement(x) }) // parte per rimuovere un elemento
-// document.getElementById("bt-editText").addEventListener("click", (event) => console.log(event))
+document.getElementById("bt-edit").addEventListener("click", (
+    )=>{
+        const paragraph = x.children[0] 
+        const oldText = paragraph.innerText
+        
+        x.removeChild(paragraph)
+        const input = document.createElement("input")
+        
+        input.addEventListener("keypress", (event) =>{
+            if(event.key === "Enter"){
+                text = input.value
+                x.removeChild(input)
+                
+                const p =  document.createElement("p") 
+                p.textContent = text
+                
+                x.appendChild(p)
+                
+                if(x.classList[0] !== "rombo"){
+                    let width = Math.round(p.offsetWidth) * 1.2
+                    x.style.width = `${(width < 80)? 80 : width}px`
+                }
+                
+                // console.log(x.offsetWidth)
+                
+            }
+        })
+        x.appendChild(input)
+        input.value = oldText
+        input.focus()
+        
+    })
 
 
 document.addEventListener("click", (event)=>{
@@ -381,4 +435,3 @@ document.addEventListener("mousemove", (event)=>{
         }
     }
 })
-
