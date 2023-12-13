@@ -47,7 +47,11 @@
     max-width: 200px;
 }
 
-.io > p{
+.io p{
+    transform: skewX(30deg);
+}
+
+.io input{
     transform: skewX(30deg);
 }
 
@@ -70,6 +74,10 @@ input {
     align-items: center;
 }
 
+.blo input{
+    transform: skewX(0deg);
+}
+
 .rombo{
     border: 1px solid black;
     width: 100px;
@@ -79,8 +87,13 @@ input {
     justify-content: center;
     align-items: center;
 }
-p{  
-    width: 100%;
+
+.rombo input, .rombo p{
+    transform: rotate(45deg);
+}
+
+
+p{
     user-select: none;
     text-align: center;
     max-width: 500px;
