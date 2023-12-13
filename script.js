@@ -1,5 +1,6 @@
 let altezza = 100
-const scale = 0.29
+// const scale = 0.29
+const scale = 1
 
 window.onload = () => {
     const head = document.querySelector("head")
