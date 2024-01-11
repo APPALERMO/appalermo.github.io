@@ -2,7 +2,7 @@ var sommag = 0;
 var sommap = 0;
 
 
-const scale = 1
+const scale = 0.5
 let changeLeftBtView = true
 
 window.onload = (event) => {
