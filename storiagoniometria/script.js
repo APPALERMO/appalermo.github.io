@@ -1,6 +1,8 @@
 const buttons = document.querySelectorAll("button")
-const angleInput = document.getElementById("angleInput")
 const btPartecipanti = document.getElementById("lpart")
+
+const divCos = document.querySelector(".cos")
+const divSin = document.querySelector(".sin")
 
 for(var i=0; i<buttons.length; i++){
     buttons[i].addEventListener("click",(event)=>{
@@ -9,19 +11,14 @@ for(var i=0; i<buttons.length; i++){
         if(tag !== "partecipanti"){
             const div = document.querySelector(`div#${tag}`)
             const localButton = document.querySelector(`button#${tag}`)
-            console.log(tag)
-            div.style.display = "unset"
+            // console.log(tag)
+            div.style.display = (div.style.display === "unset") ? "none" : "unset"
+            console.log(div.style.display)
             
-            localButton.style.transform = "scale(1.5)"
+            // div.style.display = (localButton.style.transform === "unset") ? "none" : "unset"
+            localButton.style.transform = (localButton.style.transform === "scale(1.5)") ? "scale(1)" : "scale(1.5)"
         
-        }else btPartecipanti.style.display = "unset"
+        }else btPartecipanti.style.display = (btPartecipanti.style.display === "unset") ? "none" : "unset"
         
     })
 }
-
-angleInput.addEventListener("input", ()=>{
-    
-    angle = angleInput.value
-    
-
-})
