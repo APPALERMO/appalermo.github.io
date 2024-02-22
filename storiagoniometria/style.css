@@ -1,0 +1,78 @@
+:root{
+    --cl: white ;
+    --bgBt: #282c34;
+    /* #abb2bf */
+}
+
+body {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgb(28, 27, 34);
+    /* background: url(bg.jpg); */
+}
+
+* {
+    color: var(--cl);
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+p {
+    max-width: 800px;
+    word-wrap: break-word;
+    font-size: 20px;
+    text-align: center;
+    user-select: none;
+    color: var(--cl);
+    font-weight: bold;
+}
+
+div {
+    display: none;
+    text-align: center;
+    animation: focus 1s ease;
+    transition: all 1s;
+}
+
+button {
+    background:var(--bgBt); /* #282c34 */;
+    border-radius: 6px;
+    border: none;
+    font-size: 20px;
+    margin: 10px 0 0 0;
+    transition: all 0.5s;
+    /* color: white; */
+    color: var(--cl);
+}
+
+button:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
+img {
+    display: inline-block;
+    height: 250px;
+    width: 250px;
+    position: relative;
+    border: 3px solid var(--cl);
+    border-radius: 5%;
+    box-shadow: 10px 10px 10px var(--cl);
+}
+
+@keyframes focus {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
