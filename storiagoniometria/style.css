@@ -43,13 +43,12 @@ div {
 button {
     background: var(--bgBt); /* #282c34 */;
     border-radius: 6px;
-    border: none;
+    border: 1px solid;
     font-size: 20px;
     margin: 10px 0 0 0;
     transition: all 0.5s;
     /* color: white; */
     color: var(--cl);
-    border: 1px solid;
 }
 
 button:hover {
