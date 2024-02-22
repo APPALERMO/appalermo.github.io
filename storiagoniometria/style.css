@@ -1,5 +1,7 @@
 :root{
     --cl: white ;
+    --bgBt: #282c34;
+    /* #abb2bf */
 }
 
 body {
@@ -39,13 +41,14 @@ div {
 }
 
 button {
-    background: #282c34;
+    background:var(--bgBt); /* #282c34 */;
     border-radius: 6px;
     border: none;
     font-size: 20px;
     margin: 10px 0 0 0;
     transition: all 0.5s;
-    color: white;
+    /* color: white; */
+    color: var(--cl);
 }
 
 button:hover {
