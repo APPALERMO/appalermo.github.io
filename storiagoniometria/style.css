@@ -41,7 +41,7 @@ div {
 }
 
 button {
-    background:var(--bgBt); /* #282c34 */;
+    background: var(--bgBt); /* #282c34 */;
     border-radius: 6px;
     border: none;
     font-size: 20px;
@@ -49,6 +49,7 @@ button {
     transition: all 0.5s;
     /* color: white; */
     color: var(--cl);
+    border: 1px solid;
 }
 
 button:hover {
