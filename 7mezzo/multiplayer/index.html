@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html onscroll="scrollTo(0,0)">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Gioco 7 ½</title>
+</head>
+<body>
+    <p id="port" style="display: none;"></p>
+    <div id="playerDate" style="display: flex;align-items: center;justify-content: center;flex-direction: column; overflow: visible;">
+        <h1>Inserire un nome da visualizzare in game</h1>
+        <input type="text" id="username" class="inputUsername">
+        <div class="bar"></div>
+        <button id="confirmName" style="margin: 1.1%;border-radius: 20px;font-size: 16px;">Conferma</button>
+    </div> 
+    
+    <div id="contenuto" style="display: none;">
+        <div id="containerTestoP" style="height: 100px;width: 29%;position: absolute; text-align: end;">
+            <p id="testoPc" style="font-size: 30px;">Giocatore 2</p>
+        </div>
+        <div class="carte-p" id="carte-p"></div>
+        
+        <p style="position: absolute;left: 45%;top: 25%;font-size: 30px; display:none;" class="stai-carta" id="testo-pc">Stai o carta?</p>
+        
+        <div class="tavolo">
+            <button id="inizio" style="position:absolute;top: 45%;left: 45%;border-radius: 10px;font-size: 15px;transform: skew(20deg);" onclick="inzio(this)">Inizio</button>
+            <p style="position:absolute;text-align: center;transform: skew(20deg);font-size: 30px;display: none;" id="notifica"></p>
+        </div>
+        
+        <div id="stai-carta-i" class="stai-carta" style="position: absolute;left: 50%;top: 65.5%; display: none;;transform: translate(-55%);">
+            <button style="border-radius: 5px;" onclick="stai()" id="btSto">Stai</button>
+            <button style="border-radius: 5px;" onclick="carta()" id="btCarta">Carta</button>
+        </div>
+        
+        <p id="stai-carta-g" style="position: absolute;left: 45%;top: 60.5%; display: none;font-size: 30px;">Stai o Carta?</p>
+        
+        <div class="carte-g" id="carte-g"></div>
+        <div class="punteggio-g" id="punteggio-g" style="display: flex; align-items: center;flex-direction: column;">
+            <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
+            <span id="testo-punteggio" style="font-size: 30px;">0</span>
+        </div>
+        
+        <div id="containerTestoG" style="height: 100px;width: 29%;position: absolute;top:85%; text-align: end;">
+            <p id="testoGiocatore" style="font-size: 30px;">Giocatore 1</p>
+        </div>
+        
+        <button onclick="mostraCarte()" style="position: absolute;top: 85%;left: 25%;border-radius: 10px;" id="vedi-carte">Vedi carte</button>
+    </div>
+</body>
+    <script src="script.js"></script>
+</html>

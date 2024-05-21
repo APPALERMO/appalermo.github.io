@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diagramma a blocchi</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body oncontextmenu="return false">
+    
+    <div id="schema"> </div>
+    
+    <div class="items">
+        <div class="item" id="arrow" onclick="temp_x = -1; temp_y = -1;this.style.background='gray'">Freccia</div> 
+        <div class="item" id="io">I/O</div>
+        <div class="item" id="blocco_operativo">Blocco Operativo</div>
+        <div class="item" id="if">Se</div>
+        <div class="item" id="cancel">Cancella Elemento</div>
+        <div class="item" id="inizio">Inizio</div>        
+        <div class="item" id="fine">Fine</div> 
+        <div class="item" id="text">Testo</div>        
+        <a class="item" id="saveFile">Salva File</a> 
+        <div class="item" id="openFile">  
+            <input type="file" id="inptFile">
+            Apri file
+        </div>
+        
+        <div class="item" id="pulisci" onclick="location.reload()" style="margin-bottom: 10px;">Pulisci</div>
+        
+    </div>
+    
+    <div id="contextMenu" class="menu" style="display:none; user-select: none;">
+        <button id="bt-move" onclick="hideMenu()">Muovi</button>
+        <button id="bt-edit" onclick="hideMenu()">Modifica</button>
+        <button id="bt-canc" onclick="hideMenu()">Cancella</button>
+    </div>
+    
+    <button id="hideElements" onclick="document.querySelector('div.items').classList.toggle('hide')">Attiva/disattiva il menù degli oggetti</button>
+    
+    
+    <div style="position: absolute;width: 1px;height: 1px;background-color: black;top:1000%;left:500%;"></div>
+    
+</body>
+    <script src="script.js"></script>
+</html>

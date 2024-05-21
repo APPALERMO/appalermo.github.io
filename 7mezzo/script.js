@@ -1,0 +1,362 @@
+var sommag = 0;
+var sommap = 0;
+
+
+const scale = 0.29
+let changeLeftBtView = true
+
+let counterCarteGiocatore = 0,
+    counterCartePC = 0
+
+window.onload = (event) => {
+    const head = document.querySelector("head")
+    head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
+    
+    if(screen.width <= 1000){
+        const tavolo = document.querySelector(".tavolo")
+        tavolo.style.left = "50%"
+        tavolo.style.transform = "skew(-20deg) scale(2) translate(-25%)"
+        
+        const testoPC = document.getElementById("testo-pc")
+        testoPC.style.left = "36%"
+        testoPC.style.top = "21.5%"
+        testoPC.style.fontSize = "40px"
+        testoPC.style.transform = "scale(2)"
+        
+        
+        const btSto = document.getElementById("btSto")
+        btSto.style.fontSize = "35px"
+        btSto.style.transform = "scale(0.9)"
+        // btSto.style.padding= "10px 20px"
+        
+        const btCarta = document.getElementById("btCarta")
+        btCarta.style.fontSize = "35px"
+        btCarta.style.transform = "scale(0.9)"
+        // btCarta.style.padding= "10px 20px"
+        
+        const staiCartaI = document.getElementById("stai-carta-i")
+        staiCartaI.style.transform = "translate(-55%) scale(2)"
+        
+        const btView = document.getElementById("vedi-carte")
+        btView.style.left = "5%"
+        changeLeftBtView = false
+        
+        const testoGiocatore = document.getElementById("testoGiocatore")
+        testoGiocatore.style.left = "2.5%"
+        
+        
+        const punteggioG = document.getElementById("punteggio-g")
+        punteggioG.style.top = "100%"
+        punteggioG.style.left = "50%"
+        punteggioG.style.transform = "scale(2) translate(-25%, -100%)"
+        
+        const btInizio = document.getElementById("inizio")
+        btInizio.style.position = "unset"
+        btInizio.style.fontSize = "25px"
+        btInizio.style.display = "flex"
+        btInizio.style.alignItems = "center"
+        
+        const staiCartaG = document.getElementById("stai-carta-g")
+        staiCartaG.style.fontSize = "40px"
+        staiCartaG.style.top = "62%"
+        staiCartaG.style.left = "37%"
+        staiCartaG.style.transform = "scale(2)"
+        
+        const staiCartaP= document.getElementById("testo-pc")
+        staiCartaP.style.fontSize = "40px"
+        staiCartaP.style.top = "20%"
+        staiCartaP.style.left = "37%"
+        
+        
+        const tavoloGiocatore = document.getElementById("carte-g")
+        tavoloGiocatore.style.transform = "scale(1.5) translate(-35%,-50%)"
+        
+        const tavoloPC = document.getElementById("carte-p")
+        tavoloPC.style.transform = "scale(1.5) translate(-35%, 15%)"
+        
+    }
+}
+
+const istructionList = (DIM = 90) =>{
+    // const DIM = 90
+    let v = new Array(DIM)
+    let vet = new Array(DIM)
+    let size = DIM - 1
+    
+    for(let i = 0; i<DIM; i++) v[i] = -i+DIM
+    
+    for(let i = 0; i<DIM; i++){
+        let estratto, pos
+        
+        pos = parseInt(Math.random() * 1E10) % size
+        estratto = v[pos]
+        v[pos] = v[size]
+        size --
+        
+        vet[i] = estratto
+    }
+    vet[DIM-1] = v[0]
+    
+    return vet
+}
+
+const carteG = istructionList()
+let counterG = 0
+
+
+const carteP = istructionList()
+let counterP = 0
+
+
+const scelteSoC = istructionList() //scelte stai o carta
+let counterSC = 0 //counter stai o carta
+
+
+const inzio = (bt) =>{
+    document.querySelector(".tavolo").removeChild(bt)
+} 
+
+function notifica(testo){
+    const notifica = document.getElementById("notifica");
+    notifica.style.display = "unset"
+    notifica.style.top = "25%"
+    notifica.style.left = "28%"
+    notifica.style.userSelect = "none"
+    
+    document.body.removeChild(document.getElementById("testo-pc"))
+    document.body.removeChild(document.getElementById("stai-carta-g"))
+   
+   
+    let btRiprova = document.createElement("button")
+    btRiprova.style.position = "absolute"
+    btRiprova.style.top = "70%"
+    btRiprova.style.left = "40%"
+    btRiprova.style.transform = "skew(20deg)"
+    btRiprova.style.borderRadius = "10px"
+    btRiprova.style.fontSize = "15px"
+    btRiprova.onclick = () => {  location.reload()  }
+    btRiprova.innerText = "Gioca Ancora"
+    
+    document.querySelector(".tavolo").appendChild(btRiprova)
+    
+    notifica.textContent = testo
+    
+    const carta = document.getElementsByClassName("testo-carta")
+    for(var i = 0; i<carta.length; i++) carta[i].style.opacity = "100%";
+    
+    
+    document.body.removeChild(document.getElementById("stai-carta-i"))
+    document.body.removeChild(document.getElementById("vedi-carte"))
+
+}
+
+function controlla(){
+
+    if(sommag > 7.5 && sommap > 7.5) notifica("Entrambi avete perso")
+    else if (sommag == sommap) notifica("Pareggio")
+    else if (sommag > 7.5) notifica("Ha vinto il PC")
+    else if (sommap > 7.5) notifica("Hai Vinto!")
+    else if (sommag < sommap) notifica("Ha vinto il PC")
+    else if (sommap < sommag) notifica("Ha vinto il Giocatore!")
+
+}
+
+function mostraCarte(){
+
+    const bottone = document.getElementById("vedi-carte")
+    
+    if(bottone.textContent == "Vedi carte"){
+        
+        document.documentElement.style.setProperty("--view", 1)
+        
+        bottone.textContent = "Nascondi carte"
+        if(changeLeftBtView) bottone.style.left = "23%"
+        
+    }
+    else if(bottone.textContent == "Nascondi carte"){
+        document.documentElement.style.setProperty("--view", 0  )
+        
+        bottone.textContent = "Vedi carte"    
+        if(changeLeftBtView) bottone.style.left = "25%"
+    
+    }
+}
+
+function daiCartaG(){
+    counterCarteGiocatore++ //incremento carte del giocatore
+    
+    let r = parseInt(carteG[counterG]) % 7 
+    if(r>7 || r === 0) r = 0.5
+    
+    let type = Math.floor(Math.random() * 10) % 4
+    // 0 => coppe
+    // 1 => soli
+    // 2 => mazze
+    // 3 => spade
+    
+    const divPadre = document.getElementById("carte-g")
+    const newDiv = document.createElement("div")
+    
+    newDiv.classList.add("carta")
+    if(counterCarteGiocatore > 4) newDiv.style.top = "-100%"
+    const figliaDivCarta = document.createElement("p")
+    
+    let carta = (type !== 0) ? (r === 0.5) ? `${type}0`: `${type}${r}`     :     (r === 0.5) ? `10`: `${r}`
+    
+    figliaDivCarta.id = "testo-carta-g"
+    figliaDivCarta.innerHTML = `<img src="https://demo.giocaonline.casino/assets/svg/carte/napoletane/${carta}.svg" height=180 width=120>`
+    
+    const divNoSpy = document.createElement("div")
+    divNoSpy.style.height = "200px";
+    divNoSpy.style.width = "125px";
+    divNoSpy.style.position = "absolute";
+    divNoSpy.style.top = "0";
+    divNoSpy.style.left = "-2%";
+    divNoSpy.style.backgroundColor = "transparent";
+    
+    figliaDivCarta.appendChild(divNoSpy)
+    
+    newDiv.appendChild(figliaDivCarta)
+    divPadre.appendChild(newDiv)
+    figliaDivCarta.classList.add("testo-carta")
+    
+    sommag += r
+    if(sommag >= 7.5) controlla()
+    document.getElementById("testo-punteggio").textContent = sommag    
+    
+    counterG += Math.floor(Math.random() * 10)
+        
+    turnoG()
+}
+
+function daiCartaP(){
+    counterCartePC++
+    let r = parseInt(carteP[counterP]) % 7 
+    if(r>7 || r === 0) r = 0.5
+    
+    let type = Math.floor(Math.random() * 10) % 4
+    // 0 => coppe
+    // 1 => sole
+    // 2 => mazze
+    // 3 => spade
+        
+    const divPadre = document.getElementById("carte-p")
+    const newDiv = document.createElement("div")
+    
+    newDiv.classList.add("carta")
+    if(counterCartePC > 4) newDiv.style.top = "-100%"
+    const figliaDivCarta = document.createElement("p")
+    
+    figliaDivCarta.classList.add("testo-carta")
+    figliaDivCarta.id = "testo-carta-p"
+
+
+    let carta = (type !== 0) ? (r === 0.5) ? `${type}0`: `${type}${r}`     :     (r === 0.5) ? `10`: `${r}`
+    
+    figliaDivCarta.innerHTML = `<img src="https://demo.giocaonline.casino/assets/svg/carte/napoletane/${carta}.svg" height=180 width=120>`
+    
+    const divNoSpy = document.createElement("div")
+    divNoSpy.style.height = "200px";
+    divNoSpy.style.width = "125px";
+    divNoSpy.style.position = "absolute";
+    divNoSpy.style.top = "0";
+    divNoSpy.style.left = "-2%";
+    divNoSpy.style.backgroundColor = "transparent";
+    
+    
+    figliaDivCarta.appendChild(divNoSpy)
+    newDiv.appendChild(figliaDivCarta)
+    
+    divPadre.appendChild(newDiv)
+    sommap += r
+    
+    
+    if(sommap >= 7.5) {
+        controlla()
+        return
+    }
+    
+    counterP += Math.floor(Math.random() * 10)
+
+}
+
+//vecchio metodo
+
+function turnoPC(){
+
+    var scelta = scelteSoC[counterSC]
+    const testo = document.getElementById("testo-pc")
+    
+    //30 perché fa in modo che se è minore di un terzo fa stai altrimenti fa sempre carta
+    // ha più possibilitò di fare carta
+    
+    if(!changeLeftBtView) testo.style.left = "30%"
+    
+    if(scelta > 30){
+        testo.textContent = "Fammi vedere...Carta!"
+        daiCartaP()
+        if(sommap >= 7.5) {
+            controlla()
+            return
+        }
+        counterSC += Math.floor(Math.random()*10)
+        setTimeout(turnoPC,2000)
+        
+    }else{
+        
+        if(changeLeftBtView){
+            document.getElementById("stai-carta-g").style.top = "65.5%"
+            document.getElementById("stai-carta-g").style.left = "42.5%"
+        }
+        
+        document.getElementById("stai-carta-g").style.display = "none"
+        document.getElementById("stai-carta-i").style.display = "unset"
+        testo.innerHTML = "Ora Sto! Stai o Carta?"
+        
+        if(sommap >= 7.5){ 
+            controlla()
+            return
+        }
+        counterSC += Math.floor(Math.random()*10)
+        setTimeout(turnoG,2000)
+        
+    }
+
+}
+
+
+function turnoG(){
+    const stai_carta_T = document.getElementsByClassName("stai-carta")
+    
+    for (var i = 0; i<stai_carta_T.length; i++){
+        (stai_carta_T[i]).style.opacity = "100%";
+    }
+    
+    try{
+        const carta = document.getElementById("btCarta")
+        carta.style.display = "unset"
+        
+        const stai = document.getElementById("btSto")
+        stai.style.display = "unset"
+    }catch {}
+}
+
+function stai(){
+    const carta = document.getElementById("btCarta")
+    carta.style.display = "none";
+    
+    const stai = document.getElementById("btSto")
+    stai.style.display = "none"
+    
+    document.getElementById("stai-carta-g").style.top = "60.5%"
+    document.getElementById("stai-carta-g").style.display = "unset"
+    if(sommag >= 7.5) controlla()
+    turnoPC()
+    
+}
+
+function carta(){
+    if(sommag >= 7.5) controlla()
+    daiCartaG()
+
+}

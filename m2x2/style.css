@@ -1,0 +1,25 @@
+html{
+    position: relative;
+    left: 30%;
+    /* background-color: rgb(28, 27, 34); */
+}
+
+input{
+    width: 5%;
+    padding: 10px;
+    font-size: 25px;
+    appearance: none;
+    text-align: right;
+    background: transparent;
+    border:none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+.calcoli{
+    position: absolute;    
+    top: 20%;
+    left:3%;
+    /* color: white; */
+    user-select: none;
+    font-size:25px;
+}
