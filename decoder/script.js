@@ -3,6 +3,20 @@ const bt = document.getElementById("confirm")
 const res = document.getElementById("resoult")
 let arr
 let resolut = []
+
+window.onload = () => {
+    
+    if(location.hash){
+        text = location.hash
+        arr = text.split("%2")
+        arr[0] = arr[0].slice(1)
+        
+        input.value = arr.join(" ")
+        converter()
+    }
+    
+}
+
 const converter = () => {
     if(parseInt(input.value[0]) <= 1 && parseInt(input.value[0]) >= 0){ // se inzia per 0 o per 1, signfica che deve fare da binario a testo
         arr =input.value.split(" ")
