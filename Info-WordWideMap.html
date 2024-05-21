@@ -1,0 +1,136 @@
+<html>
+
+    <font family="Verdana" size="6">
+        <p id="titolo">
+            Fase di Sviluppo
+        </p>
+    </font>
+
+    <font family="Verdana">
+
+        <p>
+            La fase di sviluppo è stata una delle fasi più difficili da fare. Il pacchetto si basa principalmente sull'utilizzo del modulo <span id="codice">requests</span> da li si connette a Bing Maps per 
+            ricavare le coordinate dei luoghi, di conseguenza, dai luoghi ricavare le coordinate infine anche per calcolare la distanza tra due punti del globo.
+        </p>
+    </font>
+    <br>
+
+    <font family="Verdana" size="6">
+        <p id="titolo">
+            Come Utilizzare il Pacchetto
+        </p>
+    </font>
+
+
+    <font family="Verdana">
+        <p>
+            Stavolta l'utlizzo del pacchetto è un po più complesso. Importiamo dal pacchetto WordWideMap la sezione WordWideMap, da li poi possiamo: <br>
+            1. Utilizzare il metodo <span id="codice">WordWideMap()</span> e nelle parentesi inserire le coordinate in un luogo; <br>
+            2. Una volta salvata su una variabile il metodo, dalle coordinate inserite possiamo ricavare il nome della città; <br>
+            <br>
+            Se invece salviamo su una variabile il metodo WordWideMap, possiamo anche ottenere le coordinate dal nome della città. Volendo possiamo far esprire al programma 
+            l'output in formato tuple. Vi lascio un esempio di codice qua sotto:
+            <code>
+                from WordWideMap import WordWideMap <br><br>
+                wwm = WordWideMap([latitudine], [longitudine]) <br>
+                city_name = wwm.cityName() <br>
+                print(city_name) <br>
+                <br>
+                wwm = WordWideMap() <br>
+                dubai_coordinates = wwm.nameToCoordinates("Dubai") <br>
+                dubai_coordinates_tuple = wwm.nameToCoordinates("Dubai", istuple=True) <br> <br>
+                print(dubai_coordinates) <br>
+                print(dubai_coordinates_tuple)
+            </code>
+            
+            Come possiamo notare l'output del primo sarà espresso normalmente con le coordinate, l'altro sarà espresso invece in tuple
+        </p>
+    </font>
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- Calcolare la distanza tra due luoghi</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Guardacaso possiamo anche calcolare la distanza tra due luoghi, la distanza sarà espressa in Km (kilometri), ora ti mostro come fare:
+            <code>
+                from WordWideMap import WordWideMap <br><br>
+                Milano = (45.463688, 9.188141) <br>
+                Roma = (41.902782, 12.496366) <br><br>
+                wwm = WordWideMap() <br>
+                distance = wwm.distanceCalculate(Milano, Roma) <br> <br>
+                print(distance) <br>
+            </code>
+            
+            Le coordinate le dovremmo esprire in una variabile di tipo tuple, questo è necessario perché il programma prenderà in automatico le coordinate dal tuple.
+        </p>
+    </font>
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- Convertitore di Misure</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Questa è una scelta che poteva servire, ovvero un convertitore, attualmente possiamo convertire le misure espresse in gradi (primi e secondi) in formato decimale,
+            in modo che: se dobbiamo lavorare con le coordinate abbiamo questa possibilità. Poi abbiamo il metodo per convertire da coordinate decimali in gradi. <br>
+            Un altro tipo di conversione (molto semplice) è quello di convertire i metri in kilometri e i kilometri in metri. <br>
+            Per utilizzare il convertore: dalla cartella WordWideMap con tanto di file importare il metodo <span id="codice">Converter</span>, ora ti farà un esempio pratico:
+            <code>
+                from WorldWideMap.converter import Converter <br><br>
+                # Rome Coordinates: 41°53′57.12″ | 12°32′42.00″ <br>
+                converter = Converter() <br>
+                lat = converter.degrees_to_decimal(41, 53, 57.12) <br>
+                lon = converter.degrees_to_decimal(12, 32, 42.00) <br> <br>
+                print("Lat: {}, Lon: {}".format(lat, lon)) <br>
+            </code>
+            Il programma poi ci resituisce le coordinate da gradi in decimale.
+        </p>
+    </font>
+
+
+    <font family="Verdana" size="6">
+        <p>
+            <b>- Usare la GUI</b>
+        </p>
+    </font>
+
+    <font family="Verdana">
+        <p>
+            Come tutti i miei pacchetti anche qui abbiamo la gestione di esso su GUI, ora ti spiego come usarla: <br>
+            Dal file gui.py situata nel pacchetto WordWideMap importiamo <span id="codice">GuiMappa</span>, una volta fatto utiliziamo il metodo start
+            per avviare la gui: <span id="codice">GuiMappa.start()</span>. Ora ti mostro un esempio:
+            <code>
+                from WordWideMap.gui import GuiMappa <br><br>
+                GuiMappa.start()
+            </code>
+            
+            Il programma poi aprirà la gui linkata qua sotto:
+            <p>
+                <img src="media/FotoGUIWordWideMap.png" width="650" class="img-border">
+            </p>
+            Con la gui possiamo interagire con la mappa, andare alle coordinate che possiamo inserire in alto a sinistra. Al centro troviamo
+            un label dinamico che si aggiorna ad ogni movimento di cursore visualizzandoci le coordinate di esso, infine in alto a destra abbiamo il localizzatore delle città, noi mettiamo 
+            il nome della città e ci restituisce le coordinate attraverso il label dinami e ci appariranno le coordinate del luogo direttamene nella casella di input delle coordinate. <br>
+            Più in la metterò la possibilità di calcolare anche la distranza tra due luoghi. . . <br> <br> <br>
+            Bro! che stai aspettando! E' arrivata la versione web di WordWideMap! 
+            <div style="width: 514.817px;">
+                <center>
+                    <button class="bottonMap" onclick="location.pathname='/mappa/'">Clicca qui per Visualizzarla!</button>
+                </center>
+            </div>
+
+            
+        </p>
+    </font>
+
+    <br>
+    <script src="script.js"></script>
+    <button id="tornaindietro" class="bottonetornaindietro" onclick="location.reload()">Torna Indietro</button>
+
+</html>
