@@ -14,18 +14,23 @@ window.onload = () => {
         input.value = arr.join(" ")
         converter()
     }
-    
+        
 }
 bt.addEventListener("click", () =>{
     
+    var text = `https://appalermo.github.io/decoder/#${resolut.join("%2")}`
     
-    res.innerText = `https://appalermo.github.io/decoder/#${arr.join("%2")}`
+    // res.innerText = text
+    
+    navigator.clipboard.writeText(text);
+    
+    alert("Collegamendo copiato con successo!");
     
     
 })
 const converter = () => {
     if(parseInt(input.value[0]) <= 1 && parseInt(input.value[0]) >= 0){ // se inzia per 0 o per 1, signfica che deve fare da binario a testo
-        arr =input.value.split(" ")
+        arr = input.value.split(" ")
         let copy = []
         for(var i=0; i<arr.length; i++){
             copy.push(parseInt(arr[i], 2))
