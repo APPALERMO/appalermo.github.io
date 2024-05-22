@@ -16,7 +16,13 @@ window.onload = () => {
     }
     
 }
-
+bt.addEventListener("click", () =>{
+    
+    
+    res.innerText = `https://appalermo.github.io/decoder/#${arr.join("%2")}`
+    
+    
+})
 const converter = () => {
     if(parseInt(input.value[0]) <= 1 && parseInt(input.value[0]) >= 0){ // se inzia per 0 o per 1, signfica che deve fare da binario a testo
         arr =input.value.split(" ")
