@@ -39,7 +39,7 @@ const invia = () => {
     const username = nome.value
     const contenuto = mes.value
     
-    const message = `${title}\n\nL'utente ${(tipologia === "Telegram") ? username: `<code>${username}</code>`} (<code>${tipologia}</code>)ha inviato la seguende richiesta di supporto!\n<pre>${contenuto}</pre>`
+    const message = `${title}\n\nL'utente ${(tipologia === "Telegram") ? username: `<code>${username}</code>`} (<code>${tipologia}</code>) ha inviato la seguende richiesta di supporto!\n<pre>${contenuto}</pre>`
     
     if(contenuto && username && (tipologia !== defaultLabel)){
         var settings = {
