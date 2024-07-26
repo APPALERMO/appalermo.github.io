@@ -1,0 +1,13 @@
+.starter{
+    display: block;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 140px;
+    width: 180px;
+}
+button{
+    border-radius: 10px;
+    width: 50px;
+    color:white;
+    font-weight: bold;
+}
