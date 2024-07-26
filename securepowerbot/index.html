@@ -3,12 +3,23 @@
 <head>
     <title>Secure Power Bot</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <center>
-        <button id="btSpegni">Spegni computer</button>
-        <p id="resoult" style="display: none;"></p>
+        <h1 style="color:red;">Secure Power App</h1>
+        <hr> <br>    
+        <div class="starter" id="starter" style="display: none;">
+            <div id="starterContent">
+                <p><b>Accensione computer </b><br> Confermi la tua identità?</p> 
+                <br>
+                <button style="background-color: green;" onclick="confirmSi()">Si</button>
+                <button style="background-color: red;" onclick="confirmNo()">No</button>
+            </div>
+        </div>
     </center>
+    
 </body>
     <script src="script.js"></script>
 </html>
