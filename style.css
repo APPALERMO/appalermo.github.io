@@ -1,5 +1,7 @@
 html{
     background-color: rgb(28, 27, 34);
+    color: whitesmoke;
+    
 }
 
 
@@ -25,9 +27,12 @@ html{
     left: 18%;
     width: 60%;
     background-color: rgb(32, 34, 35);
+    
     color: whitesmoke;
     border-radius: 10px;
     padding: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
     /* animation: sali 3s linear;
     margin-top: 0%; */
 }
