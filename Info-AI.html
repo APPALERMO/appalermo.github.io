@@ -1,11 +1,37 @@
 <html>
-    <br>
-    <font family="Verdana" size="10">
-        <p id="titolo">
-            COMING SOON. . .
-        </p>
-    </font>
-    <script src="script.js"></script>
-    <button id="tornaindietro" class="bottonetornaindietro" onclick="location.reload()" style="position: absolute;top: 65%;left: 48%;transform: translate(-50%,-50%);font-size: 20px;">Torna Indietro</button>
-    <br>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="contenuto">
+        <br>
+        <font family="Verdana" size="10">
+            <p id="titolo">
+                Fase di Sviluppo
+            </p>
+        </font>
+        
+        <font family="Verdana">
+            <p>
+                All'inizio è stato abbastanza semplice perché tenevo un codice che sfruttava sklearn per prendere i dati da un file <span id="codice">csv</span>.
+                Con l'aggiungere nuove funzioni, il vecchio algoritmo sfornava più di risposte e delle volte pure sbagliate, quindi l'ho combinato insieme ad un altro
+                che in base alla richiesta fatta dall'utente e a ciò che preveda la lm, facendo così riesce a dare una risposta corretta alla maggior parte delle richieste. <br>
+                Poi l'ho combinato all'API di <span id="codice">OpenAI</span> e sotto richiesta viene utilizzata.
+            </p>
+        </font>
+        
+        <font family="Verdana" size="6">
+            <p id="titolo">
+                Video Dimostrazione
+            </p>
+        </font>
+        
+        <center>
+            <h1 style="font-family: none; color: red;">Coming . . . <br>. . . Soon</h1>
+        </center>
+        
+        <script src="script.js"></script>
+        <button id="tornaindietro" class="bottonetornaindietro" onclick="location.pathname = '/'">Torna Indietro</button>
+        <br>
+    </body>
 </html>
