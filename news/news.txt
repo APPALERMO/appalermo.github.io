@@ -1,3 +1,7 @@
 <h2>Resta sempre aggiornato</h2> 📅 | <b>Data</b>: 21/05/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Nuova versione del sito, con migioramenti nelle prestazione anche da mobile!</div> </div><br><br>
 
-<h2>Resta sempre aggiornato</h2> 📅 | <b>Data</b>: 08/08/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Aggiunta la sezione SecurePower per la gestione del software SecurePower</div> </div><br><br>
+<h2>SecurePower App</h2> 📅 | <b>Data</b>: 08/08/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Aggiunta la sezione SecurePower per la gestione del software SecurePower</div> </div><br><br>
+
+<h2>SecurePower App</h2> 📅 | <b>Data</b>: 28/09/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Modificato il video, ora mostra la versione attuale del programma</div> </div><br><br>
+
+<h2>Sistema di Conversioni</h2> 📅 | <b>Data</b>: 29/09/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Il risultato per il numero binario è stato migliorato, ora viene visualizzato a blocchi di 8 bit</div> </div><br><br>
