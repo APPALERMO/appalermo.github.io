@@ -148,9 +148,11 @@ function confirm(){
             // result(`<hr/>${pg[1]} = ${pg[0]}`)
             result("")
             addResult("<hr/>")
-            for(var i=0; i<pg[1].length; i++){
-                addResult(` + ${pg[1][i]}`)
-            }
+            if(view_procedure) {
+                for(var i=0; i<pg[1].length; i++){
+                    addResult(` + ${pg[1][i]}`)
+                }
+            } 
             addResult(` = ${pg[0]}`)
         }else{
             var pg = convert_to_ab(number_to(input, base)[0], convert)
