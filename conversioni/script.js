@@ -7,7 +7,7 @@ const convert_to_ab = (number,base) => {
     if(parseInt(base) === 2) {
         
         let rapporto = parseInt(n.length / 8) 
-        let n2 = number.padStart(8,"0")
+        let n2 = n.padStart(8,"0")
         
         if(rapporto >= 1){
             n2 = n.split("").reverse().join("")
@@ -21,7 +21,6 @@ const convert_to_ab = (number,base) => {
             
             n2 = n2.join(" ")
         }
-        
         
         return n2
     }
@@ -114,6 +113,8 @@ const convert_to = (number, base) => {
 
 function confirm(){
     
+    let view_procedure = document.querySelector('input[name="view_procedure"]:checked')
+    
     let input = document.getElementById("inputNumber").value
     let convert = document.querySelector('input[name="convert_to"]:checked').value
     let base = document.querySelector('input[name="base"]:checked').value
@@ -130,8 +131,11 @@ function confirm(){
             convert = parseInt(convert)
             var pg = convert_to(input,convert)
             result("")
-            for(var i=0; i<pg.length; i++){
-                addResult(`${pg[i][0]} | ${pg[i][1]} <br>`)
+            if(view_procedure){
+            
+                for(var i=0; i<pg.length; i++){
+                    addResult(`${pg[i][0]} | ${pg[i][1]} <br>`)
+                }
             }
             addResult("<hr>")
             addResult(convert_to_ab(input,convert))
