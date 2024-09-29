@@ -1,6 +1,34 @@
-const convert_to_ab = (number,base) => {  return Number(number).toString(parseInt(base)).toUpperCase()  }
 const result = (text) => {  document.getElementById("risultati").innerHTML = text  }
 const addResult = (text) => {  document.getElementById("risultati").innerHTML += text  }
+
+const convert_to_ab = (number,base) => {  
+    const n = Number(number).toString(parseInt(base)).toUpperCase()
+    
+    if(parseInt(base) === 2) {
+        
+        let rapporto = parseInt(n.length / 8) 
+        let n2 = number.padStart(8,"0")
+        
+        if(rapporto >= 1){
+            n2 = n.split("").reverse().join("")
+            n2 = n2.match(/.{1,8}/g)
+            
+            n2 = n2.reverse()
+            
+            for(let i = 0; i<n2.length; i++){
+                n2[i] = n2[i].padStart(8,"0")
+            }
+            
+            n2 = n2.join(" ")
+        }
+        
+        
+        return n2
+    }
+    
+    return n
+
+}
 
 
 const number_to = (number,base) => {
@@ -89,6 +117,12 @@ function confirm(){
     let input = document.getElementById("inputNumber").value
     let convert = document.querySelector('input[name="convert_to"]:checked').value
     let base = document.querySelector('input[name="base"]:checked').value
+    
+    if(convert == 16 || base == 16) 
+        document.getElementById("inputNumber").setAttribute("type", "text")
+    else
+        document.getElementById("inputNumber").setAttribute("type", "number")
+        
     
     if(parseInt(base) === 10){
         if(convert === "allBase") result(`Binario: ${convert_to_ab(input,2)}<br>Ottale: ${convert_to_ab(input,8)}<br>Esadecimale: ${convert_to_ab(input,16)}`)
