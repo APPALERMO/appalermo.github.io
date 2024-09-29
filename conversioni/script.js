@@ -118,7 +118,7 @@ function confirm(){
     let convert = document.querySelector('input[name="convert_to"]:checked').value
     let base = document.querySelector('input[name="base"]:checked').value
     
-    if(convert == 16 || base == 16) 
+    if(base == 16) 
         document.getElementById("inputNumber").setAttribute("type", "text")
     else
         document.getElementById("inputNumber").setAttribute("type", "number")
