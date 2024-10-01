@@ -7,6 +7,7 @@ const convert_to_ab = (number,base) => {
     if(parseInt(base) === 2) {
         
         let rapporto = parseInt(n.length / 8) 
+        console.log("N",n)
         let n2 = n.padStart(8,"0")
         
         if(rapporto >= 1){
@@ -19,7 +20,11 @@ const convert_to_ab = (number,base) => {
                 n2[i] = n2[i].padStart(8,"0")
             }
             
+            for(let i = 0; i<n2.length; i++){
+                n2[i] = n2[i].split("").reverse().join("")
+            }
             n2 = n2.join(" ")
+            
         }
         
         return n2
