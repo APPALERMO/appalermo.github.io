@@ -6,8 +6,7 @@ const convert_to_ab = (number,base) => {
     
     if(parseInt(base) === 2) {
         
-        let rapporto = parseInt(n.length / 8) 
-        console.log("N",n)
+        let rapporto = parseInt(n.length / 8)
         let n2 = n.padStart(8,"0")
         
         if(rapporto >= 1){
