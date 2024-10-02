@@ -7,3 +7,5 @@
 <h2>Sistema di Conversioni</h2> 📅 | <b>Data</b>: 29/09/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Il risultato per il numero binario è stato migliorato, ora viene visualizzato a blocchi di 8 bit</div> </div><br><br>
 
 <h2>Aggiornamento Titoli</h2> 📅 | <b>Data</b>: 01/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Adesso ogni Pagina ha un titolo personalizzato e sono stati eliminati file/titoli inutili</div> </div><br><br>
+
+<h2>Miglioramenti Android</h2> 📅 | <b>Data</b>: 03/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Migliorata la visualizzazione del sito da telefono e risolto problemi grafici</div> </div><br><br>
