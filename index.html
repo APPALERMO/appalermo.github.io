@@ -7,50 +7,53 @@
     
 </head>
 <body>
+    
     <div class="welcome">
         <center>
             <p style="margin:0;" id="bevnenutoTitle">Benvenuto</p>
-            <button class="btn" onclick="location.pathname = '/'">Home</button>
-            <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
-            <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
+            <div style="display: flex;width: 30%;justify-content: space-evenly;align-items: center;" id="btWelcome">
+                <button class="btn" onclick="location.pathname = '/'">Home</button>
+                <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
+                <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
+            </div>
         </center>
     </div>
     
-    <div style="position: absolute;" id="notifica">
+    <div style="display: none;" id="notifica">
         <p id="contenutonotifica">
             ciao bro
         </p>
     </div>
     
-    
-    <div class="contenuto" id="contenuto">
-        <p> 
-            Ho iniziato dalle basi il 27/09/2021, da lì è partito il mio percorso che mi ha aperto la mente. Da lì ho iniziato a capire molte cose sui programmi e quanto difficile potesse essere crearne uno. <br>
-            Mi sono detto "Iniziamo questa nuova avventura". Ero tutto pronto, al tempo provavo felicità quando avviavo il programma con 
-            scritto <span id="codice">print("Hello world")</span> e mi stampava nella console <span id="codice">"Hello world"</span> i bei momenti della vita. 
-            Poi mi sono detto "Andiamo sul difficile" e dopo nemmeno un mese ho iniziato a creare Interfacce Grafiche. Anche lì i codici erano molto semplici, ma all'epoca avevo sbagliato nel non studiare una buona base di Python 
-            prima di andare più in profondità. Invece, ho studiato solo un po' di base e ho proseguito direttamente. Tornando indietro, molte più idee mi sono passate per la testa. Ogni giorno un mini-progetto e quando vedevo che funzionava abbastanza bene, ero contentissimo. 
-            Dopo circa 10 mesi di programmazione quotidiana, ho preso una pausa perché ero a corto di idee. Dopo essermi ritrovata l'ispirazione, ho scritto codici random per altri 3 mesi e poi di nuovo buio totale. Nell'ultimo periodo sono stato ricco di idee. 
-            Infatti, ho creato un SecurePower Bot che, quando accendo il computer, mi invia una notifica su Telegram dicendomi che è stato acceso. Da lì posso scattare foto, fare screenshot, registrare uno schermo per 20 secondi o posso spegnere il computer a distanza nel caso non sia io. 
-            Un giorno ho ritrovato vecchi codici che avevo scritto e mi sono detto "Quante belle idee avevo all'epoca". <br>
-            Ora sono passato dallo scrivere codici random allo sviluppo di questo sito web al creare un Software di disegno...
+    <center>
+        <div class="contenuto" id="contenuto">
+            <p> 
+                Ho iniziato dalle basi il 27/09/2021, da lì è partito il mio percorso che mi ha aperto la mente. Da lì ho iniziato a capire molte cose sui programmi e quanto difficile potesse essere crearne uno. <br>
+                Mi sono detto "Iniziamo questa nuova avventura". Ero tutto pronto, al tempo provavo felicità quando avviavo il programma con 
+                scritto <span id="codice">print("Hello world")</span> e mi stampava nella console <span id="codice">"Hello world"</span> i bei momenti della vita. 
+                Poi mi sono detto "Andiamo sul difficile" e dopo nemmeno un mese ho iniziato a creare Interfacce Grafiche. Anche lì i codici erano molto semplici, ma all'epoca avevo sbagliato nel non studiare una buona base di Python 
+                prima di andare più in profondità. Invece, ho studiato solo un po' di base e ho proseguito direttamente. Tornando indietro, molte più idee mi sono passate per la testa. Ogni giorno un mini-progetto e quando vedevo che funzionava abbastanza bene, ero contentissimo. 
+                Dopo circa 10 mesi di programmazione quotidiana, ho preso una pausa perché ero a corto di idee. Dopo essermi ritrovata l'ispirazione, ho scritto codici random per altri 3 mesi e poi di nuovo buio totale. Nell'ultimo periodo sono stato ricco di idee. 
+                Infatti, ho creato un SecurePower Bot che, quando accendo il computer, mi invia una notifica su Telegram dicendomi che è stato acceso. Da lì posso scattare foto, fare screenshot, registrare uno schermo per 20 secondi o posso spegnere il computer a distanza nel caso non sia io. 
+                Un giorno ho ritrovato vecchi codici che avevo scritto e mi sono detto "Quante belle idee avevo all'epoca". <br>
+                Ora sono passato dallo scrivere codici random allo sviluppo di questo sito web al creare un Software di disegno...
+                
+            </p>
             
-        </p>
-        
-        <ul>
-            <li> <a class="passami-sopra" href="Info-AI.html">Jarvis LM</a> </li>
-            <li> <a class="passami-sopra" href="Info-SoftwareCAD.html">Software CAD</a> </li>
-            <li> <a class="passami-sopra" href="Info-SecurePower-Bot.html">SecurePower Bot </a> </li>
-            <br>
-            <li> <a class="passami-sopra" href="conversioni/">Conversioni numeriche</a> </li>
-            <li> <a class="passami-sopra" href="decoder/">Convertitore Binario-Testo/Testo-Binario</a> </li>
-            <li> <a class="passami-sopra" href="informatica/">Diagramma a Blocchi Maker</a> </li>
-            <li> <a class="passami-sopra" href="scf/">Sasso Carta Forbice</a> </li>
-            <li> <a class="passami-sopra" href="7mezzo/">Gioco da Tavolo 7 e mezzo</a> </li>
-            <li> <a class="passami-sopra" href="tombola/">Tombola</a> </li>
-            <li> <a class="passami-sopra" href="parabola/">Grafico Equazioni di Secondo Grado</a> </li>
-        </ul>
-        
+            <ul>
+                <li> <a class="passami-sopra" href="Info-AI.html">Jarvis LM</a> </li>
+                <li> <a class="passami-sopra" href="Info-SoftwareCAD.html">Software CAD</a> </li>
+                <li> <a class="passami-sopra" href="Info-SecurePower-Bot.html">SecurePower Bot </a> </li>
+                <br>
+                <li> <a class="passami-sopra" href="conversioni/">Conversioni numeriche</a> </li>
+                <li> <a class="passami-sopra" href="decoder/">Convertitore Binario-Testo/Testo-Binario</a> </li>
+                <li> <a class="passami-sopra" href="informatica/">Diagramma a Blocchi Maker</a> </li>
+                <li> <a class="passami-sopra" href="scf/">Sasso Carta Forbice</a> </li>
+                <li> <a class="passami-sopra" href="7mezzo/">Gioco da Tavolo 7 e mezzo</a> </li>
+                <li> <a class="passami-sopra" href="tombola/">Tombola</a> </li>
+                <li> <a class="passami-sopra" href="parabola/">Grafico Equazioni di Secondo Grado</a> </li>
+            </ul>
+        </center>
         <a href="supporto/" style="position:absolute;left:50%;color: white;padding-bottom: 2%;transform: translate(-50%, 50%);text-decoration: none;">Richiedi Assistenza</a>
         
     </div>
