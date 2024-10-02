@@ -10,29 +10,31 @@ const index = `<!DOCTYPE html>
     
 </head>
 <body>
+    
     <div class="welcome">
         <center>
             <p style="margin:0;" id="bevnenutoTitle">Benvenuto</p>
-            <button class="btn" onclick="location.pathname = '/'">Home</button>
-            <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
-            <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
+            <div style="display: flex;width: 30%;justify-content: space-evenly;align-items: center;" id="btWelcome">
+                <button class="btn" onclick="location.pathname = '/'">Home</button>
+                <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
+                <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
+            </div>
         </center>
     </div>
     
-    <div style="position: absolute;" id="notifica">
+    <div style="display: none;" id="notifica">
         <p id="contenutonotifica">
             ciao bro
         </p>
     </div>
     
-    
-    <div class="contenuto" style="padding: 15px; font-family: Verdana, Geneva, Tahoma, sans-serif;" id="contenuto">
-        
-    </div>
+    <center>
+        <div class="contenuto" id="contenuto">        
+        </div>
     
 </body>
 <script src="script.js"></script>
-</html>
+</html> 
 `
 
 function cambiacontenuto(file) {
@@ -43,14 +45,8 @@ function cambiacontenuto(file) {
 }
 
 window.onload = () => {
-    
     const head = document.querySelector("head")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
-    
-    if(location.hash == "#guicad") cambiacontenuto("Info-SoftwareCAD.html")
-    
-    
-    // cambiacontenuto('Info-SecurePower-Bot.html')
     
     let path = location.pathname.replace("/", "")
     if(path.includes(".html")){
@@ -71,22 +67,55 @@ window.onload = () => {
         HomeTitle.style.color = pageTitle.style.color
         
     }
+    
+    // per dispositivi mobile
+    if(screen.width < 800){
+        const contenuto = document.getElementById("contenuto")
+        const welcome = document.querySelector(".welcome")
+        const btn = document.querySelectorAll(".btn")
+        const bottonetornaindietro = document.querySelector(".bottonetornaindietro")
+        const btWelcome = document.getElementById("btWelcome")
+        
+        btWelcome.style.width = "50%"
+        welcome.style.fontSize = "100px"
+        
+        btn.forEach(
+            (bt) => {
+                bt.style.marginBottom = "7%"
+                bt.style.marginTop = "3%"
+                bt.style.transform = "scale(1.6)"
+            }
+        )
+        
+        contenuto.style.width = "80%"
+        contenuto.style.padding = "-3% 3% 0 3%"
+        
+        
+        bottonetornaindietro.style.transform = "scale(0.5)"
+        bottonetornaindietro.style.left = "-5%"
+        bottonetornaindietro.style.margin = "0"
+    }
 }
 
 
 function aboutG() {
     const contenuto = document.getElementById("contenuto")
+    const notifica = document.getElementById("notifica")
     
     $(document).ready(()=>{
         altezza = $("#notifica").outerHeight()
+        
     })
     
     
     if(contenuto.className == "contenuto" || contenuto.className == "contenuto-alzato") {
+        notifica.style.display = "unset"
         contenuto.className = "contenuto-sceso"
         document.documentElement.style.setProperty("--altezza", `${altezza}px`)
+        
     }else { 
         contenuto.className = "contenuto-alzato"
+        notifica.style.display = "none"
     }
     
 }
