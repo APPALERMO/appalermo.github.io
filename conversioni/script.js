@@ -168,11 +168,19 @@ function confirm(){
 
 document.getElementById("inputNumber").addEventListener("input", confirm)
 
-window.onload = (event)=>{
+window.onload = ()=>{
     // console.log(document.querySelectorAll("#base"))
     for(var i=0; i<5; i++){
         document.querySelectorAll("#convert_to")[i].addEventListener("click",confirm)
         try {document.querySelectorAll("#base")[i].addEventListener("click",confirm)}
         catch{}
     }
+    
+    // per dispositivi mobile
+    if(screen.width < 800){
+        const contenuto = document.querySelector(".contenuto")
+        
+        contenuto.style.transform = "scale(1.4) translate(0,15%)"
+    }
+    
 } 
