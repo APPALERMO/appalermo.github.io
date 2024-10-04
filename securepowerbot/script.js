@@ -3,6 +3,7 @@ const dvStarter = document.getElementById("starter") // div che contiene il mess
 const dvStarterContent = document.getElementById("starterContent") // div visualizza il messaggio che è stato acceso il computer
 const footer = document.querySelector("footer") // footer di fine pagina
 
+
 const TOKEN = location.hash.replace("#", "")
 
 const repo = "APPALERMO/ServerSockets"
@@ -12,12 +13,15 @@ const url = `https://api.github.com/repos/${repo}/contents/${path}`
 
 const headers = {"Authorization": `token ${TOKEN}`, "Accept": "application/vnd.github.v3+json"}
 
-const githubWrite = (text, fzThen=undefined) => {
-    console.log((fzThen) ? "SI": "NO")
+// se è caricata la sezione settings o no
+let isSettings = false 
+
+const githubWrite = (text, fzThen = undefined, defaultUrl = url) => {
     
     $.ajax({
-        url: url,
+        url: defaultUrl,
         type: "GET",
+        cache: false,
         headers: headers,
         success: (data) => {
             var sha = data.sha
@@ -31,7 +35,7 @@ const githubWrite = (text, fzThen=undefined) => {
             }
             
             $.ajax({
-                url: url,
+                url: defaultUrl,
                 type: "PUT",
                 headers: headers,
                 data: JSON.stringify(updateData),
@@ -47,24 +51,46 @@ const githubWrite = (text, fzThen=undefined) => {
             alert("Errore durante il recupero del file")
         }
     }).then(() => {
-        if(fzThen !== undefined) fzThen()
+        if(fzThen !== undefined){
+            fzThen()
+        }
         
     })
 }
 
 const githubRead = () => {
     githubContent = ""
-    $.get(url, headers, (event)=>{
-        githubContent = atob(event["content"])
-    }).then(()=>{
-        console.log("githubContent =>",githubContent)
-        
-        if(githubContent === "accensione"){
+    
+    $.ajax({
+        url: url,
+        type: "GET",
+        cache: false,
+        headers: headers,
+        success: (data) => {
+            githubContent = atob(data.content)
+        },
+        error: (error) => {
+            console.error("Errore durante il recupero del file")
+            alert("Errore durante il recupero del file")
+        }
+    })
+    .then(() => {
+        if(githubContent.includes("accensione")){
             dvStarter.style.display = "block"
         }
         
+        if(isSettings){
+            const computerState = document.getElementById("computerState")
+            
+            if(githubContent.includes("acceso")){
+                computerState.style.backgroundColor = "lime"
+            }
+        
+        }
+        // console.log(githubContent)
     })
 }
+
 
 
 
@@ -102,17 +128,27 @@ function cambiacontenuto(file) {
     })
 }
 
-const openSettings = () => {
+const openSettings = (p) => {
     /*
         "impostazioni" per dire, ci sarà:
         - se il computer è acceso (box verde se acceso, rosso se spento)
         (questi sarà utilizzato telegram)
         - inoltro del file excel di controllo
         - inoltro di foto in caso di controllo
-        
     */
     
+    p.innerText = "Torna alla Home"
+    
+    if(isSettings) 
+        p.onclick = location.reload()
+    
+    isSettings = !isSettings
     cambiacontenuto("settings.html")
+    
+    githubWrite("isAcceso")
+    
+    setTimeout(githubRead, 5000)
+    
 }
 
 const setProms = () => {
@@ -120,20 +156,22 @@ const setProms = () => {
     const text = prom.value
     
     if(text) 
-        githubWrite(`APPunto|${text}`, () => {
+        githubWrite(text, () => {
             alert("Promemoria impostato con successo!\nAlla prossima accensione te lo ricorderò!")
             prom.value = ""
-        })
+        }, `https://api.github.com/repos/${repo}/contents/proms.txt`)
 }
 
 window.onload = () =>{
     // document.getElementById("ciao").innerText = `${screen.width} x ${screen.height}`
-    
     // footer.style.top = `${screen.width}px`
     
     
     if(TOKEN && TOKEN !== "#"){
         githubRead()
-    }else alert("TOKEN NON RILEVATO")
+    }else{
+        document.querySelector("body").style.display = "none"
+        location.href = "https://appalermo.github.io/"
+    }
 
 }
