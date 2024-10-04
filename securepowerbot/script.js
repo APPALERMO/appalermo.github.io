@@ -147,7 +147,7 @@ const openSettings = (p) => {
     
     githubWrite("isAcceso")
     
-    setTimeout(githubRead, 5000)
+    setTimeout(githubRead, 7500)
     
 }
 
