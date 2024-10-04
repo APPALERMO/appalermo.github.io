@@ -1,3 +1,5 @@
+*{user-select: none;}
+
 .starter{
     display: block;
     border: 1px solid black;
@@ -7,7 +9,31 @@
 }
 button{
     border-radius: 10px;
-    width: 50px;
+    width: 60px;
+    height: 22.5px;
     color:white;
     font-weight: bold;
+    text-align: center;
+}
+
+footer{
+    position: relative;    
+    margin-top: 30px;
+    transform: translate(0, -100%);
+}
+
+footer p{
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.element{
+    display: flex;
+    /* margin-left:10px;*/
+    justify-content: center;
+}
+
+.button{
+    color:black;
+    width: auto;
 }
