@@ -9,8 +9,8 @@ let changeLeftBtView = true
 let counterCarteGiocatore = 0,
     counterCartePC = 0
 
-// const server = new WebSocket("ws:localhost:8080/")
-const server = new WebSocket(`ws:${location.hostname}:8080`)
+const server = new WebSocket("ws://localhost:8080/")
+// const server = new WebSocket(`ws:${location.hostname}:8080`)
 const divPlayerDate = document.getElementById("playerDate")
 const divContent = document.getElementById("contenuto")
 
