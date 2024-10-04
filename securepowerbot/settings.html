@@ -7,7 +7,7 @@
         
         <div class="element">
             <p style="font-size: 16px; font-weight: bold;">Computer Acceso</p> 
-            <div style="width: 10px; height: 10px;background-color: red; margin-top: 6.7%;margin-left: 10px;border: 1px solid black; border-radius: 3px;"></div>
+            <div id="computerState" style="width: 10px; height: 10px;background-color: red; margin-top: 6.7%;margin-left: 10px;border: 1px solid black; border-radius: 3px;transition: background-color 1s;"></div>
         </div>
         
         <hr>
@@ -19,19 +19,19 @@
         <br>
         
         <hr>
-        <br>
         
+        <br>
         <div class="element">
             <button class="button" onclick="alert('!Funzione in Manutenzione!')">Controllo Foto</button> 
         </div>
         <br>
         
         <hr>
-        <br>
         
+        <br>
         <div id="element">
             <p style="font-size: 16px; font-weight: bold;">Imposta Promemoria</p> 
-            <input type="text" id="prom" style="width: 80%; border-radius: 5px; border: none; border-bottom: 1px solid black;"> <br> <br>
+            <input type="text" id="prom" style="width: 80%; border: none; border-bottom: 1px solid black; background-color: transparent;outline: none;"> <br> <br>
             <button class="button" onclick="setProms()">Conferma</button>
         </div>
         <br>
