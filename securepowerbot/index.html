@@ -15,15 +15,17 @@
             <div class="starter" id="starter" style="display: none;">
                 <div id="starterContent">
                     <p><b>Accensione computer </b><br> Confermi la tua identità?</p> 
-                    <br>
-                    <button style="background-color: green;" onclick="confirmSi()">Si</button>
-                    <button style="background-color: red;" onclick="confirmNo()">No</button>
+                    <div onclick="this.innerHTML = '<h2>Processing...</h2>'">
+                        <br>
+                        <button style="background-color: green;" onclick="confirmSi()">Si</button>
+                        <button style="background-color: red;" onclick="confirmNo()">No</button>
+                    </div>
                 </div>
             </div>
         </div>
         
-        <footer>
-            <p onclick="openSettings()">Impostazioni</p>
+        <footer>    
+            <p onclick="openSettings(this)">Impostazioni</p>
         </footer>
         
     </center>
