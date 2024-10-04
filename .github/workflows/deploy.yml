@@ -19,7 +19,11 @@ jobs:
         node-version: '14'
 
     - name: Install dependencies
-      run: npm install
+      run: |
+        cd 7mezzo/multiplayer/
+        npm install ws
 
     - name: Start server
-      run: node server.js
+      run: |
+        cd 7mezzo/multiplayer/
+        node server.js
