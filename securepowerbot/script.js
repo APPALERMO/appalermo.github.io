@@ -4,98 +4,27 @@ const dvStarterContent = document.getElementById("starterContent") // div visual
 const footer = document.querySelector("footer") // footer di fine pagina
 
 
-const TOKEN = location.hash.replace("#", "")
+// const server = new WebSocket(`ws://localhost:8080`)
+const server = new WebSocket(`wss://83cf2ede-eabf-4186-a716-d05f3a4db096-00-25nutnsaxu1o8.worf.replit.dev/:8080`)
 
-const repo = "APPALERMO/ServerSockets"
-const path = "log.txt"
-const branch = "main"
-const url = `https://api.github.com/repos/${repo}/contents/${path}`
-
-const headers = {"Authorization": `token ${TOKEN}`, "Accept": "application/vnd.github.v3+json"}
+server.onopen = () => server.send(JSON.stringify({"data":"setWeb", "port":"web"}))  
 
 // se è caricata la sezione settings o no
 let isSettings = false 
 
-const githubWrite = (text, fzThen = undefined, defaultUrl = url) => {
+server.onmessage = (messaggio) => {
     
-    $.ajax({
-        url: defaultUrl,
-        type: "GET",
-        cache: false,
-        headers: headers,
-        success: (data) => {
-            var sha = data.sha
-            var content = btoa(text)
-            
-            var updateData = {
-                "message": "Aggiornamento del file",
-                "content": content,
-                "sha": sha,
-                "branch": branch
-            }
-            
-            $.ajax({
-                url: defaultUrl,
-                type: "PUT",
-                headers: headers,
-                data: JSON.stringify(updateData),
-                contentType: "application/json",
-                error: (error) => {
-                    console.error("Errore durante l\"aggiornamento del file")
-                    alert("Errore durante l\"aggiornamento del file")
-                }
-            })
-        },
-        error: (error) => {
-            console.error("Errore durante il recupero del file")
-            alert("Errore durante il recupero del file")
-        }
-    }).then(() => {
-        if(fzThen !== undefined){
-            fzThen()
-        }
-        
-    })
-}
-
-const githubRead = () => {
-    githubContent = ""
+    let message = JSON.parse(messaggio.data)
+    console.log(message)
     
-    $.ajax({
-        url: url,
-        type: "GET",
-        cache: false,
-        headers: headers,
-        success: (data) => {
-            githubContent = atob(data.content)
-        },
-        error: (error) => {
-            console.error("Errore durante il recupero del file")
-            alert("Errore durante il recupero del file")
-        }
-    })
-    .then(() => {
-        if(githubContent.includes("accensione")){
-            dvStarter.style.display = "block"
-        }
+    
+    if(message.data == "accenzione") {
         
-        if(isSettings){
-            const computerState = document.getElementById("computerState")
-            
-            if(githubContent.includes("acceso")){
-                computerState.style.backgroundColor = "lime"
-            }
+        dvStarter.style.display = "block"
         
-        }
-        // console.log(githubContent)
-    })
-}
-
-
-
-
-const confirmSi = () => {
-    githubWrite("ok", () => {
+    }
+    else if(message.data == "confirm"){
+        
         dvStarterContent.style.display = "none"
         h1 = document.createElement("h1")
         h1.style.color = "green"
@@ -103,13 +32,10 @@ const confirmSi = () => {
         h1.innerText = "Identità Confermata"
         
         dvStarter.appendChild(h1)
-    })
-    
-    
-}
-
-const confirmNo = () => {
-    githubWrite("arresta", () => {
+        
+    } 
+    else if(message.data == "arresta") {
+        
         dvStarterContent.style.display = "none"
         h1 = document.createElement("h1")
         h1.style.color = "red"
@@ -117,7 +43,39 @@ const confirmNo = () => {
         h1.innerText = "Arresto Computer"
         
         dvStarter.appendChild(h1)
-    })
+        
+    }
+    else if(message.data == "isAlive"){
+        if(isSettings){
+            setTimeout(() => {
+                const divComputerState = document.getElementById("computerState")
+                
+                divComputerState.style.backgroundColor = "lime"
+            }, 1000)
+        }
+    }
+    
+    else if(message.data == "setProms"){
+        const prom = document.getElementById("prom")
+        
+        alert("Promemoria impostato con successo!")
+        
+        prom.value = ""
+    }
+    
+}
+
+
+const confirmSi = () => {
+    
+    server.send(JSON.stringify({"data": "confirm", "reply": "1", "port": "web"}))
+    
+}
+
+const confirmNo = () => {
+
+    server.send(JSON.stringify({"data": "arresta", "reply": "1", "port": "web"}))
+    
 }
 
 function cambiacontenuto(file) {
@@ -145,9 +103,8 @@ const openSettings = (p) => {
     isSettings = !isSettings
     cambiacontenuto("settings.html")
     
-    githubWrite("isAcceso")
+    server.send(JSON.stringify({"data": "isAlive", "reply": "1", "port": "web"}))
     
-    setTimeout(githubRead, 7500)
     
 }
 
@@ -156,22 +113,7 @@ const setProms = () => {
     const text = prom.value
     
     if(text) 
-        githubWrite(text, () => {
-            alert("Promemoria impostato con successo!\nAlla prossima accensione te lo ricorderò!")
-            prom.value = ""
-        }, `https://api.github.com/repos/${repo}/contents/proms.txt`)
-}
-
-window.onload = () =>{
-    // document.getElementById("ciao").innerText = `${screen.width} x ${screen.height}`
-    // footer.style.top = `${screen.width}px`
-    
-    
-    if(TOKEN && TOKEN !== "#"){
-        githubRead()
-    }else{
-        document.querySelector("body").style.display = "none"
-        location.href = "https://appalermo.github.io/"
+        server.send(JSON.stringify({"data": "setProms", "reply": "1", "remember": text, "port": "web"}))
+    else 
+        alert("Inserisci un testo valido")
     }
-
-}
