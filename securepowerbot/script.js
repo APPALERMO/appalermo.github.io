@@ -4,9 +4,7 @@ const dvStarterContent = document.getElementById("starterContent") // div visual
 const footer = document.querySelector("footer") // footer di fine pagina
 
 
-// const server = new WebSocket(`ws://localhost:8080`)
-const server = new WebSocket(`wss://83cf2ede-eabf-4186-a716-d05f3a4db096-00-25nutnsaxu1o8.worf.replit.dev/:8080`)
-
+const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
 server.onopen = () => server.send(JSON.stringify({"data":"setWeb", "port":"web"}))  
 
 // se è caricata la sezione settings o no
