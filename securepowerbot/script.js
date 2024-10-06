@@ -5,6 +5,7 @@ const footer = document.querySelector("footer") // footer di fine pagina
 
 
 const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
+
 server.onopen = () => server.send(JSON.stringify({"data":"setWeb", "port":"web"}))  
 
 // se è caricata la sezione settings o no
@@ -19,6 +20,8 @@ server.onmessage = (messaggio) => {
     if(message.data == "accenzione") {
         
         dvStarter.style.display = "block"
+        
+        if(message.remember) alert(`Ti ricordo di: "${message.remember}"`)
         
     }
     else if(message.data == "confirm"){
@@ -111,7 +114,7 @@ const setProms = () => {
     const text = prom.value
     
     if(text) 
-        server.send(JSON.stringify({"data": "setProms", "reply": "1", "remember": text, "port": "web"}))
+        server.send(JSON.stringify({"data": "setProms", "remember": text, "port": "web"}))
     else 
         alert("Inserisci un testo valido")
     }
