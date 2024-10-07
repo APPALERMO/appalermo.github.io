@@ -6,7 +6,14 @@ const footer = document.querySelector("footer") // footer di fine pagina
 
 const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
 
-server.onopen = () => server.send(JSON.stringify({"data":"setWeb", "port":"web"}))  
+server.onopen = () => {
+    
+    server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
+    
+    server.send(JSON.stringify({"data":"controlloPassword", "password": location.hash.replace("#", ""), "port":"web"}))
+    
+}  
+
 
 // se è caricata la sezione settings o no
 let isSettings = false 
@@ -16,12 +23,13 @@ server.onmessage = (messaggio) => {
     let message = JSON.parse(messaggio.data)
     console.log(message)
     
+    if(message.data == "passwordErrata") document.querySelector("body").innerHTML = ""
     
     if(message.data == "accenzione") {
         
         dvStarter.style.display = "block"
         
-        if(message.remember) alert(`Ti ricordo di: "${message.remember}"`)
+        // if(message.remember) alert(`Ti ricordo di: "${message.remember}"`)
         
     }
     else if(message.data == "confirm"){
@@ -74,7 +82,7 @@ const confirmSi = () => {
 }
 
 const confirmNo = () => {
-
+    
     server.send(JSON.stringify({"data": "arresta", "reply": "1", "port": "web"}))
     
 }
@@ -110,6 +118,7 @@ const openSettings = (p) => {
 }
 
 const setProms = () => {
+    
     const prom = document.getElementById("prom")
     const text = prom.value
     
@@ -117,4 +126,4 @@ const setProms = () => {
         server.send(JSON.stringify({"data": "setProms", "remember": text, "port": "web"}))
     else 
         alert("Inserisci un testo valido")
-    }
+}
