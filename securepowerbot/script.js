@@ -21,7 +21,7 @@ let isSettings = false
 server.onmessage = (messaggio) => {
     
     let message = JSON.parse(messaggio.data)
-    console.log(message)
+    // console.log(message)
     
     if(message.data == "passwordErrata") document.querySelector("body").innerHTML = ""
     
