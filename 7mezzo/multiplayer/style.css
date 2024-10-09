@@ -1,5 +1,5 @@
 :root{
-    --view: 0;
+    --view: 1;
 }
 
 
@@ -10,8 +10,7 @@ body {
     position: relative;
     height: 420px;
 }
-  
-  
+
 .carta{
     float: left;
     display: block;
