@@ -1,5 +1,5 @@
-var sommag = 0;
-var sommap = 0;
+let sommag = 0;
+let sommap = 0;
 
 
 const scale = 0.29
@@ -8,9 +8,12 @@ let changeLeftBtView = true
 let counterCarteGiocatore = 0,
     counterCartePC = 0
 
+let counterSto = 0
+
 window.onload = (event) => {
     const head = document.querySelector("head")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
+    
     
     if(screen.width <= 1000){
         const tavolo = document.querySelector(".tavolo")
@@ -117,16 +120,17 @@ const inzio = (bt) =>{
 } 
 
 function notifica(testo){
+    
     const notifica = document.getElementById("notifica");
     notifica.style.display = "unset"
-    notifica.style.top = "25%"
-    notifica.style.left = "28%"
+    // notifica.style.top = "25%"
+    // notifica.style.left = "28%"
     notifica.style.userSelect = "none"
     
     document.body.removeChild(document.getElementById("testo-pc"))
     document.body.removeChild(document.getElementById("stai-carta-g"))
-   
-   
+    
+    
     let btRiprova = document.createElement("button")
     btRiprova.style.position = "absolute"
     btRiprova.style.top = "70%"
@@ -207,11 +211,10 @@ function daiCartaG(){
     figliaDivCarta.innerHTML = `<img src="https://demo.giocaonline.casino/assets/svg/carte/napoletane/${carta}.svg" height=180 width=120>`
     
     const divNoSpy = document.createElement("div")
-    divNoSpy.style.height = "200px";
-    divNoSpy.style.width = "125px";
+    divNoSpy.style.height = "180px";
+    divNoSpy.style.width = "120px";
     divNoSpy.style.position = "absolute";
     divNoSpy.style.top = "0";
-    divNoSpy.style.left = "-2%";
     divNoSpy.style.backgroundColor = "transparent";
     
     figliaDivCarta.appendChild(divNoSpy)
@@ -220,12 +223,14 @@ function daiCartaG(){
     divPadre.appendChild(newDiv)
     figliaDivCarta.classList.add("testo-carta")
     
+    
     sommag += r
-    if(sommag >= 7.5) controlla()
     document.getElementById("testo-punteggio").textContent = sommag    
     
+    if(sommag >= 7.5 || counterSto >= 2) controlla()
+    
+    
     counterG += Math.floor(Math.random() * 10)
-        
     turnoG()
 }
 
@@ -239,7 +244,7 @@ function daiCartaP(){
     // 1 => sole
     // 2 => mazze
     // 3 => spade
-        
+    
     const divPadre = document.getElementById("carte-p")
     const newDiv = document.createElement("div")
     
@@ -256,12 +261,12 @@ function daiCartaP(){
     figliaDivCarta.innerHTML = `<img src="https://demo.giocaonline.casino/assets/svg/carte/napoletane/${carta}.svg" height=180 width=120>`
     
     const divNoSpy = document.createElement("div")
-    divNoSpy.style.height = "200px";
-    divNoSpy.style.width = "125px";
+    divNoSpy.style.height = "180px";
+    divNoSpy.style.width = "120px";
     divNoSpy.style.position = "absolute";
     divNoSpy.style.top = "0";
-    divNoSpy.style.left = "-2%";
     divNoSpy.style.backgroundColor = "transparent";
+    
     
     
     figliaDivCarta.appendChild(divNoSpy)
@@ -271,7 +276,7 @@ function daiCartaP(){
     sommap += r
     
     
-    if(sommap >= 7.5) {
+    if(sommap >= 7.5 || counterSto >= 2) {
         controlla()
         return
     }
@@ -283,7 +288,6 @@ function daiCartaP(){
 //vecchio metodo
 
 function turnoPC(){
-
     var scelta = scelteSoC[counterSC]
     const testo = document.getElementById("testo-pc")
     
@@ -296,7 +300,7 @@ function turnoPC(){
         testo.textContent = "Fammi vedere...Carta!"
         daiCartaP()
         if(sommap >= 7.5) {
-            controlla()
+            setTimeout(controlla,2000)    
             return
         }
         counterSC += Math.floor(Math.random()*10)
@@ -311,10 +315,11 @@ function turnoPC(){
         
         document.getElementById("stai-carta-g").style.display = "none"
         document.getElementById("stai-carta-i").style.display = "unset"
-        testo.innerHTML = "Ora Sto! Stai o Carta?"
-        
-        if(sommap >= 7.5){ 
-            controlla()
+        testo.innerHTML = "Ora Sto!"
+        // alert("PC: STOOOOOO COI FARI SPENTI SU UNA SUPER CAR")
+        counterSto++
+        if(sommap >= 7.5 || counterSto >= 2){   
+            setTimeout(controlla,2000)    
             return
         }
         counterSC += Math.floor(Math.random()*10)
@@ -342,6 +347,9 @@ function turnoG(){
 }
 
 function stai(){
+    
+    counterSto++
+    
     const carta = document.getElementById("btCarta")
     carta.style.display = "none";
     
