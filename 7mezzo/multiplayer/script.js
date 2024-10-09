@@ -10,7 +10,6 @@ let counterCarteGiocatore = 0,
     counterCartePC = 0
 
 const server = new WebSocket(`wss://d088f223-7abb-4f34-9bd5-319bf9c932b3-00-ayhf68oaji2d.janeway.replit.dev/:8080`)
-// const server = new WebSocket(`ws:${location.hostname}:8080`)
 const divPlayerDate = document.getElementById("playerDate")
 const divContent = document.getElementById("contenuto")
 
@@ -94,10 +93,6 @@ window.onload = () => {
         const staiCartaI = document.getElementById("stai-carta-i")
         staiCartaI.style.transform = "translate(-55%) scale(2)"
         
-        const btView = document.getElementById("vedi-carte")
-        btView.style.left = "5%"
-        changeLeftBtView = false
-        
         const testoGiocatore = document.getElementById("testoGiocatore")
         testoGiocatore.style.left = "2.5%"
         
@@ -153,8 +148,8 @@ function notifica(testo){
     
     document.getElementById("testo-pc").style.display = "none"
     document.getElementById("stai-carta-g").style.display = "none"
-   
-   
+    
+    
     let btRiprova = document.createElement("button")
     btRiprova.style.position = "absolute"
     btRiprova.style.top = "70%"
@@ -178,14 +173,12 @@ function notifica(testo){
     
     
     document.getElementById("stai-carta-i").style.display = "none"
-    document.getElementById("vedi-carte").style.display = "none"
 }
 
 
 
 function mostraCarte(){
     const carta = document.querySelectorAll("#testo-carta-g")
-    const bottone = document.getElementById("vedi-carte")
     
     if(bottone.textContent == "Vedi carte"){        
         document.documentElement.style.setProperty("--view", 1)
@@ -203,6 +196,7 @@ function mostraCarte(){
 
 function daiCartaG(forceCarta=-1){
     counterCarteGiocatore++ 
+    
     let r = 0
     let type = 0
     
@@ -315,7 +309,7 @@ const staiCartaG1 = document.getElementById("stai-carta-i") // pulsanti stai o c
 const testoG2 = document.getElementById("testo-pc") // testo del secondo giocatore che dice stai o carta
 const testo_g2 = document.getElementById("stai-carta-g") // testo del primo giocatore
 
-    
+
 server.onmessage = message => {
     let messaggio = JSON.parse(message.data)
     console.log("MESSAGGIO:",messaggio)
@@ -349,7 +343,7 @@ server.onmessage = message => {
                     testo_g2.style.display = "none"
                     staiCartaG1.style.display = "unset"
                     testoG2.style.display = "unset"
-                       
+                    
                     // console.log di test
                     // if(messaggio.mossa == "niente") console.log("NULLA BRO")
                 }
