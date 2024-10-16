@@ -69,6 +69,11 @@ html{
     font-family: Consolas, monospace;
     font-size: 16px;
     font-weight: 600;
+
+    background-color: #282c34;
+    color: #abb2bf;
+    border-radius: 5px;
+    padding: 1px 5px 1px 5px;
 }
 
 
