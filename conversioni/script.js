@@ -127,10 +127,6 @@ function confirm(){
     let base = document.querySelector('input[name="base"]:checked').value
     let convert = document.querySelector('input[name="convert_to"]:checked').value
     
-    if(base == last_conver || base == convert) {
-            document.getElementById(`c${last_base}`).checked = true
-    }    
-    
     if(input){
         
         if(base == 16) 
@@ -175,6 +171,18 @@ function confirm(){
         }
         
     }
+    
+}
+
+const seeChanges = () => {
+    let base = document.querySelector('input[name="base"]:checked').value
+    let convert = document.querySelector('input[name="convert_to"]:checked').value
+    
+    if(base == last_base) return
+    
+    if(base == last_conver || base == convert) 
+        document.getElementById(`c${last_base}`).checked = true
+    
     last_base = base
     last_conver = convert
     
@@ -185,8 +193,14 @@ document.getElementById("inputNumber").addEventListener("input", confirm)
 window.onload = () => {
     // console.log(document.querySelectorAll("#base"))
     for(var i=0; i<4; i++){
-        document.querySelectorAll("input[name='base']")[i].addEventListener("click",confirm)
-        document.querySelectorAll("input[name='convert_to']")[i].addEventListener("click",confirm)
+        document.querySelectorAll("input[name='base']")[i].addEventListener("click",() => {
+            seeChanges()
+            confirm()
+        })
+        document.querySelectorAll("input[name='convert_to']")[i].addEventListener("click",() =>{
+            seeChanges()
+            confirm()
+        })
     }
     
     // per dispositivi mobile
@@ -195,5 +209,5 @@ window.onload = () => {
         
         contenuto.style.transform = "scale(1.4) translate(0,15%)"
     }
-    confirm()
+    seeChanges()
 } 
