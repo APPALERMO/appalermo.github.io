@@ -1,82 +1,44 @@
-:root{
-    --view: 1;
-}
-.carta{
-    float: left;
-    display: block;
-    position: relative;
-    border: 2px solid black;
-    background-color: white;
-    border-radius: 10%;
-    height: 200px;
-    width: 125px;
-    font-size: 50px;
-    margin-left: 17.4px;
-    top: -10%;
+h1 {
+    font-size: 45px;
+    margin: 0;
 }
 
-.carta>p{
+button{
     position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    opacity: 0%;
-    user-select: none;
-}
-
-.carte-g{
-    position: absolute;
-    background-color: #054535;
-    width: 600px;
-    height: 200px;
-    top: 85%;
-    left: 50%;
-    border: 2.5px solid black;
-    transform: translate(-50%, -50%);
-    border-top-right-radius: 20%;
-    border-top-left-radius: 20%;
-}
-
-.tavolo{
-    position: absolute;
-    background-color: #be6e1f;
-    width: 400px;
-    height: 200px;
-    top: 36%;
-    left: 36.5%;
-    transform: skew(-20deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.punteggio-g{
-    position: absolute;
-    width: 150px;
-    height: 100px;
-    top: 80%;
-    left: 71%;
-    border: 3px solid blue;
+    transform: translate(-50%, -45%);
+    
     border-radius: 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15%;
+    transition: font-size 0.5s;
 }
 
-.carte-p{
+button:hover{
+    font-size: 30px;
+}
+
+
+
+.staccehtto {
     position: absolute;
-    background-color: #054535;
-    width: 600px;
-    height: 200px;
-    top: 0%;
     left: 50%;
-    border: 2.5px solid black;
-    transform: translate(-50%);
-    border-bottom-right-radius: 20%;
-    border-bottom-left-radius: 20%;
+    width: 2px;
+    height: 60%;
+    background-color: #5a5a5a;
+    /* #5a5a5a */
+    transform: translate(-50%, -2%);
 }
 
-p{
-    user-select: none;
-}
-
-#testo-carta-g{
-    opacity: var(--view);
+.staccehtto::after{
+    content: " ";
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: #afafaf;
+    /* #afafaf */
 }
