@@ -9,3 +9,5 @@
 <h2>Aggiornamento Titoli</h2> 📅 | <b>Data</b>: 01/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Adesso ogni Pagina ha un titolo personalizzato e sono stati eliminati file/titoli inutili</div> </div><br><br>
 
 <h2>Miglioramenti Android</h2> 📅 | <b>Data</b>: 03/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Migliorata la visualizzazione del sito da telefono e risolto problemi grafici</div> </div><br><br>
+
+<h2>Conversioni & Giochi</h2> 📅 | <b>Data</b>: 16/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Sistemato il bug in cui la base a cui si voleva convertire diventava la base attuale.Aggiornato il Gioco7 ½, ora si può scegliere tra <b>Sigleplayer</b> & <b>Multiplayer</b></div> </div><br><br>
