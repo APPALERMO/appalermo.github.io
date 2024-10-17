@@ -4,32 +4,35 @@ const addResult = (text) => {  document.getElementById("risultati").innerHTML +=
 let last_base,
     last_conver
 
+
+const findLenght8 = (lunghezza) => {
+    // la lunghezza deve essere divisibile per 8, quindi deve uscire 8,16,24
+    let l = 8
+    let i = 1
+    
+    while(l < lunghezza)  
+        l = 8 * i++
+    
+    
+    return l
+}
+
 const convert_to_ab = (number,base) => {  
     const n = Number(number).toString(parseInt(base)).toUpperCase()
     
     if(parseInt(base) === 2) {
         
-        let rapporto = parseInt(n.length / 8)
-        let n2 = n.padStart(8,"0")
+        let n1
         
-        if(rapporto >= 1){
-            n2 = n.split("").reverse().join("")
-            n2 = n2.match(/.{1,8}/g)
-            
-            n2 = n2.reverse()
-            
-            for(let i = 0; i<n2.length; i++){
-                n2[i] = n2[i].padStart(8,"0")
-            }
-            
-            for(let i = 1; i<n2.length; i++){
-                n2[i] = n2[i].split("").reverse().join("")
-            }
-            n2 = n2.join(" ")
-            
+        if(n.length >= 8){
+            let lunghez = findLenght8(n.length)
+            n1 = n.padStart(lunghez, "0")
+            n1 = n1.match(/.{1,8}/g).join(" ")
         }
+        else
+            n1 = n.padStart(8, "0")
         
-        return n2
+        return n1
     }
     
     return n
@@ -89,6 +92,7 @@ const convert_to = (number, base) => {
             break
         }
         var r = n%b
+        
         if(b === 16){
             switch(r){
                 case 10:
@@ -127,49 +131,40 @@ function confirm(){
     let base = document.querySelector('input[name="base"]:checked').value
     let convert = document.querySelector('input[name="convert_to"]:checked').value
     
-    if(input){
-        
-        if(base == 16) 
-            document.getElementById("inputNumber").setAttribute("type", "text")
-        else
-            document.getElementById("inputNumber").setAttribute("type", "number")
-        
-        
-        if(parseInt(base) === 10){
-            if(convert === "allBase") result(`Binario: ${convert_to_ab(input,2)}<br>Ottale: ${convert_to_ab(input,8)}<br>Esadecimale: ${convert_to_ab(input,16)}`)
-            else {
-                convert = parseInt(convert)
-                var pg = convert_to(input,convert)
-                result("")
-                if(view_procedure){
-                
-                    for(var i=0; i<pg.length; i++){
-                        addResult(`${pg[i][0]} | ${pg[i][1]} <br>`)
-                    }
+    
+    if(parseInt(base) === 10){
+        if(convert === "allBase") result(`Binario: ${convert_to_ab(input,2)}<br>Ottale: ${convert_to_ab(input,8)}<br>Esadecimale: ${convert_to_ab(input,16)}`)
+        else {
+            convert = parseInt(convert)
+            var pg = convert_to(input,convert)
+            result("")
+            if(view_procedure){
+            
+                for(var i=0; i<pg.length; i++){
+                    addResult(`${pg[i][0]} | ${pg[i][1]} <br>`)
                 }
-                addResult("<hr>")
-                addResult(convert_to_ab(input,convert))
-                
             }
-        }else{
-            base = parseInt(base)
-            if(parseInt(convert) === 10){
-                var pg = number_to(input, base)
-                // result(`<hr/>${pg[1]} = ${pg[0]}`)
-                result("")
-                addResult("<hr/>")
-                if(view_procedure) {
-                    for(var i=0; i<pg[1].length; i++){
-                        addResult(` + ${pg[1][i]}`)
-                    }
-                } 
-                addResult(` = ${pg[0]}`)
-            }else{
-                var pg = convert_to_ab(number_to(input, base)[0], convert)
-                result(`<hr/> ${pg}`)
-            }
+            addResult("<hr>")
+            addResult(convert_to_ab(input,convert))
+            
         }
-        
+    }else{
+        base = parseInt(base)
+        if(parseInt(convert) === 10){
+            var pg = number_to(input, base)
+            // result(`<hr/>${pg[1]} = ${pg[0]}`)
+            result("")
+            addResult("<hr/>")
+            if(view_procedure) {
+                for(var i=0; i<pg[1].length; i++){
+                    addResult(` + ${pg[1][i]}`)
+                }
+            } 
+            addResult(` = ${pg[0]}`)
+        }else{
+            var pg = convert_to_ab(number_to(input, base)[0], convert)
+            result(`<hr/> ${pg}`)
+        }
     }
     
 }
@@ -177,6 +172,12 @@ function confirm(){
 const seeChanges = () => {
     let base = document.querySelector('input[name="base"]:checked').value
     let convert = document.querySelector('input[name="convert_to"]:checked').value
+    
+    if(base == 16) 
+        document.getElementById("inputNumber").setAttribute("type", "text")
+    else
+        document.getElementById("inputNumber").setAttribute("type", "number")
+    
     
     if(base == last_base) return
     
@@ -191,7 +192,6 @@ const seeChanges = () => {
 document.getElementById("inputNumber").addEventListener("input", confirm)
 
 window.onload = () => {
-    // console.log(document.querySelectorAll("#base"))
     for(var i=0; i<4; i++){
         document.querySelectorAll("input[name='base']")[i].addEventListener("click",() => {
             seeChanges()
