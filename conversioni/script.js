@@ -156,9 +156,8 @@ function confirm(){
             result("")
             addResult("<hr/>")
             if(view_procedure) {
-                for(var i=0; i<pg[1].length; i++){
-                    addResult(` + ${pg[1][i]}`)
-                }
+                addResult(pg[1].join(" + "))
+
             } 
             addResult(` = ${pg[0]}`)
         }else{
