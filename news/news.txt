@@ -10,4 +10,6 @@
 
 <h2>Miglioramenti Android</h2> 📅 | <b>Data</b>: 03/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Migliorata la visualizzazione del sito da telefono e risolto problemi grafici</div> </div><br><br>
 
-<h2>Conversioni & Giochi</h2> 📅 | <b>Data</b>: 16/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Sistemato il bug in cui la base a cui si voleva convertire diventava la base attuale.<br>Aggiornato il Gioco7 ½, ora si può scegliere tra <b>Sigleplayer</b> & <b>Multiplayer</b></div> </div><br><br>
+<h2>Conversioni & Giochi</h2> 📅 | <b>Data</b>: 16/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Sistemato (sembra) il bug in cui la base a cui si voleva convertire diventava la base attuale.<br>Aggiornato il Gioco 7 ½, ora si può scegliere tra <b>Sigleplayer</b> & <b>Multiplayer</b></div> </div><br><br>
+
+<h2>Conversioni & Altro</h2> 📅 | <b>Data</b>: 18/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Risolto il problema che il numero veniva mostrato al contrario e la conversione da Base 16 ad altre non funzionava.<br>Risolti problemi grafici inerente al menù del 7½</div> </div><br><br>
