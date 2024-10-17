@@ -15,6 +15,8 @@ button{
     font-weight: bold;
     padding: 15%;
     transition: font-size 0.5s;
+    
+    text-align: center;
 }
 
 button:hover{
