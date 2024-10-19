@@ -2,9 +2,16 @@ const scale = 0.29
 
 function cambiacontenuto(file) {
     const divContent = document.getElementById("contenuto");
-    $.get(file, function(data){
-        divContent.innerHTML = data;
-    });   
+    
+    $.ajax({
+        url: file,
+        type: "GET",
+        cache: false,
+        success: (data) => {
+            divContent.innerHTML = data
+            console.log(data)
+        }
+    })
 }
 
 window.onload = ()=> {
