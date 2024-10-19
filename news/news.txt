@@ -1,17 +1,19 @@
-<h2>Resta sempre aggiornato</h2> 📅 | <b>Data</b>: 21/05/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Nuova versione del sito, con migioramenti nelle prestazione anche da mobile!</div> </div><br><br>
-
-<h2>SecurePower App</h2> 📅 | <b>Data</b>: 08/08/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Aggiunta la sezione SecurePower per la gestione del software SecurePower</div> </div><br><br>
-
-<h2>SecurePower App</h2> 📅 | <b>Data</b>: 28/09/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Modificato il video, ora mostra la versione attuale del programma</div> </div><br><br>
-
-<h2>Sistema di Conversioni</h2> 📅 | <b>Data</b>: 29/09/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Il risultato per il numero binario è stato migliorato, ora viene visualizzato a blocchi di 8 bit</div> </div><br><br>
-
-<h2>Aggiornamento Titoli</h2> 📅 | <b>Data</b>: 01/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Adesso ogni Pagina ha un titolo personalizzato e sono stati eliminati file/titoli inutili</div> </div><br><br>
-
-<h2>Miglioramenti Android</h2> 📅 | <b>Data</b>: 03/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Migliorata la visualizzazione del sito da telefono e risolto problemi grafici</div> </div><br><br>
-
-<h2>Conversioni & Giochi</h2> 📅 | <b>Data</b>: 16/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Sistemato (sembra) il bug in cui la base a cui si voleva convertire diventava la base attuale.<br>Aggiornato il Gioco 7 ½, ora si può scegliere tra <b>Sigleplayer</b> & <b>Multiplayer</b></div> </div><br><br>
-
-<h2>Conversioni & Altro</h2> 📅 | <b>Data</b>: 18/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Risolto il problema che il numero veniva mostrato al contrario e la conversione da Base 16 ad altre non funzionava.<br>Risolti problemi grafici inerente al menù del 7½</div> </div><br><br>
-
-<h2>7 ½ Homepage</h2> 📅 | <b>Data</b>: 19/10/2024<div style="display: grid;grid-template-columns: auto 1fr;grid-gap: 3px;">➕ | <div>Sostituiti i <b>bottoni</b> per la selezione delle modalità con delle immagini (<b>generate con AI</b>), con la relativa scritta</div> </div><br><br>
+<h2>Resta sempre aggiornato</h2> 📅 | <b>Data</b>: 21/05/2024<div class="contentNews">➕ | <div>Nuova versione del sito, con migioramenti nelle prestazione anche da mobile!</div> </div>
+<hr>
+<h2>SecurePower App</h2> 📅 | <b>Data</b>: 08/08/2024<div class="contentNews">➕ | <div>Aggiunta la sezione SecurePower per la gestione del software SecurePower</div> </div>
+<hr>
+<h2>SecurePower App</h2> 📅 | <b>Data</b>: 28/09/2024<div class="contentNews">➕ | <div>Modificato il video, ora mostra la versione attuale del programma</div> </div>
+<hr>
+<h2>Sistema di Conversioni</h2> 📅 | <b>Data</b>: 29/09/2024<div class="contentNews">➕ | <div>Il risultato per il numero binario è stato migliorato, ora viene visualizzato a blocchi di 8 bit</div> </div>
+<hr>
+<h2>Aggiornamento Titoli</h2> 📅 | <b>Data</b>: 01/10/2024<div class="contentNews">➕ | <div>Adesso ogni Pagina ha un titolo personalizzato e sono stati eliminati file/titoli inutili</div> </div>
+<hr>
+<h2>Miglioramenti Android</h2> 📅 | <b>Data</b>: 03/10/2024<div class="contentNews">➕ | <div>Migliorata la visualizzazione del sito da telefono e risolto problemi grafici</div> </div>
+<hr>
+<h2>Conversioni & Giochi</h2> 📅 | <b>Data</b>: 16/10/2024<div class="contentNews">➕ | <div>Sistemato (sembra) il bug in cui la base a cui si voleva convertire diventava la base attuale.<br>Aggiornato il Gioco 7 ½, ora si può scegliere tra <b>Sigleplayer</b> & <b>Multiplayer</b></div> </div>
+<hr>
+<h2>Conversioni & Altro</h2> 📅 | <b>Data</b>: 18/10/2024<div class="contentNews">➕ | <div>Risolto il problema che il numero veniva mostrato al contrario e la conversione da Base 16 ad altre non funzionava.<br>Risolti problemi grafici inerente al menù del 7½</div> </div>
+<hr>
+<h2>7 ½ Homepage</h2> 📅 | <b>Data</b>: 19/10/2024<div class="contentNews">➕ | <div>Sostituiti i <b>bottoni</b> per la selezione delle modalità con delle immagini (<b>generate con AI</b>), con la relativa scritta</div> </div>
+<hr>
+<h2>Sezione News</h2> 📅 | <b>Data</b>: 19/10/2024<div class="contentNews">➕ | <div>Aggiornato lo stile delle <b>News</b></div> </div>
