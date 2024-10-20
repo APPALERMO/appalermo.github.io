@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html class="centro">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <p style="display: none; color:rgb(0,80,255);" id="futureTitle">GUI Grafo</p>
+    <body class="contenuto">
+        <font family="Verdana" size="6">
+            <p id="titolo">
+                Come è nata l'idea
+            </p>
+        </font>
+        <font family="Verdana">
+            <p>
+                Iniziando un corso di informatica, a scuola, in testa girava l'idea di creare un programma capace di creare dei grafi e 
+                mi piaceva il fatto di visualizzare su gui il cammino più breve tra due nodi usando l' <span id="codice">Algoritmo di Dijkstra</span>.
+                
+            </p>
+        </font>
+        
+        <br>
+        
+        <font family="Verdana" size="6">
+            <p id="titolo">
+                Fase di Sviluppo
+            </p>
+        </font>
+        
+        <font family="Verdana">
+            <p>
+                Sono partito dell'idea di creare un programma molto simile al <a href="Info-SoftwareCAD.html" class="passami-sopra">Software CAD</a> con l'unica cosa che bisognava aggiungere qualche figura in più
+                quando si creano linee, meglio dire <span id="codice">Archi</span>. <br>
+                Ogni Arco che si crea vengono creati due nodi, se premo su un nodo l'arco parte da quel nodo e finisce su un altro. Ogni arco ha il suo peso e di default viene calcolata la distanza cartesiana dal centro dei due nodi e viene divisa per 15, successivamente viene inserita in una casella di testo.<br>
+                Premendo il <span id="codice">tasto destro</span> sull'Arco, viene aperto un piccolo menù in cui viene specificato:
+                <ul>
+                    <li> 
+                        <span id="codice">Direzione</span> che indica il nodo di partenza e di destinazione
+                    </li>
+                    
+                    <li> 
+                        <span id="codice">Peso</span> dell'arco, che se premuto sopra si può cambiare
+                    </li>
+                    
+                    <li>
+                        <span id="codice">Bidirezionale</span> appare un tick (✔) se l'arco è bidirezionale, altrimenti non comparirà nulla, se premuto l'arco viene considerato bidirezionale
+                    </li>
+                </ul>
+                Si possono poi fare diverse cose, come trovare la <span id="codice">distanza minima</span> tra due nodi usando l'<span id="codice">Algoritmo di Dijkstra</span> e
+                in caso di errore <span id="codice">cancellare</span> l'<span id="codice">Arco</span>, il programma poi capirà quali nodi dovrà cancellare.
+            </p>
+        </font>
+        
+        
+        <font family="Verdana" size="6">
+            <p id="titolo">
+                Commento sul Codice
+            </p>
+        </font>
+        
+        <font family="Verdana">
+            <h2>- Creazione Arco</h2>
+            <code>
+                self.archi += 1 <br>
+                
+                <br>
+                temp = self.temp_coods.copy() <br>  
+                <br>
+                pm = [(temp[0][0] + temp[1][0])/2, (temp[0][1] + temp[1][1])/2]<br>
+                <br>
+                try: angle = math.degrees(math.atan2((temp[0][1] - temp[1][1]), (temp[0][0] - temp[1][0]))) <br>
+                except: angle = 90 <br>
+                <br>
+                lenght = math.sqrt((temp[0][0] - temp[1][0])**2 + (temp[0][1] - temp[1][1])**2) <br>
+                <br>
+                lenght /= 2 <br>
+                lenght -= 10 <br>
+                <br>
+                temp = list(map(lambda x: list(x), temp))<br>
+                temp[0][0] = lenght*cos(angle) + pm[0]         # x <br>
+                temp[0][1] = lenght*sin(angle) + pm[1]         # y <br>
+                <br>
+                temp[1][0] = lenght*cos(angle+180) + pm[0]     # x <br>
+                temp[1][1] = lenght*sin(angle+180) + pm[1]     # y <br>
+                
+                <br>
+                line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2) <br>
+            </code>
+            
+            Per iniziare incremento il contatore degli archi <span id="codice">self.archi += 1</span>. <br>
+            Successivamente mi copio le coordinate in una variabile <span id="codice">temp</span>. <br>
+            L'obiettivo è accorciare la linea di 10 punti, perché se lasciata di default oltre dare fastidio all'occhio, il grafo non è graficamente corretto. <br>
+            Ora, usando un po di goniometria, considero la linea come il diametro di un cerchio che ha come raggio, la lunghezza della linea. <br>
+            Calcolandomi il punto medio (<span id="codice">pm</span>), che lo considero come centro della mia circonferenza, mi trovo la pendenza della linea (<span id="codice">angle</span>) e 
+            la sua lunghezza (<span id="codice">lenght</span>). <br>
+            Visto che la lunghezza la considero come il diametro, la divido per 2, in modo da ottenere il <span id="codice">raggio</span> della mia circonferenza, e da li gli tolgo 10 punti, dato che serve più corta. <br>
+            Adesso per sapere le nuove coordinate dei punti utilizzo la <a href="https://edulab.unitn.it/wp-content/uploads/nfs/DiCoMat/curve/book_curve.pdf#subsection.1.3.1" target="_blank" id="codice">parametrizzazione di una circonferenza</a>, usando
+            come raggio, la nuova lunghezza <span id="codice">lenght</span> e come angolo <span id="codice">angle</span>. Faccio una precisazione sulle ultime righe dove esce, come argomento del seno e coseno, <span id="codice">angle+180</span> che è semplicemente una regola
+            degli <a href="https://www.andreaminini.org/matematica/trigonometria/angoli-associati-alfa-e-pi-greco-piu-alfa" target="_blank" id="codice">angoli associati</a> e, <span id="codice">pm[0]</span> e <span id="codice">pm[1]</span> sono le coordinate <span id="codice">x</span> e <span id="codice">y</span>
+            del centro della circonferenza. <br>
+            Infine creo la linea (<span id="codice">line</span>) con la lista di coordinate <span id="codice">temp</span>.
+            
+            <br>
+            <br>
+            
+            <h2>- Riconoscimento Click</h3>
+            <code>
+                if self.permitted_coods[0][0]: <br>
+                <span id="spazio"></span>self.nodi += 1 <br>
+                <span id="spazio"></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2) <br>
+                <span id="spazio"></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled") <br>
+                <span id="spazio"></span><br>
+                <span id="spazio"></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1) <br>
+                <span id="spazio"></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)])) <br>
+                <span id="spazio"></span><br>
+                <span id="spazio"></span>if event.num == 2: <br>
+                <span id="spazio"></span><span id="spazio"></span>x,y = self.temp_coods[0] <br>
+                <span id="spazio"></span><span id="spazio"></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)] <br>
+                <br>
+                else: <br>
+                <span id="spazio"></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1]) <br>
+            </code>
+            <span id="codice">self.permitted_coods</span> è una matrice 2x2 in cui dice lo stato attuale nell'esatto punto in cui ho premuto, il primo elemento è un <span id="codice">booleano</span> 
+            in cui mi dice se è uno spazio vuoto o meno, ciò lo determina usando i <span id="codice">tags</span>, se c'è una determianta condizione usando quel tag, sa se è uno spazio vuoto o meno.
+            Il secondo elemento è il tag stesso. <br>
+            Se lo spazio è vuoto (<span id="codice">if self.permitted_coods[0][0]</span>) incrementa di 1 il counter dei nodi, <span id="codice">self.nodi += 1</span> e crea la parte visiva del nodo (<span id="codice">nodo1</span>) rappresentandolo come un cerchio e il testo del numero del nodo.
+            Poi viene creato un <span id="codice">oggetto</span> di tipo <span id="codice">Nodo</span>, il costruttore accetta:
+                <ul>
+                    <li>
+                        <span id="codice">Coordinate</span> del centro del nodo
+                    </li>
+                    <li>
+                        <span id="codice">Numero</span> del nodo (che il quel momento viene rappresentato da <span id="codice">self.nodi</span>)
+                    </li>
+                    <li>
+                        <span id="codice">ID</span> del disegno del cerchio (<span id="codice">nodo1</span>), nel suo <span id="codice">tag</span> sarà racchiuso l'<span id="codice">oggetto</span> interpretato da <span id="codice">pickle</span>
+                    </li>
+                </ul>
+            
+            Dove si vede <span id="codice">if event.num == 2</span> è un "metodo" per quando si deve caricare un file sul programma, quindi, senza creare un altra funzione che faccia la stessa identica cosa, all'evento gli modifico il parametro <span id="codice">num</span> 
+            e lo imposto uguale a 2. <br>
+            In un evento <span id="codice">num</span> è il numero del pulsante del mouse    
+                <ul>
+                    <li><span id="codice">1</span> tasto sinistro del mouse</li>
+                    <li><span id="codice">2</span> tasto centrale del mouse</li>
+                    <li><span id="codice">3</span> tasto destro del mouse</li>
+                </ul>
+            quindi quando si chiama la funzione per quando si preme il tasto sinistro del mouse, il parametro <span id="codice">num</span> è sempre 1, impostandolo quindi a 2 capisce che si tratta di un caricamento del file e non di un suo utilizzo normale,
+            prende le coordinate dall'array <span id="codice">self.temp_coods</span> e lo inserire in un dizionario (conosciuto come <span id="codice">dict</span>) che ha come <span id="codice">key</span> le coordinate sottoforma di stringa e come 
+            <span id="codice">value</span> le coordinate insieme all'<span id="codice">oggetto Nodo</span> interpretato da <span id="codice">pickle</span>.
+            Quando invece rileva qualcosa recupera l'oggetto contenuto in <span id="codice">self.permitted_coods[0][1]</span> utilizzando <span id="codice">pickle</span>. <br>
+            
+            
+        </font>
+        
+        <br>
+        <script src="script.js"></script>
+        <button id="tornaindietro" class="bottonetornaindietro" onclick="location.pathname = '/'">Torna Indietro</button>
+    
+    </body>
+    
+</html>
