@@ -17,3 +17,5 @@
 <h2>7 ½ Homepage</h2> 📅 | <b>Data</b>: 19/10/2024<div class="contentNews">➕ | <div>Sostituiti i <b>bottoni</b> per la selezione delle modalità con delle immagini (<b>generate con AI</b>), con la relativa scritta</div> </div>
 <hr>
 <h2>Sezione News</h2> 📅 | <b>Data</b>: 19/10/2024<div class="contentNews">➕ | <div>Aggiornato lo stile delle <b>News</b></div> </div>
+<hr>
+<h2>GUI Creazione Grafo</h2> 📅 | <b>Data</b>: 20/10/2024<div class="contentNews">➕ | <div>Aggiunta una nuova sezione che parla del programma che crea grafi, in più c'è la spiegazione di qualche porzione di codice</div> </div>
