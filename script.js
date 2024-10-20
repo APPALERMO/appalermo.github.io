@@ -29,8 +29,7 @@ const index = `<!DOCTYPE html>
     </div>
     
     <center>
-        <div class="contenuto" id="contenuto">        
-        </div>
+        <div class="contenuto" id="contenuto"> -|- </div>
     
 </body>
 <script src="script.js"></script>
@@ -47,6 +46,7 @@ function cambiacontenuto(file) {
 window.onload = () => {
     const head = document.querySelector("head")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
+    
     
     let path = location.pathname.replace("/", "")
     if(path.includes(".html")){
@@ -69,7 +69,7 @@ window.onload = () => {
     }
     
     // per dispositivi mobile
-    if(screen.width < 800){
+    if(screen.width <= 800){
         const contenuto = document.getElementById("contenuto")
         const welcome = document.querySelector(".welcome")
         const btn = document.querySelectorAll(".btn")
@@ -88,12 +88,15 @@ window.onload = () => {
         )
         
         contenuto.style.width = "80%"
-        contenuto.style.padding = "-3% 3% 0 3%"
+        // contenuto.style.padding = "-3% 3% 0 3%"
+        contenuto.style.paddingLeft = "3%"
+        contenuto.style.paddingRight = "3%"
         
         
         bottonetornaindietro.style.transform = "scale(0.5)"
         bottonetornaindietro.style.left = "-5%"
         bottonetornaindietro.style.margin = "0"
+        
     }
 }
 
