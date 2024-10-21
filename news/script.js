@@ -8,13 +8,32 @@ function cambiacontenuto(file) {
         type: "GET",
         cache: false,
         success: (data) => {
-            divContent.innerHTML = data
-            console.log(data)
+            const copy = document.getElementById("copy")
+            
+            copy.innerHTML = data
+            
+            let spanDatas = document.querySelectorAll("#data")
+            let divData = []
+            
+            spanDatas.forEach((element) => {
+                divData.push(document.getElementById(element.innerText))
+            })
+            
+            
+            divData = divData.reverse()
+            divData.forEach((element) => {
+                divContent.innerHTML += element.innerHTML
+                
+                if(divData.indexOf(element) != divData.length-1)
+                    divContent.innerHTML += "<hr>"
+                
+            })
+            
         }
     })
 }
 
-window.onload = ()=> {
+window.onload = () => {
     const head = document.querySelector("head")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
     cambiacontenuto("news.txt")
