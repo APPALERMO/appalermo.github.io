@@ -64,7 +64,16 @@ window.onload = () => {
         const HomeTitle = document.getElementById("bevnenutoTitle")
         
         HomeTitle.innerText = pageTitle.innerText
-        HomeTitle.style.color = pageTitle.style.color
+        
+        const pageStyle = pageTitle.style
+        
+        for (let i = 0; i < pageStyle.length; i++) {
+            let propertyName = pageStyle[i];
+            HomeTitle.style[propertyName] = pageStyle.getPropertyValue(propertyName);
+        }
+        
+        HomeTitle.style.padding = "0"
+        HomeTitle.style.margin = "0"
         
     }
     
