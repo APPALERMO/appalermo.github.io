@@ -1,7 +1,11 @@
+:root{
+    --spaziatura: 1;
+}
+
+
 html{
     background-color: rgb(28, 27, 34);
     color: whitesmoke;
-    
 }
 
 
@@ -72,6 +76,7 @@ html{
     
     background-color: #282c34;
     color: #abb2bf;
+    
     border-radius: 5px;
     padding: 1px 5px 1px 5px;
     
@@ -91,14 +96,20 @@ code {
     font-size: 16px;
     font-weight: 600;
     
-    user-select: none;
     white-space: nowrap;
 }
+
+code > ol{
+    margin:0;
+    /* padding:0; */
+}
+
 
 #spazio {
     display:inline-block;
     height: 1px;
-    width: 25px;
+    width: calc(2.2em * var(--spaziatura));
+    /* width: 25px; */
 }
 
 .bottonetornaindietro{
