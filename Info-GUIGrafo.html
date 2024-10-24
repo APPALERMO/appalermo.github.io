@@ -59,33 +59,294 @@
             </p>
         </font>
         
+        <font>
+            <h2>- Classe Nodo</h2>
+            <code>
+                <ol>
+                    <li>
+                        class Nodo:
+                    </li>
+                    <li>
+                        <span id="spazio"></span> def __init__(self, coords: list[tuple], n:int, line_id: int):
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>self.__coords = coords
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>self.__number = n
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>self.__line_id = line_id
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>def getCoords(self):
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>return self.__coords
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>def getNumber(self):
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>return self.__number
+                    </li> 
+                    
+                    <li>
+                        <br>
+                    </li>
+                    <li>
+                        <span id="spazio"></span>def getId(self):
+                    </li>
+                    
+                    <li>
+                        <span id="spazio" style="--spaziatura: 2"></span>return self.__line_id
+                    </li>
+                </ol>
+            </code>
+            
+            Questo è come vede il programma i <span id="codice">Nodi</span> dei grafi. Composto da: 
+            <ul>
+                <li>
+                    <span id="codice">Coordinate</span> del centro del nodo
+                </li>
+                
+                <li>
+                    <span id="codice">Numero</span> del nodo
+                </li>
+                
+                <li>
+                    <span id="codice">ID </span> della linea del canvas
+                </li>
+            </ul>
+            Gli attributi per convenzione li ho dichiarati privati, in python non avendo una <span id="codice">keyword</span> che specifica
+            esplicitamente l'<span id="codice">ambito di visibilità</span> si usano i <span id="codice">doppi underscore</span> per indicare
+            un attributo/metodo privato. <br>
+            Per il resto non c'è nulla di particolare e il codice riesce a parlare da solo.
+        </font>
+        
+        <br>
+        <br>
+        
+        <font>
+            <h2>- Classe Arco</h2>
+            <code>
+                <ol>
+                    <li>class Arco:</li> 
+                    <li><span id="spazio"></span> def __init__(self, coords: list[tuple], nodes: list[Nodo], height:int, line_id:int,bidirectional = False,**kargs):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__coords = coords</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__nodes = nodes</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__height = height</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__line_id = line_id</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__bidirectional = bidirectional</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__kargs = kargs</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getCoords(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__coords</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getNodes(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__nodes</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getHeight(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__height</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getId(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__line_id</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getBidirectional(self) -> bool:</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__bidirectional</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getKargs(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return self.__kargs</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getScheme(self, withHeight = True):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>s = ""</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>s += " ".join([str(n.getNumber()) for n in self.__nodes])</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>if withHeight:</li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s += f" {self.__height}"</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>if self.__bidirectional:</li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s1 = s.split(" ")</li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s1[0], s1[1] = s1[1], s1[0]</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s1 = " ".join(s1)</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s += f"\n{s1}"</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return s.strip()</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def getTotalInfo(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>s = self.__coords.copy()</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>s.append({})</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>if self.__bidirectional:</li>
+                    <li><span id="spazio" style="--spaziatura: 3"></span>s[-1]["BIDIREZIONALE"] = 1</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>s[-1]["PESO"] = self.__height</li>
+                    <li></li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>return s</li>
+                    <li></li>
+                    <li></li>
+                    <li><span id="spazio"></span># ------------------------------------------ #</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def toggleBidirectional(self):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__bidirectional = not self.__bidirectional</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def setBidirectional(self, value):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__bidirectional = value</li>
+                    <li></li>
+                    <li><span id="spazio"></span>def setHeight(self, value):</li>
+                    <li><span id="spazio" style="--spaziatura: 2"></span>self.__height = value</li>
+                </ol>
+            </code>
+            
+            Questo è come vede il programma gli <span id="codice">Archi</span>. Composto da: 
+            <ul>
+                <li>
+                    <span id="codice">coords</span> in cui specifica le coordinate dell'arco
+                </li>
+                <li>
+                    <span id="codice">nodes</span> è l'array formato da due nodi, quello di partenza e di destinazione
+                </li>
+                <li>
+                    <span id="codice">height</span> indica il peso dell'arco
+                </li>
+                <li>
+                    <span id="codice">line_id</span> è l'identificativo dell'arco nel canvas
+                </li>
+                <li>
+                    <span id="codice">bidirectional</span> di default impostato su False, indica se l'arco è bidirezionale o meno
+                </li>
+                <li>
+                    <span id="codice">**kargs</span>, sono degli argomenti aggiuntivi, marcati da una <span id="codice">chiave</span> (key)
+                </li>
+            </ul>
+            Sui metodi <span id="codice">get</span> non c'è molto da dire in quanto hanno un semplice return. C'è da aggiungere qualcosa
+            su <span id="codice">getScheme</span> & <span id="codice">getTotalInfo</span>:
+            <ul>
+                <li>
+                    Il metodo <span id="codice">getScheme</span> ritorna sotto forma di stringa il nodo di partenza, di fine e il peso. <br>
+                    Il parametro <span id="codice">withHeight</span>, impostato di default su <span id="codice">True</span>, mi aggiunge o meno
+                    il peso alla fine.
+                    <br>
+                    <br>
+                    Su riga <span id="codice">31</span>, <span id="codice">s += " ".join([str(n.getNumber()) for n in self.__nodes])</span>, prendo l'array dei
+                    <span id="codice">Nodi</span> e vado a richiamare il metodo <span id="codice">getNumber</span> in modo da ottenere il numero del nodo, e se bidirezionale
+                    mi va a copiare lo schema precedente e va aggiungere gli stessi nodi, ma invertiti. <br>
+                    Infine il <span id="codice">return s.strip()</span>, ritorna lo schema strippato, in modo da non esserci spazi in eccesso.
+                </li>
+                <br>
+                <li>
+                    Il metodo <span id="codice">getTotalInfo</span>, invece di ritornarmi lo schema di nodi, mi ritorna un array composo dalle 
+                    <span id="codice">coordinate cartesiane</span> dell'arco, seguito da un dizionario in cui si distinguono, il <span id="codice">peso</span>
+                    e il fatto di essere <span id="codice">bidirezionale</span>, che se impostato è 1, altrimenti non c'è.
+                </li>
+            </ul>
+            
+            Successivamente abbiamo i metodi <span id="codice">set</span> e uno particolare, <span id="codice">toggle</span>. 
+            I metodi <span id="codice">set</span> impostano il valore il valore del <span id="codice">peso</span>(<span id="codice">setHeight</span>) e il
+            valore del <span id="codice">bidirezionale</span> (<span id="codice">setBidirectional</span>), solo che ancora non l'ho usato. <br>
+            Il metodo che uso è il metodo <span id="codice">toggleBidirectional</span> in cui semplicemente mi inverte il valore del <span id="codice">self.__bidirectional</span><div class=""></div>
+            
+        </font>
+        
+        <br>
+        <br>
+        
         <font family="Verdana">
             <h2>- Creazione Arco</h2>
             <code>
-                self.archi += 1 <br>
-                
-                <br>
-                temp = self.temp_coods.copy() <br>  
-                <br>
-                pm = [(temp[0][0] + temp[1][0])/2, (temp[0][1] + temp[1][1])/2]<br>
-                <br>
-                try: angle = math.degrees(math.atan2((temp[0][1] - temp[1][1]), (temp[0][0] - temp[1][0]))) <br>
-                except: angle = 90 <br>
-                <br>
-                lenght = math.sqrt((temp[0][0] - temp[1][0])**2 + (temp[0][1] - temp[1][1])**2) <br>
-                <br>
-                lenght /= 2 <br>
-                lenght -= 10 <br>
-                <br>
-                temp = list(map(lambda x: list(x), temp))<br>
-                temp[0][0] = lenght*cos(angle) + pm[0]         # x <br>
-                temp[0][1] = lenght*sin(angle) + pm[1]         # y <br>
-                <br>
-                temp[1][0] = lenght*cos(angle+180) + pm[0]     # x <br>
-                temp[1][1] = lenght*sin(angle+180) + pm[1]     # y <br>
-                
-                <br>
-                line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2) <br>
+                <ol>
+                    <li>
+                        self.archi += 1
+                    </li>
+                    
+                    <li>
+                        temp = self.temp_coods.copy()  
+                    </li>
+                    
+                    <li>
+                        pm = [(temp[0][0] + temp[1][0])/2, (temp[0][1] + temp[1][1])/2]<br>
+                    </li>
+                    
+                    <li>
+                        try: angle = math.degrees(math.atan2((temp[0][1] - temp[1][1]), (temp[0][0] - temp[1][0]))) <br>
+                    </li>
+                    
+                    <li>
+                        except: angle = 90 <br>
+                    </li>
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        lenght = math.sqrt((temp[0][0] - temp[1][0])**2 + (temp[0][1] - temp[1][1])**2) <br>
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        lenght /= 2 <br>
+                    </li>
+                    <li>
+                        lenght -= 10 <br>
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    <li>
+                        temp = list(map(lambda x: list(x), temp))<br>
+                    </li>
+                    
+                    <li>
+                        temp[0][0] = lenght*cos(angle) + pm[0]         # x <br>
+                    </li>
+                    
+                    <li>
+                        temp[0][1] = lenght*sin(angle) + pm[1]         # y <br>
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        temp[1][0] = lenght*cos(angle+180) + pm[0]     # x <br>
+                    </li>
+                    
+                    <li>
+                        temp[1][1] = lenght*sin(angle+180) + pm[1]     # y <br>
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2) <br>
+                    </li>
+                </ol>
             </code>
             
             Per iniziare incremento il contatore degli archi <span id="codice">self.archi += 1</span>. <br>
@@ -106,20 +367,62 @@
             
             <h2>- Riconoscimento Click</h3>
             <code>
-                if self.permitted_coods[0][0]: <br>
-                <span id="spazio"></span>self.nodi += 1 <br>
-                <span id="spazio"></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2) <br>
-                <span id="spazio"></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled") <br>
-                <span id="spazio"></span><br>
-                <span id="spazio"></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1) <br>
-                <span id="spazio"></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)])) <br>
-                <span id="spazio"></span><br>
-                <span id="spazio"></span>if event.num == 2: <br>
-                <span id="spazio"></span><span id="spazio"></span>x,y = self.temp_coods[0] <br>
-                <span id="spazio"></span><span id="spazio"></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)] <br>
-                <br>
-                else: <br>
-                <span id="spazio"></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1]) <br>
+                <ol>
+                    <li>
+                        if self.permitted_coods[0][0]: <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>self.nodi += 1 <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2) <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled") <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span><br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1) <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)])) <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span><br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>if event.num == 2: <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span><span id="spazio"></span>x,y = self.temp_coods[0] <br>
+                    </li>
+                    <li>
+                        <span id="spazio"></span><span id="spazio"></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)] <br>
+                    </li>
+                    
+                    <li>
+                        <br>
+                    </li>
+                    
+                    <li>
+                        else: <br>
+                    </li>
+                    
+                    <li>
+                        <span id="spazio"></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1]) <br>
+                    </li>
+                </ol>
             </code>
             <span id="codice">self.permitted_coods</span> è una matrice 2x2 in cui dice lo stato attuale nell'esatto punto in cui ho premuto, il primo elemento è un <span id="codice">booleano</span> 
             in cui mi dice se è uno spazio vuoto o meno, ciò lo determina usando i <span id="codice">tags</span>, se c'è una determianta condizione usando quel tag, sa se è uno spazio vuoto o meno.
