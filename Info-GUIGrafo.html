@@ -147,7 +147,7 @@
             <code>
                 <ol>
                     <li>class Arco:</li> 
-                    <li><span id="spazio"></span> def __init__(self, coords: list[tuple], nodes: list[Nodo], height:int, line_id:int,bidirectional = False,**kargs):</li>
+                    <li><span id="spazio"></span> def __init__(self, coords: list[tuple], nodes: list[Nodo], height:int, line_id:int, bidirectional = False,**kargs):</li>
                     <li><span id="spazio" style="--spaziatura: 2"></span>self.__coords = coords</li>
                     <li><span id="spazio" style="--spaziatura: 2"></span>self.__nodes = nodes</li>
                     <li><span id="spazio" style="--spaziatura: 2"></span>self.__height = height</li>
@@ -263,7 +263,7 @@
             Successivamente abbiamo i metodi <span id="codice">set</span> e uno particolare, <span id="codice">toggle</span>. 
             I metodi <span id="codice">set</span> impostano il valore il valore del <span id="codice">peso</span>(<span id="codice">setHeight</span>) e il
             valore del <span id="codice">bidirezionale</span> (<span id="codice">setBidirectional</span>), solo che ancora non l'ho usato. <br>
-            Il metodo che uso è il metodo <span id="codice">toggleBidirectional</span> in cui semplicemente mi inverte il valore del <span id="codice">self.__bidirectional</span><div class=""></div>
+            Il metodo che uso è il metodo <span id="codice">toggleBidirectional</span> in cui semplicemente mi inverte il valore del <span id="codice">self.__bidirectional</span>
             
         </font>
         
@@ -271,83 +271,73 @@
         <br>
         
         <font family="Verdana">
-            <h2>- Creazione Arco</h2>
+            <h2>- Recezione Errore</h2>
             <code>
                 <ol>
-                    <li>
-                        self.archi += 1
-                    </li>
-                    
-                    <li>
-                        temp = self.temp_coods.copy()  
-                    </li>
-                    
-                    <li>
-                        pm = [(temp[0][0] + temp[1][0])/2, (temp[0][1] + temp[1][1])/2]<br>
-                    </li>
-                    
-                    <li>
-                        try: angle = math.degrees(math.atan2((temp[0][1] - temp[1][1]), (temp[0][0] - temp[1][0]))) <br>
-                    </li>
-                    
-                    <li>
-                        except: angle = 90 <br>
-                    </li>
-                    <li>
-                        <br>
-                    </li>
-                    
-                    <li>
-                        lenght = math.sqrt((temp[0][0] - temp[1][0])**2 + (temp[0][1] - temp[1][1])**2) <br>
-                    </li>
-                    
-                    <li>
-                        <br>
-                    </li>
-                    
-                    <li>
-                        lenght /= 2 <br>
-                    </li>
-                    <li>
-                        lenght -= 10 <br>
-                    </li>
-                    
-                    <li>
-                        <br>
-                    </li>
-                    <li>
-                        temp = list(map(lambda x: list(x), temp))<br>
-                    </li>
-                    
-                    <li>
-                        temp[0][0] = lenght*cos(angle) + pm[0]         # x <br>
-                    </li>
-                    
-                    <li>
-                        temp[0][1] = lenght*sin(angle) + pm[1]         # y <br>
-                    </li>
-                    
-                    <li>
-                        <br>
-                    </li>
-                    
-                    <li>
-                        temp[1][0] = lenght*cos(angle+180) + pm[0]     # x <br>
-                    </li>
-                    
-                    <li>
-                        temp[1][1] = lenght*sin(angle+180) + pm[1]     # y <br>
-                    </li>
-                    
-                    <li>
-                        <br>
-                    </li>
-                    
-                    <li>
-                        line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2) <br>
-                    </li>
+                    <li>def logFunzione(func):</li>
+                    <li><span id='spazio'></span>def wrapper(*args):</li>
+                    <li><span id='spazio' style='--spaziatura: 2'></span>try:</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>func(*args)</li>
+                    <li><span id='spazio' style='--spaziatura: 2'></span>except:</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>err = traceback.format_exc()</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>ora = time.strftime("%d-%m-%Y | %H:%M", time.localtime())</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span></li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>messagebox.showerror("Notifica di Servizio", "Si è verificato un errore. Chiedere più informazioni al proprietario del software")</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span></li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>with open("log.txt", "a") as file:</li>
+                    <li><span id='spazio' style='--spaziatura: 4'></span>file.write(f"[{ora}] =>{err}\n{'-'*130}\n")</li>
+                    <li><span id='spazio' style='--spaziatura: 3'></span>file.close()</li>
+                    <li><span id='spazio'></span></li>
+                    <li><span id='spazio'></span>return wrapper</li>
+                    <li></li>
+                    <li># ------------------------------------------ #</li>
+                    <li></li>
+                    <li>class GUI(ctk.CTk):</li>
+                    <li><span id='spazio'></span>....</li>
+                    <li><span id='spazio'></span>@logFunzione</li>
+                    <li><span id='spazio'></span>def setPoint(self, event): </li>
+                    <li><span id='spazio' style='--spaziatura: 2'></span>...</li>
                 </ol>
             </code>
+            
+            Per controllare gli eventuali errori che si verificano durante l'eseguzione del programma, senza riscrivere molto codice
+            ho introdotto un <a href="https://www.programmareinpython.it/video-corso-python-intermedio/12-i-decoratori/" target="_blank" id="codice">decoratore</a>. <br>
+            Usando il blocco <span id="codice">try-except</span> riesco a trovare gli errori che che avvengono nella funzione, in questo caso una essenziale perché riguarda
+            il posizionamento di <span id="codice">Nodi</span> & <span id="codice">Archi</span>, per trovare poi l'errore utilizzo il <span id="codice">traceback</span> che mi fornisce
+            dettagli sull'errore e viene salvato nel file <span id="codice">log.txt</span>. <br>
+            Quando si verifica un errore appare un messaggio, che dice di segnalarmelo, ho programmato una funzione segreta che mi permette di accedere al file dei <span id="codice">log</span>.
+            Per accedere bisogna fare <span id="codice">tasto destro</span> sul bottone <span id="codice">Cancella Tutto</span> e si aprirà una finestra in cui ci sarà il contenuto del file di <span id="codice">log</span>.
+        </font>
+        
+        <br>
+        <br>
+        
+        <font family="Verdana">
+            <h2>- Creazione Arco</h2>
+            
+            <code>
+                <ol>
+                    <li>self.archi += 1</li>
+                    <li>temp = self.temp_coods.copy()</li>
+                    <li>pm = [(temp[0][0] + temp[1][0])/2, (temp[0][1] + temp[1][1])/2] </li>
+                    <li></li>
+                    <li>try: angle = math.degrees(math.atan2((temp[0][1] - temp[1][1]), (temp[0][0] - temp[1][0])))</li>
+                    <li>except: angle = 90</li>
+                    <li></li>
+                    <li>lenght = math.sqrt((temp[0][0] - temp[1][0])**2 + (temp[0][1] - temp[1][1])**2)</li>
+                    <li>lenght /= 2</li>
+                    <li>lenght -= 10 </li>
+                    <li></li>
+                    <li>temp = list(map(lambda x: list(x), temp))</li>
+                    <li>temp[0][0] = lenght*cos(angle) + pm[0]         # x</li>
+                    <li>temp[0][1] = lenght*sin(angle) + pm[1]         # y</li>
+                    <li></li>
+                    <li>temp[1][0] = lenght*cos(angle+180) + pm[0]     # x </li>
+                    <li>temp[1][1] = lenght*sin(angle+180) + pm[1]     # y</li>
+                    <li></li>
+                    <li>line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2)</li>
+                </ol>
+                </code>
             
             Per iniziare incremento il contatore degli archi <span id="codice">self.archi += 1</span>. <br>
             Successivamente mi copio le coordinate in una variabile <span id="codice">temp</span>. <br>
@@ -366,64 +356,25 @@
             <br>
             
             <h2>- Riconoscimento Click</h3>
-            <code>
-                <ol>
-                    <li>
-                        if self.permitted_coods[0][0]: <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>self.nodi += 1 <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2) <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled") <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span><br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1) <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)])) <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span><br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>if event.num == 2: <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span><span id="spazio"></span>x,y = self.temp_coods[0] <br>
-                    </li>
-                    <li>
-                        <span id="spazio"></span><span id="spazio"></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)] <br>
-                    </li>
-                    
-                    <li>
-                        <br>
-                    </li>
-                    
-                    <li>
-                        else: <br>
-                    </li>
-                    
-                    <li>
-                        <span id="spazio"></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1]) <br>
-                    </li>
-                </ol>
-            </code>
+                <code>
+                    <ol>
+                        <li>if self.permitted_coods[0][0]:</li>
+                        <li><span id='spazio'></span>self.nodi += 1</li>
+                        <li><span id='spazio'></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2)</li>
+                        <li><span id='spazio'></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled")</li>
+                        <li><span id='spazio'></span></li>
+                        <li><span id='spazio'></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1)</li>
+                        <li><span id='spazio'></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)]))</li>
+                        <li><span id='spazio'></span></li>
+                        <li><span id='spazio'></span>if event.num == 2:</li>
+                        <li><span id='spazio' style='--spaziatura: 2'></span>x,y = self.temp_coods[0]</li>
+                        <li><span id='spazio' style='--spaziatura: 2'></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)]</li>
+                        <li><span id='spazio'></span></li>
+                        <li>else:</li>
+                        <li><span id='spazio'></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1])</li>
+                    </ol>
+                </code>
+            
             <span id="codice">self.permitted_coods</span> è una matrice 2x2 in cui dice lo stato attuale nell'esatto punto in cui ho premuto, il primo elemento è un <span id="codice">booleano</span> 
             in cui mi dice se è uno spazio vuoto o meno, ciò lo determina usando i <span id="codice">tags</span>, se c'è una determianta condizione usando quel tag, sa se è uno spazio vuoto o meno.
             Il secondo elemento è il tag stesso. <br>
