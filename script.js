@@ -54,10 +54,7 @@ window.onload = () => {
         const pageTitle = document.getElementById("futureTitle")
         pageTitle.style.display = "unset"
         
-        // $.get("index.html", function(data){
-        //     document.querySelector("html").innerHTML = data
-        //     document.getElementById("contenuto").innerHTML = pageContent
-        // })
+        
         document.querySelector("html").innerHTML = index
         document.getElementById("contenuto").innerHTML = pageContent
         
@@ -87,6 +84,7 @@ window.onload = () => {
         
         btWelcome.style.width = "50%"
         welcome.style.fontSize = "100px"
+        welcome.style.width = `100%`
         
         btn.forEach(
             (bt) => {
@@ -97,9 +95,8 @@ window.onload = () => {
         )
         
         contenuto.style.width = "80%"
-        // contenuto.style.padding = "-3% 3% 0 3%"
-        contenuto.style.paddingLeft = "3%"
-        contenuto.style.paddingRight = "3%"
+        // contenuto.style.paddingLeft = "10%"
+        // contenuto.style.paddingRight = "3%"
         
         
         bottonetornaindietro.style.transform = "scale(0.5)"
@@ -128,6 +125,7 @@ function aboutG() {
     }else { 
         contenuto.className = "contenuto-alzato"
         notifica.style.display = "none"
+        
     }
     
 }
@@ -142,6 +140,11 @@ function about(px) {
         
     }else { 
         contenuto.className = "contenuto-alzato"
+        
+        setTimeout(() => {
+            contenuto.className = "contenuto"
+        }, 3000)
+        
     }
     
 }
