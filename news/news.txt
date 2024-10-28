@@ -117,7 +117,7 @@
     📅 | <b>Data</b>: <span id="data">28/10/2024</span>
     <div class="contentNews">➕ | 
         <div>
-            Aggiunto un piccolo dettaglio nel <a href="7mezzo/" style="color:white;">7 e mezzo</a>, ora le carte vengono viualizzate in maniera più o meno
+            Aggiunto un piccolo dettaglio nel <a href="../7mezzo/" style="color:white;">7 e mezzo</a>, ora le carte vengono viualizzate in maniera più o meno
             realistica, mettendole seguendo un angolo
         </div>
     </div>
