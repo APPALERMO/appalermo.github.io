@@ -1,7 +1,9 @@
 :root{
     --view: 1;
+    --card-counter: 1;
+    --index-card: 0;
 }
-.carta{
+.carta {
     float: left;
     display: block;
     position: relative;
@@ -11,8 +13,10 @@
     height: 200px;
     width: 125px;
     font-size: 50px;
-    margin-left: 17.4px;
+    /* margin-left: 17.4px; */
+    margin-left: -5%;
     top: -10%;
+    
 }
 
 .carta>p{
@@ -35,6 +39,11 @@
     transform: translate(-50%, -50%);
     border-top-right-radius: 20%;
     border-top-left-radius: 20%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .tavolo{
@@ -71,6 +80,10 @@
     transform: translate(-50%);
     border-bottom-right-radius: 20%;
     border-bottom-left-radius: 20%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 p{
