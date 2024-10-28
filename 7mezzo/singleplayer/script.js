@@ -155,7 +155,6 @@ function notifica(testo){
 }
 
 function controlla(){
-
     if(sommag > 7.5 && sommap > 7.5) notifica("Entrambi avete perso")
     else if (sommag == sommap) notifica("Pareggio")
     else if (sommag > 7.5) notifica("Ha vinto il PC")
@@ -202,7 +201,10 @@ function daiCartaG(){
     const newDiv = document.createElement("div")
     
     newDiv.classList.add("carta")
-    if(counterCarteGiocatore > 4) newDiv.style.top = "-100%"
+    newDiv.id = "carta-g"
+    newDiv.style.setProperty("--index-card", counterCarteGiocatore)
+    
+    // if(counterCarteGiocatore > 4) newDiv.style.top = "-100%"
     const figliaDivCarta = document.createElement("p")
     
     let carta = (type !== 0) ? (r === 0.5) ? `${type}0`: `${type}${r}`     :     (r === 0.5) ? `10`: `${r}`
@@ -219,6 +221,7 @@ function daiCartaG(){
     
     figliaDivCarta.appendChild(divNoSpy)
     
+    
     newDiv.appendChild(figliaDivCarta)
     divPadre.appendChild(newDiv)
     figliaDivCarta.classList.add("testo-carta")
@@ -228,6 +231,25 @@ function daiCartaG(){
     document.getElementById("testo-punteggio").textContent = sommag    
     
     if(sommag >= 7.5 || counterSto >= 2) controlla()
+    
+    let carte_g = document.querySelectorAll("#carta-g")
+    
+    carte_g.forEach((element) => {
+        let index = element.style.getPropertyValue("--index-card")
+        // console.log(index)
+        // console.log(element)
+        let angle = parseInt(90/counterCarteGiocatore)
+        
+        if(counterCarteGiocatore > 1){
+            
+            if(index <= counterCarteGiocatore/2){
+                element.style.transform = `rotate(${-angle}deg)`
+            }else {
+                element.style.transform = `rotate(${angle}deg)`
+            }
+        }
+        
+    })
     
     
     counterG += Math.floor(Math.random() * 10)
@@ -248,14 +270,17 @@ function daiCartaP(){
     const divPadre = document.getElementById("carte-p")
     const newDiv = document.createElement("div")
     
+    newDiv.id = "carta-p"
     newDiv.classList.add("carta")
-    if(counterCartePC > 4) newDiv.style.top = "-100%"
+    newDiv.style.setProperty("--index-card", counterCartePC)
+    
+    // if(counterCartePC > 4) newDiv.style.top = "-100%"
     const figliaDivCarta = document.createElement("p")
     
     figliaDivCarta.classList.add("testo-carta")
     figliaDivCarta.id = "testo-carta-p"
-
-
+    
+    
     let carta = (type !== 0) ? (r === 0.5) ? `${type}0`: `${type}${r}`     :     (r === 0.5) ? `10`: `${r}`
     
     figliaDivCarta.innerHTML = `<img src="https://demo.giocaonline.casino/assets/svg/carte/napoletane/${carta}.svg" height=180 width=120>`
@@ -268,13 +293,31 @@ function daiCartaP(){
     divNoSpy.style.backgroundColor = "transparent";
     
     
-    
     figliaDivCarta.appendChild(divNoSpy)
     newDiv.appendChild(figliaDivCarta)
     
     divPadre.appendChild(newDiv)
     sommap += r
     
+    
+    let carte_p = document.querySelectorAll("#carta-p")
+    
+    carte_p.forEach((element) => {
+        let index = element.style.getPropertyValue("--index-card")
+        // console.log(index)
+        // console.log(element)
+        let angle = parseInt(90/counterCartePC)
+        
+        if(counterCartePC > 1){
+            
+            if(index <= counterCartePC/2){
+                element.style.transform = `rotate(${angle}deg)`
+            }else {
+                element.style.transform = `rotate(${-angle}deg)`
+            }
+        }
+        
+    })
     
     if(sommap >= 7.5 || counterSto >= 2) {
         controlla()
