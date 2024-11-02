@@ -4,7 +4,8 @@ const dvStarterContent = document.getElementById("starterContent") // div visual
 const footer = document.querySelector("footer") // footer di fine pagina
 
 
-const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
+const server = new WebSocket(`ws://localhost:8080`)
+// const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
 
 server.onopen = () => {
     
@@ -21,7 +22,7 @@ let isSettings = false
 server.onmessage = (messaggio) => {
     
     let message = JSON.parse(messaggio.data)
-    // console.log(message)
+    console.log(message)
     
     if(message.data == "passwordErrata") document.querySelector("body").innerHTML = ""
     
@@ -57,22 +58,46 @@ server.onmessage = (messaggio) => {
     else if(message.data == "isAlive"){
         if(isSettings){
             setTimeout(() => {
-                const divComputerState = document.getElementById("computerState")
                 
+                const divComputerState = document.getElementById("computerState")                
                 divComputerState.style.backgroundColor = "lime"
+                
             }, 1000)
         }
     }
     
     else if(message.data == "setProms"){
+        
         const prom = document.getElementById("prom")
         
         alert("Promemoria impostato con successo!")
         
         prom.value = ""
     }
+    else if(message.data == "setRememeber"){
+        if(isSettings){
+            setTimeout(() => {
+                
+                const prom = document.getElementById("prom")           
+                
+                prom.value = message.remember
+                
+            }, 1000)
+        }
+    }
+    else if(message.data == "showProms"){
+    
+        const textProm = document.getElementById("textProm")
+        
+        if(message.remember)
+            textProm.innerText = message.remember
+        
+    }
     
 }
+
+
+
 
 
 const confirmSi = () => {
