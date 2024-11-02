@@ -3,9 +3,7 @@ const dvStarter = document.getElementById("starter") // div che contiene il mess
 const dvStarterContent = document.getElementById("starterContent") // div visualizza il messaggio che è stato acceso il computer
 const footer = document.querySelector("footer") // footer di fine pagina
 
-
-const server = new WebSocket(`ws://localhost:8080`)
-// const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
+const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/`)
 
 server.onopen = () => {
     
