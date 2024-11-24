@@ -1,11 +1,22 @@
 :root{
     --spaziatura: 1;
+    
+    
+    --bg-html: rgb(28, 27, 34);
+    --color-text-html: whitesmoke;
+    
+    --bg-contenuto: rgb(32, 34, 35);
+    
+    --bg-codice: rgb(40, 44, 52);
+    --color-codice: #abb2bf;
+    
+    --bg-notifica: rgb(43, 42, 51);
 }
 
 
 html{
-    background-color: rgb(28, 27, 34);
-    color: whitesmoke;
+    background: var(--bg-html);
+    color: var(--color-text-html);
 }
 
 
@@ -28,10 +39,10 @@ html{
 
 .contenuto{
     width: 60%;
-    background-color: rgb(32, 34, 35);
+    background: var(--bg-contenuto);
     text-align: left;
     
-    color: whitesmoke;
+    color: var(--color-text-html);
     border-radius: 10px;
     padding: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -76,8 +87,8 @@ html{
     font-size: 16px;
     font-weight: 600;
     
-    background-color: #282c34;
-    color: #abb2bf;
+    background: var(--bg-codice);
+    color: var(--color-codice);
     
     border-radius: 5px;
     padding: 1px 5px 1px 5px;
@@ -91,8 +102,8 @@ code {
     
     max-width: 90vw;
     
-    background-color: #282c34;
-    color: #abb2bf;
+    background: var(--bg-codice);
+    color: var(--color-codice);
     border-radius: 8px;
     
     overflow: auto;
@@ -176,7 +187,7 @@ code > ol{
     /* height: 0%;
     width: 3%; */
     left: 50%;
-    background-color: rgb(43, 42, 51);
+    background: var(--bg-notifica);
     padding-left: 10px;
     padding-right: 10px;
     transform:  translate(-50%);
@@ -185,10 +196,10 @@ code > ol{
 
 .contenuto-sceso{
     width: 60%;
-    background-color: rgb(32, 34, 35);
+    background: var(--bg-contenuto);
     text-align: left;
     
-    color: whitesmoke;
+    color: var(--color-text-html);
     border-radius: 10px;
     padding: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -200,10 +211,10 @@ code > ol{
 
 .contenuto-alzato{
     width: 60%;
-    background-color: rgb(32, 34, 35);
+    background: var(--bg-contenuto);
     text-align: left;
     
-    color: whitesmoke;
+    color: var(--color-text-html);
     border-radius: 10px;
     padding: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -214,8 +225,8 @@ code > ol{
 }
 
 .welcome{
-    color: rgb(255, 0, 0); 
-    background-color: rgb(43, 42, 51);
+    color: red; 
+    background: var(--bg-notifica);
     font-size: 50px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     border-bottom-left-radius: 25px;
