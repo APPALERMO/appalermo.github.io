@@ -30,6 +30,7 @@ const index = `<!DOCTYPE html>
     
     <center>
         <div class="contenuto" id="contenuto"> -|- </div>
+    </center> 
     
 </body>
 <script src="script.js"></script>
@@ -74,6 +75,33 @@ window.onload = () => {
         
     }
     
+    // riconoscere tema chiaro e scuro    
+    let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if(!darkTeme){
+        const html = document.querySelector("html")
+        /*
+        --bg-html: white;
+        --color-text-html: #333;
+        --bg-contenuto: darkGray;
+        --bg-notifica: gray;
+        */
+        
+        html.style.setProperty("--bg-html", "white")
+        html.style.setProperty("--color-text-html", "#333")
+        // html.style.setProperty("--bg-contenuto", "linear-gradient(180deg, darkgray -25%, white 100%)")
+        // html.style.setProperty("--bg-notifica", "linear-gradient(180deg, white 0%,gray 22%, gray 55%, white)")
+        html.style.setProperty("--bg-contenuto", "darkGray")
+        html.style.setProperty("--bg-notifica","gray")
+        
+        html.style.setProperty("--bg-codice", "#abb2bf")
+        html.style.setProperty("--color-codice", "rgb(40, 44, 52)")
+        
+        
+        
+    }
+    
+    
     // per dispositivi mobile
     if(screen.width <= 800){
         const contenuto = document.getElementById("contenuto")
@@ -95,6 +123,9 @@ window.onload = () => {
         )
         
         contenuto.style.width = "80%"
+        contenuto.style.padding = "0 2% 0 2%"
+        // contenuto.style.textAlign = "center"
+        
         // contenuto.style.paddingLeft = "10%"
         // contenuto.style.paddingRight = "3%"
         
