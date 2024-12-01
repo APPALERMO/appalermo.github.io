@@ -1,0 +1,45 @@
+<html class="centro">
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <p style="display: none; background: linear-gradient(170deg, orange 20%, brown 50%, gray 90%) padding-box text;-webkit-text-fill-color: transparent;" id="futureTitle">Pong NN</p>
+
+    
+    <body class="contenuto">
+            <font family="Verdana" size="6">
+            <p id="titolo">
+                Video Dimostrazione
+            </p>
+        </font>
+        
+        <center>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cT73cxfHIZ4?si=DWHD4onzHUdWreU0" allowfullscreen></iframe>
+        </center>
+        
+        <br>
+        
+        <font family="Verdana" size="10">
+            <p id="titolo">
+                Riflessioni Generali
+            </p>
+        </font>
+        
+        <font family="Verdana">
+            <p>
+                Il programma sembra generare un output molto aspettato, però si può notare una cosa molto comune all'interno di questi ambiti, l'<span id="codice">overfitting</span>. 
+                Questo si può notare da un semplice comportamento della rete neurale, quando la palla ricade nello stesso punto, il rettangolo rosso ha lo stesso comportamento ad ogni round, ad ogni azzeramento di punti. <br>
+                Questo programma è stato sviluppato in un paio d'ore, la creazione del gioco è stata trovata online, facendo qualche modifica l'ho adattata in modo che la rete neurale avesse il controllo. 
+                Un possibile miglioramento è l'introduzione di una memoria, distaccata dalla rete neurale, in modo che ogni volta che i dati passati si riverificano, utilizza quelli salvati in modo da evitare un minimo di <span id="codice">overifitting</span>
+                e non far imparare i dati a memoria al modello.
+                
+            </p>
+        </font>
+        
+        
+        <script src="script.js"></script>
+        <button id="tornaindietro" class="bottonetornaindietro" onclick="location.pathname = '/'">Torna Indietro</button>
+        <br>
+        
+    </body>
+</html>
