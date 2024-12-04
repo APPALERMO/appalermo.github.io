@@ -21,6 +21,95 @@
         
         <font family="Verdana" size="10">
             <p id="titolo">
+                Documentazione
+            </p>
+        </font>
+        
+        <font family="Verdana">
+            <p>
+                
+                <center>
+                    <img src="media/schema_principale.png" style="width: 85%; margin-bottom:1%;">
+                </center>
+                
+                Questo è lo schema principale del programma. Nell'<span id="codice">Agent</span> abbiamo gli attributi che monitorano
+                il <span id="codice">gioco</span> e il <span id="codice">modello</span>.
+                <ul>
+                    
+                    <li>
+                        <span id="codice">Giocco</span> avrà un metodo che attua le azioni del <span id="codice">modello</span> restituendo <span id="codice">reword</span>,
+                        una ricompenza per aver eseguito quell'azione, <span id="codice">game over</span>, una variabile <span id="codice">booleana</span> che mi dice se è ho perso, e infine
+                        <span id="codice">punteggio</span>, il punteggio totale realizzato, che in caso di sconfitta si azzera. 
+                    </li>
+                    <li>
+                        <span id="codice">Modello</span> avrà un metodo di <span id="codice">addestramento</span>, predict, in cui viene passato un <span id="codice">tensor</span> di dati
+                        e predice cosa fare, infatti restitusce un'<span id="codice">action</span>, che sarà quella da eseguire nel <span id="codice">Gioco</span>.
+                    </li>
+                </ul>
+                
+                Il <span id="codice">Modello</span> che utilizziamo è una rete neurale che gli applichiamo <span id="codice">due funzioni lineari</span>. La rete
+                è formata da    
+                <ul>
+                    <li>
+                        <span id="codice">2 Layer di Input</span>, a cui viene passato un tensor che mi dice se la palla sta a destra o a sinistra rispetto 
+                        al piattello rosso
+                    </li>
+                    
+                    <li>
+                        <span id="codice">64 x 2Layer di Elaborazione (o nascosti)</span>, mi elaborano le informazioni applicando una funzione lineare
+                    </li>
+                    
+                    <li>
+                        <span id="codice">3 Layer di Output</span>, restituedomi un tensor che mi indica le direzioni, viene utilizzato soli <span id="codice">0</span> & <span id="codice">1</span>,
+                        e in base alla posizione dell'<span id="codice">1</span> mi dice se <span id="codice">restare fermo</span>, andare a <span id="codice">destra</span> o a <span id="codice">sinistra</span>.
+                    </li>
+                </ul>
+                
+                
+                Arriviamo ora alla fase di <span id="codice">Training</span>. Abbiamo una funzione, chiama appunto, <spam id="codice">train</spam>, che 
+                inizia ad addestrare il modello.
+                
+                <ul>
+                    <li>Iniziamo con il prelevare lo stato attuale del gioco. (vedi prima)</li>
+                    <li>Diamo al modello lo <span id="codice">stato</span> e da li otteniamo un'azione</li>
+                    <li>Da quell'<span id="codice">azione</span> deriviamo la <span id="codice">ricompenza</span>, il game over e il punteggio</li>
+                    <li>Riotteniamo lo stato del gioco.</li>
+                    <li>Lo facciamo ricordare.</li>
+                    <li>Addestriamo il modello, di conseguenza.</li>
+                </ul>
+                
+                Arrivati a questo punto, la parte più importante è il calcolo della <span id="codice">ricompenza</span> e l'<span id="codice">aggiornamento</span> di esso.
+                Per <span id="codice">calcolare la ricompenza</span> utiliziamo l'<span id="codice">equazione di Bellman</span>.
+                <center>
+                    <br>
+                    <img src="media/eq_belman.png" style="width: 85%; margin-bottom:1%;">
+                </center>
+                La <span id="codice">nuova ricompenza</span> sarà data dalla somma dell'<span id="codice">attuale ricompenza</span>, del <span id="codice">learing rate</span>, 
+                che moltiplica la <span id="codice">ricompenza di quell'azione</span> sommato al <span id="codice">massimo valore</span> della prossima azione moltiplicato per <span id="codice">gamma</span>,
+                un valore compreso tra <span id="codice">0</span> e <span id="codice">1</span>, ma generalmente è <span id="codice">0.8</span> o <span id="codice">0.9</span>.
+                
+                <center>
+                    <br>
+                    <img src="media/q_updating.png" style="width: 85%; margin-bottom:1%;">
+                </center>
+                
+                Qua abbiamo una versione un po più semplificata. Il <span id="codice">nuovo valore della ricompenza</span> è dato dal valore massimo del
+                risultato del vecchio stato (state<sub>0</sub>), moltiplicato per <span id="codice">gamma</span>, sommato alla <span id="codice">ricompenza</span> della vecchia azione.
+                
+                <center>
+                    <br>
+                    <img src="media/loss_function.png" style="width: 85%; margin-bottom:1%;">
+                </center>
+                
+                Infine abbiamo il valore di <span id="codice">loss</span>, ovvero di quanto si discosta dal risultato vero e proprio, che è dato dalla differenza delle  
+                <span id="codice">ricompenza</span>, elevato tutto al quadrato.
+                
+            </p>
+        </font>
+            
+        
+        <font family="Verdana" size="10">
+            <p id="titolo">
                 Riflessioni Generali
             </p>
         </font>
