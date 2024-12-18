@@ -78,7 +78,7 @@ window.onload = () => {
     // riconoscere tema chiaro e scuro    
     let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     
-    if(!darkTeme){
+    if(!darkTeme && false){
         const html = document.querySelector("html")
         /*
         --bg-html: white;
@@ -86,6 +86,7 @@ window.onload = () => {
         --bg-contenuto: darkGray;
         --bg-notifica: gray;
         */
+        
         
         html.style.setProperty("--bg-html", "white")
         html.style.setProperty("--color-text-html", "#333")
@@ -96,8 +97,6 @@ window.onload = () => {
         
         html.style.setProperty("--bg-codice", "#abb2bf")
         html.style.setProperty("--color-codice", "rgb(40, 44, 52)")
-        
-        
         
     }
     
