@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <p style="display: none; background: linear-gradient(170deg, orange 20%, brown 50%, gray 90%) padding-box text;-webkit-text-fill-color: transparent;" id="futureTitle">Pong NN</p>
-
+    
     
     <body class="contenuto">
             <font family="Verdana" size="6">
@@ -37,13 +37,13 @@
                 <ul>
                     
                     <li>
-                        <span id="codice">Giocco</span> avrà un metodo che attua le azioni del <span id="codice">modello</span> restituendo <span id="codice">reword</span>,
-                        una ricompenza per aver eseguito quell'azione, <span id="codice">game over</span>, una variabile <span id="codice">booleana</span> che mi dice se è ho perso, e infine
-                        <span id="codice">punteggio</span>, il punteggio totale realizzato, che in caso di sconfitta si azzera. 
+                        <span id="codice">Gioco</span> avrà un metodo che attua le azioni del <span id="codice">modello</span> restituendo un <span id="codice">reword</span>
+                        per aver eseguito quell'azione, <span id="codice">game over</span> una variabile <span id="codice">booleana</span> che mi dice se ho perso, e infine il
+                        <span id="codice">punteggio</span> totale realizzato, che in caso di sconfitta si azzera. 
                     </li>
                     <li>
                         <span id="codice">Modello</span> avrà un metodo di <span id="codice">addestramento</span>, predict, in cui viene passato un <span id="codice">tensor</span> di dati
-                        e predice cosa fare, infatti restitusce un'<span id="codice">action</span>, che sarà quella da eseguire nel <span id="codice">Gioco</span>.
+                        e restitusce un'<span id="codice">action</span>, che sarà quella da eseguire nel <span id="codice">Gioco</span>.
                     </li>
                 </ul>
                 
@@ -66,27 +66,27 @@
                 </ul>
                 
                 
-                Arriviamo ora alla fase di <span id="codice">Training</span>. Abbiamo una funzione, chiama appunto, <spam id="codice">train</spam>, che 
+                Arriviamo ora alla fase di <span id="codice">Training</span>. Abbiamo una funzione di <spam id="codice">train</spam> che 
                 inizia ad addestrare il modello.
                 
                 <ul>
                     <li>Iniziamo con il prelevare lo stato attuale del gioco. (vedi prima)</li>
                     <li>Diamo al modello lo <span id="codice">stato</span> e da li otteniamo un'azione</li>
                     <li>Da quell'<span id="codice">azione</span> deriviamo la <span id="codice">ricompenza</span>, il game over e il punteggio</li>
-                    <li>Riotteniamo lo stato del gioco.</li>
+                    <li>Controlliamo lo stato del gioco.</li>
                     <li>Lo facciamo ricordare.</li>
                     <li>Addestriamo il modello, di conseguenza.</li>
                 </ul>
                 
-                Arrivati a questo punto, la parte più importante è il calcolo della <span id="codice">ricompenza</span> e l'<span id="codice">aggiornamento</span> di esso.
+                Arrivati a questo punto, la parte più importante è il calcolo della <span id="codice">ricompenza</span> e del suo <span id="codice">aggiornamento</span>.
                 Per <span id="codice">calcolare la ricompenza</span> utiliziamo l'<span id="codice">equazione di Bellman</span>.
                 <center>
                     <br>
                     <img src="media/eq_belman.png" style="width: 85%; margin-bottom:1%;">
                 </center>
                 La <span id="codice">nuova ricompenza</span> sarà data dalla somma dell'<span id="codice">attuale ricompenza</span>, del <span id="codice">learing rate</span>, 
-                che moltiplica la <span id="codice">ricompenza di quell'azione</span> sommato al <span id="codice">massimo valore</span> della prossima azione moltiplicato per <span id="codice">gamma</span>,
-                un valore compreso tra <span id="codice">0</span> e <span id="codice">1</span>, ma generalmente è <span id="codice">0.8</span> o <span id="codice">0.9</span>.
+                che moltiplica la <span id="codice">ricompenza di quell'azione</span> sommato al <span id="codice">massimo valore</span> della prossima azione moltiplicato per un valore <span id="codice">gamma</span>,
+                compreso tra <span id="codice">0</span> e <span id="codice">1</span>, ma generalmente è <span id="codice">0.8</span> o <span id="codice">0.9</span>.
                 
                 <center>
                     <br>
