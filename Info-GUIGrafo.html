@@ -14,6 +14,7 @@
         </font>
         <font family="Verdana">
             <p>
+                
                 Iniziando un corso di informatica, a scuola, in testa girava l'idea di creare un programma capace di creare dei grafi e 
                 mi piaceva il fatto di visualizzare su gui il cammino più breve tra due nodi usando l' <span id="codice">Algoritmo di Dijkstra</span>.
                 
@@ -136,7 +137,7 @@
             Gli attributi per convenzione li ho dichiarati privati, in python non avendo una <span id="codice">keyword</span> che specifica
             esplicitamente l'<span id="codice">ambito di visibilità</span> si usano i <span id="codice">doppi underscore</span> per indicare
             un attributo/metodo privato. <br>
-            Per il resto non c'è nulla di particolare e il codice riesce a parlare da solo.
+            Per il resto non c'è nulla di particolare e il codice parla solo.
         </font>
         
         <br>
@@ -217,7 +218,7 @@
                 </ol>
             </code>
             
-            Questo è come vede il programma gli <span id="codice">Archi</span>. Composto da: 
+            Questo è come vede il programma l'<span id="codice">Arco</span>, composto da: 
             <ul>
                 <li>
                     <span id="codice">coords</span> in cui specifica le coordinate dell'arco
@@ -250,11 +251,11 @@
                     Su riga <span id="codice">31</span>, <span id="codice">s += " ".join([str(n.getNumber()) for n in self.__nodes])</span>, prendo l'array dei
                     <span id="codice">Nodi</span> e vado a richiamare il metodo <span id="codice">getNumber</span> in modo da ottenere il numero del nodo, e se bidirezionale
                     mi va a copiare lo schema precedente e va aggiungere gli stessi nodi, ma invertiti. <br>
-                    Infine il <span id="codice">return s.strip()</span>, ritorna lo schema strippato, in modo da non esserci spazi in eccesso.
+                    Infine il <span id="codice">return s.strip()</span>, ritorna lo schema strippato, senza spazi in eccesso.
                 </li>
                 <br>
                 <li>
-                    Il metodo <span id="codice">getTotalInfo</span>, invece di ritornarmi lo schema di nodi, mi ritorna un array composo dalle 
+                    Il metodo <span id="codice">getTotalInfo</span>, ritorna un array composo dalle 
                     <span id="codice">coordinate cartesiane</span> dell'arco, seguito da un dizionario in cui si distinguono, il <span id="codice">peso</span>
                     e il fatto di essere <span id="codice">bidirezionale</span>, che se impostato è 1, altrimenti non c'è.
                 </li>
@@ -263,7 +264,7 @@
             Successivamente abbiamo i metodi <span id="codice">set</span> e uno particolare, <span id="codice">toggle</span>. 
             I metodi <span id="codice">set</span> impostano il valore il valore del <span id="codice">peso</span>(<span id="codice">setHeight</span>) e il
             valore del <span id="codice">bidirezionale</span> (<span id="codice">setBidirectional</span>), solo che ancora non l'ho usato. <br>
-            Il metodo che uso è il metodo <span id="codice">toggleBidirectional</span> in cui semplicemente mi inverte il valore del <span id="codice">self.__bidirectional</span>
+            Il metodo che uso è il <span id="codice">toggleBidirectional</span> in cui mi inverte il valore di <span id="codice">self.__bidirectional</span>.
             
         </font>
         
@@ -304,9 +305,9 @@
             ho introdotto un <a href="https://www.programmareinpython.it/video-corso-python-intermedio/12-i-decoratori/" target="_blank" id="codice">decoratore</a>. <br>
             Usando il blocco <span id="codice">try-except</span> riesco a trovare gli errori che che avvengono nella funzione, in questo caso una essenziale perché riguarda
             il posizionamento di <span id="codice">Nodi</span> & <span id="codice">Archi</span>, per trovare poi l'errore utilizzo il <span id="codice">traceback</span> che mi fornisce
-            dettagli sull'errore e viene salvato nel file <span id="codice">log.txt</span>. <br>
-            Quando si verifica un errore appare un messaggio, che dice di segnalarmelo, ho programmato una funzione segreta che mi permette di accedere al file dei <span id="codice">log</span>.
-            Per accedere bisogna fare <span id="codice">tasto destro</span> sul bottone <span id="codice">Cancella Tutto</span> e si aprirà una finestra in cui ci sarà il contenuto del file di <span id="codice">log</span>.
+            dettagli sull'errore e poi viene salvato nel file <span id="codice">log.txt</span>. <br>
+            Quando si verifica un errore appare un messaggio, che dice di segnalarmelo, ho programmato una funzione segreta che mi permette di accedere al file dei <span id="codice">log</span>, 
+            per accederci bisogna fare <span id="codice">tasto destro</span> sul bottone <span id="codice">Cancella Tutto</span> e si aprirà una finestra in cui ci sarà il contenuto del file di <span id="codice">log</span>.
         </font>
         
         <br>
@@ -341,16 +342,16 @@
             
             Per iniziare incremento il contatore degli archi <span id="codice">self.archi += 1</span>. <br>
             Successivamente mi copio le coordinate in una variabile <span id="codice">temp</span>. <br>
-            L'obiettivo è accorciare la linea di 10 punti, perché se lasciata di default oltre dare fastidio all'occhio, il grafo non è graficamente corretto. <br>
-            Ora, usando un po di goniometria, considero la linea come il diametro di un cerchio che ha come raggio, la lunghezza della linea. <br>
-            Calcolandomi il punto medio (<span id="codice">pm</span>), che lo considero come centro della mia circonferenza, mi trovo la pendenza della linea (<span id="codice">angle</span>) e 
+            L'obiettivo è accorciare la linea di 10 punti, perché se lasciata di default oltre dare fastidio all'occhio, il disegno non è corretto. <br>
+            Ora, utilizzando un po' di goniometria, considero la linea come il diametro di un cerchio con  lighezza tale a quella della linea. <br>
+            Calcolandomi il punto medio (<span id="codice">pm</span>), lo considero come centro della mia circonferenza, mi trovo la pendenza della linea (<span id="codice">angle</span>) e 
             la sua lunghezza (<span id="codice">lenght</span>). <br>
             Visto che la lunghezza la considero come il diametro, la divido per 2, in modo da ottenere il <span id="codice">raggio</span> della mia circonferenza, e da li gli tolgo 10 punti, dato che serve più corta. <br>
             Adesso per sapere le nuove coordinate dei punti utilizzo la <a href="https://edulab.unitn.it/wp-content/uploads/nfs/DiCoMat/curve/book_curve.pdf#subsection.1.3.1" target="_blank" id="codice">parametrizzazione di una circonferenza</a>, usando
-            come raggio, la nuova lunghezza <span id="codice">lenght</span> e come angolo <span id="codice">angle</span>. Faccio una precisazione sulle ultime righe dove esce, come argomento del seno e coseno, <span id="codice">angle+180</span> che è semplicemente una regola
+            come raggio, la nuova lunghezza <span id="codice">lenght</span> e come angolo <span id="codice">angle</span>. Faccio una precisazione sulle ultime righe dove esce come argomento del seno e coseno <span id="codice">angle+180</span>, è una regola
             degli <a href="https://www.andreaminini.org/matematica/trigonometria/angoli-associati-alfa-e-pi-greco-piu-alfa" target="_blank" id="codice">angoli associati</a> e, <span id="codice">pm[0]</span> e <span id="codice">pm[1]</span> sono le coordinate <span id="codice">x</span> e <span id="codice">y</span>
             del centro della circonferenza. <br>
-            Infine creo la linea (<span id="codice">line</span>) con la lista di coordinate <span id="codice">temp</span>.
+            Infine creo la linea (<span id="codice">line</span>) usando la lista di coordinate <span id="codice">temp</span>.
             
             <br>
             <br>
@@ -400,7 +401,7 @@
                     <li><span id="codice">2</span> tasto centrale del mouse</li>
                     <li><span id="codice">3</span> tasto destro del mouse</li>
                 </ul>
-            quindi quando si chiama la funzione per quando si preme il tasto sinistro del mouse, il parametro <span id="codice">num</span> è sempre 1, impostandolo quindi a 2 capisce che si tratta di un caricamento del file e non di un suo utilizzo normale,
+            tuttavia quando si chiama la funzione per quando si preme il tasto sinistro del mouse, il parametro <span id="codice">num</span> è sempre 1, impostandolo quindi a 2 capisce che si tratta di un caricamento del file e non di un suo utilizzo normale,
             prende le coordinate dall'array <span id="codice">self.temp_coods</span> e lo inserire in un dizionario (conosciuto come <span id="codice">dict</span>) che ha come <span id="codice">key</span> le coordinate sottoforma di stringa e come 
             <span id="codice">value</span> le coordinate insieme all'<span id="codice">oggetto Nodo</span> interpretato da <span id="codice">pickle</span>.
             Quando invece rileva qualcosa recupera l'oggetto contenuto in <span id="codice">self.permitted_coods[0][1]</span> utilizzando <span id="codice">pickle</span>. <br>
