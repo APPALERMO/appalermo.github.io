@@ -11,8 +11,19 @@
     
         <h1 style="color:red;">Secure Power App</h1>
         <hr> <br>    
+        
         <div style="border: 2px solid black; border-radius: 30px; padding: 20px 0 20px 0;" id="content">
-            <div class="starter" id="starter" style="display: none;">
+            
+            <button style="color: black; width: auto; display: flex;margin-bottom:1%;" onclick="toggleViewDoorControl()">
+                <svg width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"></path>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"></path>
+                </svg>
+                
+                Mostra Allarme
+            </button>
+            
+            <div class="starter" id="starter" style="display: block; margin-bottom:1%;">
                 <div id="starterContent">
                     <p><b>Accensione computer </b><br> Confermi la tua identità?</p> 
                     <div onclick="this.innerHTML = '<h2>Processing...</h2>'">
@@ -21,19 +32,35 @@
                         <button style="background-color: red;" onclick="confirmNo()">No</button>
                     </div>
                 </div>
-                <br><br>
             </div>
             
+            <div class="starter" id="doorControl" style="display: none; margin-bottom:1%; height: 100%;">
+                <div style="margin-bottom: 0.5vw;">
+                    <p> 
+                        <b>Stato porta: </b> 
+                        <b id="doorState" style="color:green">CHIUSA</b>
+                        <br> 
+                        Far suonare Allarme?</p> 
+                    <p>
+                        <b>Stato allarme:</b>
+                        <br> 
+                        <b id="buzState" style="color:red;">OFF</b>
+                    </p>
+                    
+                    <button style="background-color: green;" onclick="buzON()">Accendi</button>
+                    <button style="background-color: red;" onclick="buzOFF()">Spegni</button>
+                    
+                </div>
+            </div>
             
-            <div class="starter">
+            <div class="starter" style="height: auto;">
                 <h1 style="margin-top: 0.5vw"><b>Promemoria</b></h1> 
                 <p id="textProm">Nessun Promemoria in programma...</p>
             </div>
         </div>
         
-        <footer>    
+        <footer>   
             <p onclick="openSettings(this)">Impostazioni</p>
-            
         </footer>
         
     </center>
