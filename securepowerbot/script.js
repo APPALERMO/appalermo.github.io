@@ -3,7 +3,12 @@ const dvStarter = document.getElementById("starter") // div che contiene il mess
 const dvStarterContent = document.getElementById("starterContent") // div visualizza il messaggio che è stato acceso il computer
 const footer = document.querySelector("footer") // footer di fine pagina
 
-const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/`)
+const divDoorControl = document.getElementById("doorControl") // div notifica messaggio che hanno aperto la porta
+const textBuzState = document.getElementById("buzState") // testo che controlla lo stato del buzzer (on/off)
+const textDoorState = document.getElementById("doorState") // stato porta (aperta chiusa)
+
+const server = new WebSocket(`ws://localhost:8080`)
+// const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
 
 server.onopen = () => {
     
@@ -24,7 +29,26 @@ server.onmessage = (messaggio) => {
     
     if(message.data == "passwordErrata") document.querySelector("body").innerHTML = ""
     
-    if(message.data == "accenzione") {
+    if (message.data == "doorControl"){
+        
+        if(message.mess == "SENS ON"){
+            textDoorState.innerText = "APERTA"
+            textDoorState.style.color = "red"
+        }else{
+            textDoorState.innerText = "CHIUSA"
+            textDoorState.style.color = "green"
+        }
+        
+        if(message.mess == "BUZ ON"){
+            textBuzState.innerText = "ON"
+            textBuzState.style.color = "green"
+        }
+        else if(message.mess == "BUZ OFF"){
+            textBuzState.innerText = "OFF"
+            textBuzState.style.color = "red"
+        }
+    }
+    else if(message.data == "accenzione") {
         
         dvStarter.style.display = "block"
         
@@ -110,6 +134,15 @@ const confirmNo = () => {
     
 }
 
+
+const buzON = () => {
+    server.send(JSON.stringify({"data": "doorControl", "mess":"BUZ ON", "port": "web"}))
+}
+const buzOFF = () => {
+    server.send(JSON.stringify({"data": "doorControl", "mess":"BUZ OFF", "port": "web"}))
+}
+
+
 function cambiacontenuto(file) {
     footer.style.top = "0"
     
@@ -149,4 +182,16 @@ const setProms = () => {
         server.send(JSON.stringify({"data": "setProms", "remember": text, "port": "web"}))
     else 
         alert("Inserisci un testo valido")
+}
+
+
+const toggleViewDoorControl = () => {
+    
+    if(divDoorControl.style.display == "block"){
+        divDoorControl.style.display = "none"
+    }
+    else if(divDoorControl.style.display == "none"){
+        divDoorControl.style.display = "block"
+    }
+    
 }
