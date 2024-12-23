@@ -4,9 +4,10 @@
     display: block;
     border: 1px solid black;
     border-radius: 10px;
-    height: 140px;
+    height: 100%;
     width: 180px;
 }
+
 button{
     border-radius: 10px;
     width: 60px;
@@ -36,4 +37,14 @@ footer p{
 .button{
     color:black;
     width: auto;
+}
+
+#content{
+    border: 2px solid black; 
+    border-radius: 30px; 
+    padding: 20px 0 20px 0;
+}
+
+#content .starter, #content > button{
+    margin-bottom: 1vw;
 }
