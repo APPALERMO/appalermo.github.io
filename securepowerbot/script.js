@@ -7,14 +7,15 @@ const divDoorControl = document.getElementById("doorControl") // div notifica me
 const textBuzState = document.getElementById("buzState") // testo che controlla lo stato del buzzer (on/off)
 const textDoorState = document.getElementById("doorState") // stato porta (aperta chiusa)
 
-const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/`)
+const server = new WebSocket(`ws://localhost:8080`)
+// const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/:8080`)
 
 server.onopen = () => {
     
     server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
     
     server.send(JSON.stringify({"data":"controlloPassword", "password": location.hash.replace("#", ""), "port":"web"}))
-    
+
 }  
 
 
