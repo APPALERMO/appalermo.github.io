@@ -93,7 +93,7 @@ server.onmessage = (messaggio) => {
         
         alert("Promemoria impostato con successo!")
         
-        prom.value = ""
+        prom.innerText = ""
     }
     else if(message.data == "setRememeber"){
         if(isSettings){
@@ -101,7 +101,7 @@ server.onmessage = (messaggio) => {
                 
                 const prom = document.getElementById("prom")           
                 
-                prom.value = message.remember
+                prom.innerText = message.remember
                 
             }, 1000)
         }
@@ -116,9 +116,6 @@ server.onmessage = (messaggio) => {
     }
     
 }
-
-
-
 
 
 const confirmSi = () => {
@@ -172,13 +169,23 @@ const openSettings = (p) => {
     
 }
 
+
 const setProms = () => {
     
     const prom = document.getElementById("prom")
-    const text = prom.value
+    const date = document.getElementById("dateProm")
     
-    if(text) 
-        server.send(JSON.stringify({"data": "setProms", "remember": text, "port": "web"}))
+    const text = prom.innerText
+    const sendDate = date.valueAsDate
+    
+    if(text){
+        if(sendDate){
+            console.log("Data Programma:",sendDate.toLocaleDateString())
+            console.log("Data Oggi:",new Date().toLocaleDateString())
+            console.log("Date Uguali?", new Date().toLocaleDateString() === sendDate.toLocaleDateString())
+        }
+        server.send(JSON.stringify({"data": "setProms", "remember": text, "date": sendDate, "port": "web"}))
+    }
     else 
         alert("Inserisci un testo valido")
 }
