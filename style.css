@@ -48,11 +48,17 @@ html{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
     overflow: hidden;
+    
+    border: 1px solid;
+    
 }
 
 #contenuto{
     position: relative;
     z-index: 1;
+    
+    margin-top:-1px;
+    
 }
 
 .centro{
@@ -72,7 +78,9 @@ html{
 
 .passami-sopra:hover{ font-size: 22px; }
 
-
+li{
+    margin-bottom: 0.5%;
+}
 
 #titolo {
     text-align: center;
@@ -192,6 +200,12 @@ code > ol{
     padding-right: 10px;
     transform:  translate(-50%);
     z-index: 0;
+    
+    border: 1px solid;
+    border-radius: 10px;
+    margin-top:-1px;    
+    
+    
 }
 
 .contenuto-sceso{
@@ -205,7 +219,10 @@ code > ol{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
     animation: scendi 3s linear;
-    margin-top: var(--altezza);
+    top: var(--altezza);
+    
+    border: 1px solid;
+    
 }
 
 
@@ -220,7 +237,10 @@ code > ol{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     
     animation: sali 3s linear;
-    margin-top: 0%;
+    top: 0%;
+    
+    border: 1px solid;
+    
 
 }
 
@@ -236,17 +256,20 @@ code > ol{
     user-select: none;
     
     overflow: hidden;
+    
+    border: 1px solid;
+    
 
 }
 
 @keyframes scendi {
-    0%{ margin-top: 0px; }
-    50%{ margin-top: calc(var(--altezza)/2); }
-    100%{ margin-top: var(--altezza); }
+    0%{ top: 0px; }
+    50%{ top: calc(var(--altezza)/2); }
+    100%{ top: var(--altezza); }
 }
 
 @keyframes sali {
-    0%{ margin-top: var(--altezza); }
-    50%{ margin-top: calc(var(--altezza)/2); }
-    100%{ margin-top: 0px; }
+    0%{ top: var(--altezza); }
+    50%{ top: calc(var(--altezza)/2); }
+    100%{ top: 0px; }
 } 
