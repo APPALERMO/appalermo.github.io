@@ -45,6 +45,9 @@ function cambiacontenuto(file) {
 }
 
 window.onload = () => {
+    
+    // modificaNotifica('contenutonotifica', 'social.html');social()
+    
     const head = document.querySelector("head")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
     
@@ -59,15 +62,25 @@ window.onload = () => {
         document.querySelector("html").innerHTML = index
         document.getElementById("contenuto").innerHTML = pageContent
         
+        
+        
         const HomeTitle = document.getElementById("bevnenutoTitle")
+        const welcome = document.querySelector(".welcome")
+        const html = document.querySelector("html")
+        
         
         HomeTitle.innerText = pageTitle.innerText
         
         const pageStyle = pageTitle.style
         
         for (let i = 0; i < pageStyle.length; i++) {
-            let propertyName = pageStyle[i];
-            HomeTitle.style[propertyName] = pageStyle.getPropertyValue(propertyName);
+            let propertyName = pageStyle[i]
+            let proprietyValue = pageStyle.getPropertyValue(propertyName)
+            HomeTitle.style[propertyName] = proprietyValue
+            
+            if(propertyName === "background-image" || propertyName === "color")
+                html.style.setProperty("--border-welcome", proprietyValue)
+            
         }
         
         HomeTitle.style.padding = "0"
@@ -76,7 +89,7 @@ window.onload = () => {
     }
     
     // riconoscere tema chiaro e scuro    
-    let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     
     if(!darkTeme && false){
         const html = document.querySelector("html")
@@ -185,17 +198,19 @@ function social(){
     
     // notifica.style.left = "32%"
     notifica.style.display = "unset"    
-    notifica.style.paddingLeft = "55px"
+    // notifica.style.paddingLeft = "55px"
     
     try{
         document.getElementById("contenutonotifica").style.display = "flex"
-        document.getElementById("contenutonotifica").style.marginLeft = "-6%"
+        document.getElementById("contenutonotifica").style.gap = "2.5vw"
     }catch{
         console.log(Error)
         location.reload()
     }
     
-    about(185.7)
+    // about(185.7)
+    // about(180)
+    about(160)
     
 }
 
