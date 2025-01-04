@@ -11,6 +11,8 @@
     --color-codice: #abb2bf;
     
     --bg-notifica: rgb(43, 42, 51);
+    
+    --border-welcome: linear-gradient(red,red);
 }
 
 
@@ -57,7 +59,7 @@ html{
     position: relative;
     z-index: 1;
     
-    margin-top:-1px;
+    /* margin-top:-1px; */
     
 }
 
@@ -203,7 +205,7 @@ code > ol{
     
     border: 1px solid;
     border-radius: 10px;
-    margin-top:-1px;    
+    
     
     
 }
@@ -244,7 +246,8 @@ code > ol{
 
 }
 
-.welcome{
+.welcome {
+    position: relative;
     color: red; 
     background: var(--bg-notifica);
     font-size: 50px;
@@ -255,12 +258,25 @@ code > ol{
     margin-top:-1%;
     user-select: none;
     
-    overflow: hidden;
+    /* overflow: hidden; */
     
-    border: 1px solid;
+    background-clip: padding-box;
     
-
 }
+
+.welcome::after {
+    position: absolute;
+    
+    top: -1px; bottom: -1px;
+    left: -2px; right: -2px;
+    
+    background: var(--border-welcome);
+    content: '';
+    z-index: -1;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
 
 @keyframes scendi {
     0%{ top: 0px; }
