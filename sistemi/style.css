@@ -7,7 +7,7 @@ button,div.contenuto {
     box-shadow: 5px 2.5px 10px lightblue;
 }
 
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,6 +27,7 @@ button{
     position: absolute;
     visibility: hidden;
     margin-bottom: 1%;
+    text-align: center;
 }
 
 .firma{
@@ -52,6 +53,7 @@ h1{
 h2{
     margin:0;
     margin-bottom:1%;
+    text-align: left;
 }
 
 li{
