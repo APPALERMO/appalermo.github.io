@@ -3,6 +3,17 @@
     --card-counter: 1;
     --index-card: 0;
 }
+
+body {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+
 .carta {
     float: left;
     display: block;
@@ -29,16 +40,16 @@
 }
 
 .carte-g{
-    position: absolute;
+    /* position: relative; */
     background-color: #054535;
     width: 600px;
     height: 200px;
-    top: 85%;
-    left: 50%;
+    /* top: 14vw;
+    left: 50%; */
     border: 2.5px solid black;
-    transform: translate(-50%, -50%);
+    /* transform: translate(-50%, -50%); */
     border-top-right-radius: 20%;
-    border-top-left-radius: 20%;
+    border-top-left-radius: 20%; 
     
     display: flex;
     align-items: center;
@@ -47,47 +58,55 @@
 }
 
 .tavolo{
-    position: absolute;
+    
+    position: relative;
+    
+    transform: skew(-20deg) /* translate(-50%, 25%) */;
     background-color: #be6e1f;
     width: 400px;
     height: 200px;
-    top: 36%;
-    left: 36.5%;
-    transform: skew(-20deg);
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    margin: 5% 0 5% 0;
+    
 }
 
 .punteggio-g{
-    position: absolute;
     width: 150px;
     height: 100px;
-    top: 80%;
-    left: 71%;
     border: 3px solid blue;
     border-radius: 10px;
 }
 
 .carte-p{
-    position: absolute;
     background-color: #054535;
     width: 600px;
     height: 200px;
-    top: 0%;
-    left: 50%;
     border: 2.5px solid black;
-    transform: translate(-50%);
+    
     border-bottom-right-radius: 20%;
     border-bottom-left-radius: 20%;
     
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    margin-top: -2%;
 }
 
 p{
     user-select: none;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    width: 70%;
 }
 
 #testo-carta-g{
