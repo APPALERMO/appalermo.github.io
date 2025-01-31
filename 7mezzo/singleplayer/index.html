@@ -1,36 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html style="overflow: hidden;">
 <head>
     <link rel="stylesheet" href="style.css">
     <title>7 ½ Single Player</title>
-    <!-- <meta name="viewport" content="width=1080, initial-scale=0.01"> -->
 </head>
-<body> 
-    <p style="position: absolute;top: 1%;left: 27%;font-size: 30px;">PC</p>
-    <div class="carte-p" id="carte-p"></div>
-    
-    <p style="position: absolute;left: 50%;top: 24%;font-size: 30px; opacity: 0; transform:translate(-50%);" class="stai-carta" id="testo-pc">Stai o carta?</p>
+<body>  
+    <div class="container">
+        <p style="position: absolute; left: 25%;font-size: 30px;">PC</p>
+        <div class="carte-p" id="carte-p"></div>
+        <p style="position: absolute;top: 25%;font-size: 30px; opacity: 0;" class="stai-carta" id="testo-pc">Stai o carta?</p>
+        
+    </div>
     
     <div class="tavolo">
-        <button id="inizio" style="position:absolute;top: 45%;left: 45%;border-radius: 10px;font-size: 15px;transform: skew(20deg);" onclick="daiCartaG();daiCartaP();turnoG();inzio(this)">Inizio</button>
+        <button id="inizio" style="transform: skewX(20deg);" onclick="daiCartaG();daiCartaP();turnoG();inzio(this)">Inizio</button>
         <p style="position:absolute;text-align: center;transform: skew(20deg);font-size: 30px;display: none;" id="notifica"></p>
     </div>
     
-    <div id="stai-carta-i" class="stai-carta" style="position: absolute;left: 50%;top: 65.5%; opacity: 0;transform: translate(-55%);">
-        <button style="border-radius: 5px;" onclick="stai()" id="btSto">Stai</button>
-        <button style="border-radius: 5px;" onclick="carta()" id="btCarta">Carta</button>
+    <div class="container">
+        <p style="position: absolute; left: 20%;font-size: 30px;">Giocatore</p>
+        
+        <p id="stai-carta-g" style="position: absolute;top: 63%; display: none;font-size: 30px;">Stai o Carta?</p>
+        
+        
+        <div id="stai-carta-i" class="stai-carta" style="position: absolute; top: 68%; opacity: 0;">
+            <button style="border-radius: 5px;" onclick="stai()" id="btSto">Stai</button>
+            <button style="border-radius: 5px;" onclick="carta()" id="btCarta">Carta</button>
+        </div>
+        
+        <div class="carte-g" id="carte-g"></div>
+        
+        <div class="punteggio-g" id="punteggio-g" style="position: absolute;left: 70%;">
+            <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
+            <span id="testo-punteggio" style="font-size: 30px;display: flex;align-items: center; justify-content: center;">0</span>
+        </div>
     </div>
-    
-    <p id="stai-carta-g" style="position: absolute;left: 45%;top: 65.5%; display: none;font-size: 30px;">Stai o Carta?</p>
-    
-    <div class="carte-g" id="carte-g"></div>
-    <div class="punteggio-g" id="punteggio-g">
-        <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
-        <span id="testo-punteggio" style="font-size: 30px;display: flex;align-items: center; justify-content: center;">0</span>
-    </div>
-    
-    <!-- <button onclick="mostraCarte()" style="position: absolute;top: 85%;left: 25%;border-radius: 10px;" id="vedi-carte">Vedi carte</button> -->
-    <p id="testoGiocatore" style="position: absolute;top: 85%;left: 22%;font-size: 30px;">Giocatore</p>
+
 </body>
     <script src="script.js"></script>
 </html>
