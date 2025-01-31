@@ -12,10 +12,14 @@ let counterSto = 0
 
 window.onload = (event) => {
     const head = document.querySelector("head")
+    const body = document.querySelector("body")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
     
+    // if (screen.width <= 1000) { 
+    //     alert("E' stato rilevato un utilizzo da telefono, per garantire una grafica migliore si consiglia di girarlo")
+    // }
     
-    if(screen.width <= 1000){
+    if(screen.width <= 1000 && false){
         const tavolo = document.querySelector(".tavolo")
         tavolo.style.left = "50%"
         tavolo.style.transform = "skew(-20deg) scale(2) translate(-25%)"
@@ -111,9 +115,6 @@ const carteP = istructionList()
 let counterP = 0
 
 
-const scelteSoC = istructionList() //scelte stai o carta
-let counterSC = 0 //counter stai o carta
-
 
 const inzio = (bt) =>{
     document.querySelector(".tavolo").removeChild(bt)
@@ -127,8 +128,10 @@ function notifica(testo){
     // notifica.style.left = "28%"
     notifica.style.userSelect = "none"
     
-    document.body.removeChild(document.getElementById("testo-pc"))
-    document.body.removeChild(document.getElementById("stai-carta-g"))
+    
+    
+    document.getElementById("testo-pc").style.display = "none"
+    document.getElementById("stai-carta-g").style.display = "none"
     
     
     let btRiprova = document.createElement("button")
@@ -149,40 +152,27 @@ function notifica(testo){
     for(var i = 0; i<carta.length; i++) carta[i].style.opacity = "100%";
     
     
-    document.body.removeChild(document.getElementById("stai-carta-i"))
-    document.body.removeChild(document.getElementById("vedi-carte"))
+    document.getElementById("stai-carta-i").style.display = "none"
 
 }
 
 function controlla(){
+    // console.log("Punteggio Giocatore: " + sommag)
+    // console.log("Punteggio PC: " + sommap)
     if(sommag > 7.5 && sommap > 7.5) notifica("Entrambi avete perso")
-    else if (sommag == sommap) notifica("Pareggio")
+    else if (sommag == sommap) {
+        if(counterCarteGiocatore > counterCartePC)
+            notifica("Hai vinto!")
+        else 
+            notifica("Ha vinto il PC!")
+        
+    }
     else if (sommag > 7.5) notifica("Ha vinto il PC")
     else if (sommap > 7.5) notifica("Hai Vinto!")
     else if (sommag < sommap) notifica("Ha vinto il PC")
     else if (sommap < sommag) notifica("Ha vinto il Giocatore!")
-
-}
-
-function mostraCarte(){
-
-    const bottone = document.getElementById("vedi-carte")
     
-    if(bottone.textContent == "Vedi carte"){
-        
-        document.documentElement.style.setProperty("--view", 1)
-        
-        bottone.textContent = "Nascondi carte"
-        if(changeLeftBtView) bottone.style.left = "23%"
-        
-    }
-    else if(bottone.textContent == "Nascondi carte"){
-        document.documentElement.style.setProperty("--view", 0  )
-        
-        bottone.textContent = "Vedi carte"    
-        if(changeLeftBtView) bottone.style.left = "25%"
-    
-    }
+
 }
 
 function daiCartaG(){
@@ -238,7 +228,7 @@ function daiCartaG(){
         let index = element.style.getPropertyValue("--index-card")
         // console.log(index)
         // console.log(element)
-        let angle = parseInt(90/counterCarteGiocatore)
+        let angle = parseInt(45/counterCarteGiocatore)
         
         if(counterCarteGiocatore > 1){
             
@@ -257,6 +247,7 @@ function daiCartaG(){
 }
 
 function daiCartaP(){
+    
     counterCartePC++
     let r = parseInt(carteP[counterP]) % 7 
     if(r>7 || r === 0) r = 0.5
@@ -272,6 +263,7 @@ function daiCartaP(){
     
     newDiv.id = "carta-p"
     newDiv.classList.add("carta")
+    newDiv.style.top = "5%"
     newDiv.style.setProperty("--index-card", counterCartePC)
     
     // if(counterCartePC > 4) newDiv.style.top = "-100%"
@@ -306,14 +298,13 @@ function daiCartaP(){
         let index = element.style.getPropertyValue("--index-card")
         // console.log(index)
         // console.log(element)
-        let angle = parseInt(90/counterCartePC)
+        let angle = parseInt(45/counterCartePC)
         
         if(counterCartePC > 1){
-            
             if(index <= counterCartePC/2){
-                element.style.transform = `rotate(${angle}deg)`
+                element.style.transform = `rotate(${angle + 180}deg)`
             }else {
-                element.style.transform = `rotate(${-angle}deg)`
+                element.style.transform = `rotate(${-angle + 180}deg)`
             }
         }
         
@@ -324,29 +315,33 @@ function daiCartaP(){
         return
     }
     
-    counterP += Math.floor(Math.random() * 10)
+    // counterP += Math.floor(Math.random() * 10)
 
 }
 
-//vecchio metodo
-
 function turnoPC(){
-    var scelta = scelteSoC[counterSC]
+    
     const testo = document.getElementById("testo-pc")
     
-    //30 perché fa in modo che se è minore di un terzo fa stai altrimenti fa sempre carta
-    // ha più possibilitò di fare carta
+    let r = parseInt(carteP[counterP]) % 7 
+    if(r>7 || r === 0) r = 0.5
+    
+    let incrase = Math.floor(Math.random() * 10)
+    
+    let nextCard = parseInt(carteP[counterP + incrase]) % 7 
+    if(nextCard > 7 || nextCard === 0) nextCard = 0.5 
     
     if(!changeLeftBtView) testo.style.left = "30%"
     
-    if(scelta > 30){
+    if((r + nextCard) <= 7.5){
         testo.textContent = "Fammi vedere...Carta!"
         daiCartaP()
+        counterP += incrase
+        
         if(sommap >= 7.5) {
             setTimeout(controlla,2000)    
             return
         }
-        counterSC += Math.floor(Math.random()*10)
         setTimeout(turnoPC,2000)
         
     }else{
@@ -359,13 +354,12 @@ function turnoPC(){
         document.getElementById("stai-carta-g").style.display = "none"
         document.getElementById("stai-carta-i").style.display = "unset"
         testo.innerHTML = "Ora Sto!"
-        // alert("PC: STOOOOOO COI FARI SPENTI SU UNA SUPER CAR")
+        
         counterSto++
         if(sommap >= 7.5 || counterSto >= 2){   
             setTimeout(controlla,2000)    
             return
         }
-        counterSC += Math.floor(Math.random()*10)
         setTimeout(turnoG,2000)
         
     }
