@@ -6,31 +6,47 @@
 </head>
 <body>  
     <div class="container">
-        <p style="position: absolute; left: 25%;font-size: 30px;">PC</p>
-        <div class="carte-p" id="carte-p"></div>
-        <p style="position: absolute;top: 25%;font-size: 30px; opacity: 0;" class="stai-carta" id="testo-pc">Stai o carta?</p>
-        
-    </div>
-    
-    <div class="tavolo">
-        <button id="inizio" style="transform: skewX(20deg);" onclick="daiCartaG();daiCartaP();turnoG();inzio(this)">Inizio</button>
-        <p style="position:absolute;text-align: center;transform: skew(20deg);font-size: 30px;display: none;" id="notifica"></p>
-    </div>
-    
-    <div class="container">
-        <p style="position: absolute; left: 20%;font-size: 30px;">Giocatore</p>
-        
-        <p id="stai-carta-g" style="position: absolute;top: 63%; display: none;font-size: 30px;">Stai o Carta?</p>
-        
-        
-        <div id="stai-carta-i" class="stai-carta" style="position: absolute; top: 68%; opacity: 0;">
-            <button style="border-radius: 5px;" onclick="stai()" id="btSto">Stai</button>
-            <button style="border-radius: 5px;" onclick="carta()" id="btCarta">Carta</button>
+        <p style="font-size: 30px;">PC</p>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <div class="carte-p" id="carte-p"></div>
         </div>
         
-        <div class="carte-g" id="carte-g"></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    
+    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;margin: 3% 0 1% 0;" id="before-tavolo">
+        <p style="font-size: 30px; opacity: 0; margin:0;" class="stai-carta" id="testo-pc">Stai o carta?</p>
         
-        <div class="punteggio-g" id="punteggio-g" style="position: absolute;left: 70%;">
+        <div class="tavolo">
+            <button id="inizio" style="transform: skewX(20deg); border-radius: 10px;" onclick="daiCartaG();daiCartaP();turnoG();inzio(this)">Inizio</button>
+            <p style="position:absolute;text-align: center;transform: skew(20deg);font-size: 30px;display: none;" id="notifica"></p>
+        </div>
+        
+        <div>
+            <div id="stai-carta-i" class="stai-carta" style="opacity: 0; display: flex; justify-content: center;">
+                <button style="border-radius: 5px;" id="btSto">Stai</button>
+                <button style="border-radius: 5px;" id="btCarta">Carta</button>
+            </div>
+            <p id="stai-carta-g" style="opacity: 0; font-size: 30px;margin:0;">Stai o Carta?</p>
+        </div>
+    </div>
+    
+    
+    <div class="container">
+        <p style="font-size: 30px;">Giocatore</p>
+        
+        
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            
+            
+            <div class="carte-g" id="carte-g"></div>
+            
+        </div>
+        
+        
+        <div class="punteggio-g" id="punteggio-g">
             <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
             <span id="testo-punteggio" style="font-size: 30px;display: flex;align-items: center; justify-content: center;">0</span>
         </div>
