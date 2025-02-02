@@ -11,77 +11,11 @@ let counterCarteGiocatore = 0,
 let counterSto = 0
 
 window.onload = (event) => {
+    
     const head = document.querySelector("head")
     const body = document.querySelector("body")
     head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
     
-    // if (screen.width <= 1000) { 
-    //     alert("E' stato rilevato un utilizzo da telefono, per garantire una grafica migliore si consiglia di girarlo")
-    // }
-    
-    if(screen.width <= 1000 && false){
-        const tavolo = document.querySelector(".tavolo")
-        tavolo.style.left = "50%"
-        tavolo.style.transform = "skew(-20deg) scale(2) translate(-25%)"
-        
-        const testoPC = document.getElementById("testo-pc")
-        testoPC.style.left = "36%"
-        testoPC.style.top = "21.5%"
-        testoPC.style.fontSize = "40px"
-        testoPC.style.transform = "scale(2)"
-        
-        
-        const btSto = document.getElementById("btSto")
-        btSto.style.fontSize = "35px"
-        btSto.style.transform = "scale(0.9)"
-        // btSto.style.padding= "10px 20px"
-        
-        const btCarta = document.getElementById("btCarta")
-        btCarta.style.fontSize = "35px"
-        btCarta.style.transform = "scale(0.9)"
-        // btCarta.style.padding= "10px 20px"
-        
-        const staiCartaI = document.getElementById("stai-carta-i")
-        staiCartaI.style.transform = "translate(-55%) scale(2)"
-        
-        const btView = document.getElementById("vedi-carte")
-        btView.style.left = "5%"
-        changeLeftBtView = false
-        
-        const testoGiocatore = document.getElementById("testoGiocatore")
-        testoGiocatore.style.left = "2.5%"
-        
-        
-        const punteggioG = document.getElementById("punteggio-g")
-        punteggioG.style.top = "100%"
-        punteggioG.style.left = "50%"
-        punteggioG.style.transform = "scale(2) translate(-25%, -100%)"
-        
-        const btInizio = document.getElementById("inizio")
-        btInizio.style.position = "unset"
-        btInizio.style.fontSize = "25px"
-        btInizio.style.display = "flex"
-        btInizio.style.alignItems = "center"
-        
-        const staiCartaG = document.getElementById("stai-carta-g")
-        staiCartaG.style.fontSize = "40px"
-        staiCartaG.style.top = "62%"
-        staiCartaG.style.left = "37%"
-        staiCartaG.style.transform = "scale(2)"
-        
-        const staiCartaP= document.getElementById("testo-pc")
-        staiCartaP.style.fontSize = "40px"
-        staiCartaP.style.top = "20%"
-        staiCartaP.style.left = "37%"
-        
-        
-        const tavoloGiocatore = document.getElementById("carte-g")
-        tavoloGiocatore.style.transform = "scale(1.5) translate(-35%,-50%)"
-        
-        const tavoloPC = document.getElementById("carte-p")
-        tavoloPC.style.transform = "scale(1.5) translate(-35%, 15%)"
-        
-    }
 }
 
 const istructionList = (DIM = 90) =>{
@@ -118,21 +52,17 @@ let counterP = 0
 
 const inzio = (bt) =>{
     document.querySelector(".tavolo").removeChild(bt)
+    
+    document.getElementById("btSto").addEventListener("click", stai)
+    document.getElementById("btCarta").addEventListener("click", carta)
+    
 } 
 
 function notifica(testo){
     
     const notifica = document.getElementById("notifica");
     notifica.style.display = "unset"
-    // notifica.style.top = "25%"
-    // notifica.style.left = "28%"
     notifica.style.userSelect = "none"
-    
-    
-    
-    document.getElementById("testo-pc").style.display = "none"
-    document.getElementById("stai-carta-g").style.display = "none"
-    
     
     let btRiprova = document.createElement("button")
     btRiprova.style.position = "absolute"
@@ -149,10 +79,26 @@ function notifica(testo){
     notifica.textContent = testo
     
     const carta = document.getElementsByClassName("testo-carta")
-    for(var i = 0; i<carta.length; i++) carta[i].style.opacity = "100%";
+    for(var i = 0; i<carta.length; i++) carta[i].style.opacity = "1";
     
     
-    document.getElementById("stai-carta-i").style.display = "none"
+    const btCarta = document.getElementById("btCarta")
+    const btStai = document.getElementById("btSto")
+    const comandi_giocatore = document.getElementById("stai-carta-g")
+    const staicarta = document.querySelectorAll(".stai-carta")
+    
+    btCarta.style.opacity = "0";
+    btCarta.disabled = true
+    
+    btStai.style.opacity = "0"
+    btStai.disabled = true
+    
+    comandi_giocatore.style.opacity = "0"
+    
+    staicarta.forEach((elem) => {
+        elem.style.opacity = "0"
+    })
+    
 
 }
 
@@ -194,7 +140,7 @@ function daiCartaG(){
     newDiv.id = "carta-g"
     newDiv.style.setProperty("--index-card", counterCarteGiocatore)
     
-    // if(counterCarteGiocatore > 4) newDiv.style.top = "-100%"
+    
     const figliaDivCarta = document.createElement("p")
     
     let carta = (type !== 0) ? (r === 0.5) ? `${type}0`: `${type}${r}`     :     (r === 0.5) ? `10`: `${r}`
@@ -220,7 +166,11 @@ function daiCartaG(){
     sommag += r
     document.getElementById("testo-punteggio").textContent = sommag    
     
-    if(sommag >= 7.5 || counterSto >= 2) controlla()
+    if(sommag >= 7.5 || counterSto >= 2) {
+        controlla()
+        return
+    }
+    
     
     let carte_g = document.querySelectorAll("#carta-g")
     
@@ -228,7 +178,7 @@ function daiCartaG(){
         let index = element.style.getPropertyValue("--index-card")
         // console.log(index)
         // console.log(element)
-        let angle = parseInt(45/counterCarteGiocatore)
+        let angle = parseInt(30/counterCarteGiocatore)
         
         if(counterCarteGiocatore > 1){
             
@@ -242,8 +192,9 @@ function daiCartaG(){
     })
     
     
+    
     counterG += Math.floor(Math.random() * 10)
-    turnoG()
+    // turnoG()
 }
 
 function daiCartaP(){
@@ -263,7 +214,7 @@ function daiCartaP(){
     
     newDiv.id = "carta-p"
     newDiv.classList.add("carta")
-    newDiv.style.top = "5%"
+    // newDiv.style.top = "5%"
     newDiv.style.setProperty("--index-card", counterCartePC)
     
     // if(counterCartePC > 4) newDiv.style.top = "-100%"
@@ -298,17 +249,18 @@ function daiCartaP(){
         let index = element.style.getPropertyValue("--index-card")
         // console.log(index)
         // console.log(element)
-        let angle = parseInt(45/counterCartePC)
+        let angle = parseInt(30/counterCartePC)
         
         if(counterCartePC > 1){
             if(index <= counterCartePC/2){
-                element.style.transform = `rotate(${angle + 180}deg)`
+                element.style.transform = `rotate(${angle}deg)`
             }else {
-                element.style.transform = `rotate(${-angle + 180}deg)`
+                element.style.transform = `rotate(${-angle}deg)`
             }
         }
         
     })
+    
     
     if(sommap >= 7.5 || counterSto >= 2) {
         controlla()
@@ -345,13 +297,7 @@ function turnoPC(){
         setTimeout(turnoPC,2000)
         
     }else{
-        
-        if(changeLeftBtView){
-            document.getElementById("stai-carta-g").style.top = "65.5%"
-            document.getElementById("stai-carta-g").style.left = "42.5%"
-        }
-        
-        document.getElementById("stai-carta-g").style.display = "none"
+        document.getElementById("stai-carta-g").style.opacity = "1"
         document.getElementById("stai-carta-i").style.display = "unset"
         testo.innerHTML = "Ora Sto!"
         
@@ -360,7 +306,7 @@ function turnoPC(){
             setTimeout(controlla,2000)    
             return
         }
-        setTimeout(turnoG,2000)
+        // setTimeout(turnoG,2000)
         
     }
 
@@ -371,16 +317,9 @@ function turnoG(){
     const stai_carta_T = document.getElementsByClassName("stai-carta")
     
     for (var i = 0; i<stai_carta_T.length; i++){
-        (stai_carta_T[i]).style.opacity = "100%";
+        (stai_carta_T[i]).style.opacity = "1";
     }
     
-    try{
-        const carta = document.getElementById("btCarta")
-        carta.style.display = "unset"
-        
-        const stai = document.getElementById("btSto")
-        stai.style.display = "unset"
-    }catch {}
 }
 
 function stai(){
@@ -388,13 +327,14 @@ function stai(){
     counterSto++
     
     const carta = document.getElementById("btCarta")
-    carta.style.display = "none";
+    carta.style.opacity = "0";
+    carta.disabled = true
     
     const stai = document.getElementById("btSto")
-    stai.style.display = "none"
+    stai.style.opacity = "0"
+    stai.disabled = true
     
-    document.getElementById("stai-carta-g").style.top = "60.5%"
-    document.getElementById("stai-carta-g").style.display = "unset"
+    document.getElementById("stai-carta-g").style.opacity = "1"
     if(sommag >= 7.5) controlla()
     turnoPC()
     
