@@ -37,6 +37,10 @@ const index = `<!DOCTYPE html>
 </html> 
 `
 
+const html_preview_jarvis = `<center>
+    <iframe width="560" height="315" src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
+</center>`
+
 function cambiacontenuto(file) {
     const divContent = document.getElementById("contenuto")
     $.get(file, function(data){
