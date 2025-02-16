@@ -9,6 +9,9 @@ const textDoorState = document.getElementById("doorState") // stato porta (apert
 
 const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/`)
 
+
+
+
 server.onopen = () => {
     
     server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
@@ -148,13 +151,6 @@ function cambiacontenuto(file) {
 }
 
 const openSettings = (p) => {
-    /*
-        "impostazioni" per dire, ci sarà:
-        - se il computer è acceso (box verde se acceso, rosso se spento)
-        (questi sarà utilizzato telegram)
-        - inoltro del file excel di controllo
-        - inoltro di foto in caso di controllo
-    */
     
     p.innerText = "Torna alla Home"
     
@@ -176,14 +172,13 @@ const setProms = () => {
     const date = document.getElementById("dateProm")
     
     const text = prom.innerText
-    const sendDate = date.valueAsDate
+    let sendDate = date.valueAsDate
     
     if(text){
-        if(sendDate){
-            console.log("Data Programma:",sendDate.toLocaleDateString())
-            console.log("Data Oggi:",new Date().toLocaleDateString())
-            console.log("Date Uguali?", new Date().toLocaleDateString() === sendDate.toLocaleDateString())
-        }
+        
+        if(sendDate)
+            sendDate = sendDate.toLocaleDateString()
+        
         server.send(JSON.stringify({"data": "setProms", "remember": text, "date": sendDate, "port": "web"}))
     }
     else 
