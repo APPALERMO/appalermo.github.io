@@ -9,9 +9,6 @@ const textDoorState = document.getElementById("doorState") // stato porta (apert
 
 const server = new WebSocket(`wss://serversecurepowerappalermo.onrender.com/`)
 
-
-
-
 server.onopen = () => {
     
     server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
@@ -20,6 +17,15 @@ server.onopen = () => {
 
 }  
 
+const getDate = (date=undefined) => {
+    const currentDate = date || new Date()
+    
+    const day = currentDate.getDate()
+    const month = currentDate.getMonth() + 1 
+    const year = currentDate.getFullYear()
+    
+    return `${day}/${month}/${year}`
+}
 
 // se è caricata la sezione settings o no
 let isSettings = false 
@@ -176,8 +182,8 @@ const setProms = () => {
     
     if(text){
         
-        if(sendDate)
-            sendDate = sendDate.toLocaleDateString()
+        if(sendDate) 
+            sendDate = getDate(sendDate)
         
         server.send(JSON.stringify({"data": "setProms", "remember": text, "date": sendDate, "port": "web"}))
     }
