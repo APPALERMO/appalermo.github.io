@@ -15,7 +15,6 @@
     --border-welcome: linear-gradient(red,red);
 }
 
-
 html{
     background: var(--bg-html);
     color: var(--color-text-html);
@@ -277,6 +276,52 @@ code > ol{
     border-bottom-right-radius: 25px;
 }
 
+.coming-soon {
+    background: linear-gradient(130deg, red 20%, blue 50%, red 90%) padding-box text; 
+    background-size: 200% 200%;
+    -webkit-text-fill-color: transparent;
+    
+    animation: ComingSoon 5s ease infinite;
+}
+
+.coming-soon-border {
+    position: relative;
+    display: inline-block;
+    /* padding: 10px 20px; */
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    border: none; 
+    
+    &::before {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        z-index: -1;
+        border-radius: 5px; 
+        background: linear-gradient(130deg, red 20%, blue 50%, red 90%);
+        background-size: 200% 200%;
+        animation: borderAnimation 3s ease infinite;
+    }
+}
+
+
+@keyframes ComingSoon { 
+    0%{background-position:10% 0%}
+    50%{background-position:91% 100%}
+    100%{background-position:10% 0%}
+}
+
+
+@keyframes borderAnimation {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+
 
 @keyframes scendi {
     0%{ top: 0px; }
@@ -284,8 +329,10 @@ code > ol{
     100%{ top: var(--altezza); }
 }
 
+
 @keyframes sali {
     0%{ top: var(--altezza); }
     50%{ top: calc(var(--altezza)/2); }
     100%{ top: 0px; }
-} 
+}
+
