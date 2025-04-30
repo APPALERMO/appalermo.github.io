@@ -2,17 +2,23 @@ const jarvisLog = document.querySelector(".jarvis-log")
 const micIcon = document.querySelector(".mic")
 const waveIcon = document.querySelector(".mic-wave")
 
-const server = new WebSocket("ws://localhost:8765")
+const server = new WebSocket("wss://serversecurepowerappalermo.onrender.com/")
 let server_start = false
 
-server.onopen = () => { server_start = true }
+server.onopen = () => { 
+    server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
+    server_start = true
+}
 
 server.onmessage = (event) => {
-    let messagge = event.data
+    let message = JSON.parse(event.data)
     
     // qui mi gestisco tutto
+    console.log(message)
     
-    
+    if(message.data == "sendJarvis") {
+        addLog(`JARVIS: ${message.text}`)
+    }
     
 }
 
@@ -34,17 +40,11 @@ const addLog = (text) => {
 }
 
 window.onload = () => {
-    addLog("JARVIS: Buongiorno Capo!")
-    addLog("ME: Ciao Jarvis come stai?")
-    addLog("JARVIS: Molto bene Capo!")
+    addLog("JARVIS: Ciao Capo!")
+    // addLog("ME: Ciao Jarvis come stai?")
+    // addLog("JARVIS: Molto bene Capo!")
     
 }
-
-setInterval(() => {
-    if (server_start) {
-        server.send("ping")
-    }
-}, 60000)
 
 // ------------------------------------------------------------------------ \\
 
@@ -75,8 +75,7 @@ recognition.onend = () => {
     waveIcon.style.display = "none" 
     let text = lastedLog.innerText
     text = text.substring(4, text.length)
-    console.log(`"${text}"`)
-    // server.send(JSON.stringify({"text": text}))
+    server.send(JSON.stringify({"data":"sendJarvis","text": text, "port":"web"}))
     lastedLog = null
 };
 
