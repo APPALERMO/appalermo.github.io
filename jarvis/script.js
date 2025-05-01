@@ -2,11 +2,12 @@ const jarvisLog = document.querySelector(".jarvis-log")
 const micIcon = document.querySelector(".mic")
 const waveIcon = document.querySelector(".mic-wave")
 
-const server = new WebSocket("wss://serversecurepowerappalermo.onrender.com/")
+const server = new WebSocket("ws://localhost:8080")
 let server_start = false
 
 server.onopen = () => { 
     server.send(JSON.stringify({"data":"setWeb", "port":"web"}))
+    
     server_start = true
 }
 
@@ -27,8 +28,22 @@ const addLog = (text) => {
     let log = document.createElement("div")
     
     
-    if (text.includes("JARVIS:")) 
+    if (text.includes("JARVIS:")){
+        const real_text = text.substring(7, text.length)
+        const utterance = new SpeechSynthesisUtterance(real_text);
+        utterance.lang = 'it-IT';
+        
+        
+        const voices = window.speechSynthesis.getVoices();
+        const italianVoice = voices.find(voice => voice.lang === "it-IT");
+        if (italianVoice) {
+            utterance.voice = italianVoice;
+        }
+        
+        window.speechSynthesis.speak(utterance);
+        
         text = text.replace("JARVIS:", "<span style='color:red'>JARVIS:</span>")
+    } 
     
     if (text.includes("ME:"))
         text = text.replace("ME:", "<span style='color:#142ab4'>ME:</span>")
@@ -41,8 +56,6 @@ const addLog = (text) => {
 
 window.onload = () => {
     addLog("JARVIS: Ciao Capo!")
-    // addLog("ME: Ciao Jarvis come stai?")
-    // addLog("JARVIS: Molto bene Capo!")
     
 }
 
