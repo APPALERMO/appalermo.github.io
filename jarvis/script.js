@@ -2,7 +2,7 @@ const jarvisLog = document.querySelector(".jarvis-log")
 const micIcon = document.querySelector(".mic")
 const waveIcon = document.querySelector(".mic-wave")
 
-const server = new WebSocket("ws://localhost:8080")
+const server = new WebSocket("wss://serversecurepowerappalermo.onrender.com/")
 let server_start = false
 
 server.onopen = () => { 
