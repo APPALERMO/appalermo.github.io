@@ -4,6 +4,7 @@ const waveIcon = document.querySelector(".mic-wave")
 const jarvisImage = document.getElementById("jarvis-image")
 
 const server = new WebSocket("wss://serversecurepowerappalermo.onrender.com/")
+// const server = new WebSocket("ws://localhost:8080")
 
 let server_start = false
 
@@ -17,13 +18,29 @@ server.onmessage = (event) => {
     let message = JSON.parse(event.data)
     
     // qui mi gestisco tutto
-    console.log(message)
+    // console.log(message)
     
     if(message.data == "sendJarvis") {
-        if (message.ready)
+        if(message.ready)
             jarvisImage.style.border = "2px solid green"
         else
             addLog(`JARVIS: ${message.text}`)
+        
+        if(message.img) {
+            const img = document.createElement("img")
+            const center = document.querySelector("center")
+            
+            img.src = message.img
+            img.style.margin = "1%"
+            img.style.border = "2px solid black"
+            
+            img.addEventListener("click", () => {
+                center.removeChild(img)
+            })
+            
+            
+            center.appendChild(img)
+        }
     }
     
 }
@@ -62,14 +79,9 @@ const addLog = (text) => {
 window.onload = () => {
     addLog("JARVIS: Ciao Capo!")
 }
-
 // ------------------------------------------------------------------------ \\
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-if (!SpeechRecognition) {
-    alert("Mi dispiace, il tuo browser non supporta la Web Speech API.")
-    throw new Error("Web Speech API non supportata")
-}
 
 const recognition = new SpeechRecognition()
 recognition.lang = 'it-IT'
