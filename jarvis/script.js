@@ -4,7 +4,6 @@ const waveIcon = document.querySelector(".mic-wave")
 const jarvisImage = document.getElementById("jarvis-image")
 
 const server = new WebSocket("wss://serversecurepowerappalermo.onrender.com/")
-// const server = new WebSocket("ws://localhost:8080")
 
 let server_start = false
 
@@ -16,9 +15,6 @@ server.onopen = () => {
 
 server.onmessage = (event) => {
     let message = JSON.parse(event.data)
-    
-    // qui mi gestisco tutto
-    // console.log(message)
     
     if(message.data == "sendJarvis") {
         if(message.ready)
