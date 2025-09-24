@@ -3,6 +3,10 @@
     src: url("font/BungeeShade.ttf")
 }
 
+body {
+    background: greenyellow;
+}
+
 button {
     border-radius: 5%;
     padding: 10px;

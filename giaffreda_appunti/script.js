@@ -1,13 +1,16 @@
 const div_lista_materie = document.getElementById("materie")
 const div_output = document.getElementById("output")
 
-const url = "https://serversecurepowerappalermo.onrender.com"
 let materie = {}
 
 let end_request = false
 
 window.onload = () => {
-    get_materie()
+    if(document.cookie == ""){
+        document.getElementById("redirct").click()
+        document.body.innerHTML = ""
+    }else 
+        get_materie()
 }
 
 const open_input = () => {
