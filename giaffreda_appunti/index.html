@@ -8,15 +8,10 @@
 </head>
 
 <body>
-    <a href="login.html" id="redirct" style="display: none;"></a>
     <div>
         <h1 style="text-align: center;color:black;font-family: BungeeShade">Programma 5° superiore</h1>
-        <div style="position: absolute; top: 0; opacity: 0;">
-            <button onclick="open_input()">Carica i file</button>
-            <input style="display: none;" type="file" id="upload" accept=".docx" />
-        </div>
     </div>
-    
+    <a href="https://serversecurepowerappalermo.onrender.com/giaffreda_appunti" style="display: none;" id="redirct"></a>
     <div id="materie" style="background: lightgray; border: 1px solid black;">
     </div>
     
@@ -26,7 +21,16 @@
         </div>
         
         <div id="output" style="width: 50%;">
-            <h1 style="text-align: center;">Seleziona una materia o un file per iniziare</h1>
+            <center>
+                <h1>
+                    Per questioni di sicurezza la pagina è stata spostata su un'altro host 
+                    <br>
+                    <span style="font-weight: initial;font-size: 0.75em;">
+                        (gestito sempre da me)
+                    </span>
+                </h1>
+                <button onclick="redict()" style="font-size: 2em;">Clicca per continuare!</button>
+            </center>
         </div>
         
         <div class="spacer">
@@ -38,7 +42,7 @@
     </div>
 
     <footer style="text-align: center; border-top: 2px solid black;">
-    Realizzato da Giaffreda Davide con l'aiuto di <u style="font-weight: bold;"> Melissano Gabriele che ha gentilmente offerto il server</u>
+        <u style="font-weight: bold;">Realizzato da Giaffreda Davide con l'aiuto di  Melissano Gabriele che ha gentilmente offerto il server</u>
     </footer>
 
 </body>
