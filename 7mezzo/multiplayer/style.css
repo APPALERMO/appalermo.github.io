@@ -8,7 +8,6 @@ html, body {
 }
 body {
     position: relative;
-    height: 420px;
 }
 
 .carta{
@@ -36,23 +35,18 @@ body {
 }
 
 .carte-g{
-    position: absolute;
     background-color: #054535;
-    width: 600px;
-    height: 200px;
-    top: 85%;
-    left: 50%;
+    width: 40vw;
+    height: 12.5vw;
     border: 2.5px solid black;
-    transform: translate(-50%, -50%);
     border-top-right-radius: 20%;
     border-top-left-radius: 20%;
 }
 
 .tavolo{
     background-color: #be6e1f;
-    width: 400px;
-    height: 200px;
-    position: absolute;
+    width: 30vw;
+    height: 12.5vw;
     top: 36%;
     left: 36.5%;
     transform: skew(-20deg);
@@ -72,14 +66,10 @@ body {
 }
 
 .carte-p{
-    position: absolute;
     background-color: #054535;
-    width: 600px;
-    height: 200px;
-    top: 0%;
-    left: 50%;
+    width: 40vw;
+    height: 12.5vw;
     border: 2.5px solid black;
-    transform: translate(-50%);
     border-bottom-right-radius: 20%;
     border-bottom-left-radius: 20%;
 }
@@ -97,10 +87,23 @@ p{user-select: none;}
     font-size: 20px;
     width: 240px;
 }
+
 .bar{
     background-color: black;
     height: 1px;
     width: 242px;
     position: relative;
     top:-1%;
+}
+
+.center-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }

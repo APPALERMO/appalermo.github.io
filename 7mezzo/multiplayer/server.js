@@ -203,7 +203,7 @@ const showCarta = (event) =>{
     
     }else if(userConnected === 2 && event.data === "daiCarta"){ // questo per l'elaborazione
         if(event.port == G1Port){ G1pointer += ((choisedCard[0]%10 === 0) ? 0.5 : choisedCard[0]%10) }
-       else{ G2pointer += ((choisedCard[0]%10 === 0) ? 0.5 : choisedCard[0]%10) }
+        else{ G2pointer += ((choisedCard[0]%10 === 0) ? 0.5 : choisedCard[0]%10) }
         clients.forEach((socket)=>{
             socket.send(JSON.stringify({
                 carta: choisedCard[0],
