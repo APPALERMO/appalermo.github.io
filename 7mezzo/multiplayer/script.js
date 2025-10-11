@@ -24,12 +24,6 @@ inpUsername.addEventListener("input", ()=>{ inpUsername.value = inpUsername.valu
 const btconfirmPress = () => {
     value = inpUsername.value
     if(value && value !== " ") {
-        const body = document.querySelector("body")
-        body.style.position = "unset"
-        body.style.border = "none"
-        body.style.padding = "0"
-        body.style.margin = "0"
-        
         document.getElementById("port").innerText = value
         
         divPlayerDate.style.display = "none"

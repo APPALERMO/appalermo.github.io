@@ -34,16 +34,16 @@
     <div id="contenuto" style="display: none;">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div class="row">
-                <div style="flex: 5;">
-                    <h2 id="testoPc" style="text-align: end;">Giocatore 2</h2>
+                <div class="spacer">
+                    <h2 id="testoPc" class="textName">Giocatore 2</h2>
                 </div>
                 
                 <div class="carte-p" id="carte-p"></div>
                 
-                <div style="flex: 5;"></div>
+                <div class="spacer"></div>
             </div>
             
-            <div style="margin: 2.5vw;" class="center-content">
+            <div class="center-content margin-content">
                 <h2 style="position: absolute; display:none;" id="testo-pc">Stai o carta?</h2>
             </div>
             
@@ -52,7 +52,7 @@
             
             
             
-            <div style="margin: 2.5vw;" class="center-content">
+            <div class="center-content margin-content">
                 <div id="stai-carta-i" style="position: absolute; display: none;">
                     <button style="border-radius: 5px;" onclick="stai()" id="btSto">Stai</button>
                     <button style="border-radius: 5px;" onclick="carta()" id="btCarta">Carta</button>
@@ -65,16 +65,19 @@
             
             <div class="row">
                 
-                <div style="flex: 5;display:flex; justify-content: end; align-items: end;" >
-                    <h2 id="testoGiocatore" style="text-align: end;">Giocatore 1</h2>
+                <div class="spacer" style="display:flex; justify-content: end; align-items: end;" >
+                    <h2 id="testoGiocatore" class="textName delete">Giocatore 1</h2>
                 </div>
                 
                 <div class="carte-g" id="carte-g" ></div>
                 
-                <div style="flex: 5;">
-                    <div class="punteggio-g" id="punteggio-g" style="display: flex; align-items: center;flex-direction: column;">
-                    <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
-                    <span id="testo-punteggio" style="font-size: 30px;">0</span>
+                <div class="spacer">
+                    <div style="display: flex; align-items: center; justify-content: center;">
+                        <div class="punteggio-g" id="punteggio-g" style="display: flex; align-items: center;flex-direction: column;">
+                            <p style="font-size: 20px;text-align: center;margin-top: 3px;font-weight: 600;user-select: none;">PUNTEGGIO</p>
+                            <span id="testo-punteggio" style="font-size: 30px;">0</span>
+                        </div>
+                    </div>
             </div>
                 </div>
                 

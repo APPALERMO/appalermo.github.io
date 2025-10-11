@@ -8,6 +8,10 @@ html, body {
 }
 body {
     position: relative;
+    position: unset;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
 .carta{
@@ -47,8 +51,7 @@ body {
     background-color: #be6e1f;
     width: 30vw;
     height: 12.5vw;
-    top: 36%;
-    left: 36.5%;
+    
     transform: skew(-20deg);
     display: flex;
     justify-content: center;
@@ -56,11 +59,17 @@ body {
 }
 
 .punteggio-g{
-    position: absolute;
+    /* position: absolute;
     width: 150px;
     height: 100px;
     top: 80%;
-    left: 71%;
+    left: 71%; */
+    
+    /* width: 10vw;
+    height: 7vw; */
+    
+    margin: 1vw;
+    
     border: 3px solid blue;
     border-radius: 10px;
 }
@@ -106,4 +115,53 @@ p{user-select: none;}
     display: flex;
     flex-direction: row;
     width: 100%;
+}
+
+.textName {
+    text-align: end;
+}
+
+.delete {
+    opacity: 1;
+}
+
+.margin-content {
+    margin: 2.5vw;
+}
+
+.spacer {
+    flex: 5;
+}
+
+@media only screen and (max-width: 600px) {
+    .spacer{
+        flex: 0
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+    
+    .textName {
+        text-align: center;
+    }
+    
+    .delete {
+        display: none;
+    }
+    
+    .carte-p, .carte-g {
+        width: 100%;
+        height: 30vw;
+    }
+    
+    .margin-content {
+        margin: 12.5vw;
+    }
+    
+    .tavolo {
+        width: 80%;
+        height: 30vw;
+    }
+    
 }
