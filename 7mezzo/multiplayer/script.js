@@ -224,7 +224,6 @@ const testoG2 = document.getElementById("testo-pc") // testo del secondo giocato
 
 server.onmessage = (message) => {
     const messaggio = JSON.parse(message.data)
-    console.log(messaggio)
     
     if(messaggio.data == "error" || messaggio.data == "info") {
         swal(messaggio.message, " ")
