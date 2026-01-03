@@ -90,21 +90,21 @@ li {
     margin-bottom: 1%;
 }
 
-ul li {
+ul.row li {
     display: flex;
     flex-direction: row;
 }   
 
-ul li::before {
+ul.row li::before {
     content: '•'; 
     position: absolute;
     margin-left: -1em;
 }
 
-li div {
+ul.row li div {
     flex: 1;
 }
-li b {
+ul.row li b {
     flex:unset;
 }
 
@@ -395,7 +395,7 @@ iframe {
     }
     
     
-    li b {
+    ul.row li b {
         flex: 0;
         text-align: center;
     }

@@ -6,30 +6,19 @@
     </head>
     <p style="display: none; background:linear-gradient(skyBlue,rgb(0, 80, 255)) padding-box text;-webkit-text-fill-color: transparent;" id="futureTitle">GUI Grafo</p>
     <body class="contenuto">
-    
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Come è nata l'idea
-            </p>
-        </font>
-        <font family="Verdana">
+        
+        <section>
+            <h2 id="titolo">Com'è nata l'idea</h2>
+            
             <p>
-                
                 Iniziando un corso di informatica, a scuola, in testa girava l'idea di creare un programma capace di creare dei grafi e 
                 mi piaceva il fatto di visualizzare su gui il cammino più breve tra due nodi usando l' <span id="codice">Algoritmo di Dijkstra</span>.
-                
             </p>
-        </font>
+        </section>
         
-        <br>
-        
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Fase di Sviluppo
-            </p>
-        </font>
-        
-        <font family="Verdana">
+        <section>
+            <h2 id="titolo">Fase di Sviluppo</h2>
+            
             <p>
                 Sono partito dell'idea di creare un programma molto simile al <a href="Info-SoftwareCAD.html" class="passami-sopra">Software CAD</a> con l'unica cosa che bisognava aggiungere qualche figura in più
                 quando si creano linee, meglio dire <span id="codice">Archi</span>. <br>
@@ -51,16 +40,11 @@
                 Si possono poi fare diverse cose, come trovare la <span id="codice">distanza minima</span> tra due nodi usando l'<span id="codice">Algoritmo di Dijkstra</span> e
                 in caso di errore <span id="codice">cancellare</span> l'<span id="codice">Arco</span>, il programma poi capirà quali nodi dovrà cancellare.
             </p>
-        </font>
+        </section>
         
         
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Commento sul Codice
-            </p>
-        </font>
-        
-        <font>
+        <section>
+            <h2 id="titolo">Commento sul Codice</h2>
             <h2>- Classe Nodo</h2>
             <code>
                 <ol>
@@ -138,12 +122,12 @@
             esplicitamente l'<span id="codice">ambito di visibilità</span> si usano i <span id="codice">doppi underscore</span> per indicare
             un attributo/metodo privato. <br>
             Per il resto non c'è nulla di particolare e il codice parla solo.
-        </font>
+        </section>
+        
         
         <br>
-        <br>
         
-        <font>
+        <section>
             <h2>- Classe Arco</h2>
             <code>
                 <ol>
@@ -239,6 +223,7 @@
                     <span id="codice">**kargs</span>, sono degli argomenti aggiuntivi, marcati da una <span id="codice">chiave</span> (key)
                 </li>
             </ul>
+            
             Sui metodi <span id="codice">get</span> non c'è molto da dire in quanto hanno un semplice return. C'è da aggiungere qualcosa
             su <span id="codice">getScheme</span> & <span id="codice">getTotalInfo</span>:
             <ul>
@@ -266,13 +251,12 @@
             valore del <span id="codice">bidirezionale</span> (<span id="codice">setBidirectional</span>), solo che ancora non l'ho usato. <br>
             Il metodo che uso è il <span id="codice">toggleBidirectional</span> in cui mi inverte il valore di <span id="codice">self.__bidirectional</span>.
             
-        </font>
+        </section>
         
         <br>
-        <br>
         
-        <font family="Verdana">
-            <h2>- Recezione Errore</h2>
+        <section>
+            <h2>- Rilevazione Errore</h2>
             <code>
                 <ol>
                     <li>def logFunzione(func):</li>
@@ -308,12 +292,12 @@
             dettagli sull'errore e poi viene salvato nel file <span id="codice">log.txt</span>. <br>
             Quando si verifica un errore appare un messaggio, che dice di segnalarmelo, ho programmato una funzione segreta che mi permette di accedere al file dei <span id="codice">log</span>, 
             per accederci bisogna fare <span id="codice">tasto destro</span> sul bottone <span id="codice">Cancella Tutto</span> e si aprirà una finestra in cui ci sarà il contenuto del file di <span id="codice">log</span>.
-        </font>
+            
+        </section>
         
         <br>
-        <br>
         
-        <font family="Verdana">
+        <section>
             <h2>- Creazione Arco</h2>
             
             <code>
@@ -338,7 +322,7 @@
                     <li></li>
                     <li>line = self.canvas.create_line(temp, fill="white", arrow="last", arrowshape=(7.0, 11.0, 6.0), activewidth=3, width=2)</li>
                 </ol>
-                </code>
+            </code>
             
             Per iniziare incremento il contatore degli archi <span id="codice">self.archi += 1</span>. <br>
             Successivamente mi copio le coordinate in una variabile <span id="codice">temp</span>. <br>
@@ -353,28 +337,31 @@
             del centro della circonferenza. <br>
             Infine creo la linea (<span id="codice">line</span>) usando la lista di coordinate <span id="codice">temp</span>.
             
-            <br>
-            <br>
-            
+        </section>
+        
+        <br>
+        
+        <section>
             <h2>- Riconoscimento Click</h3>
-                <code>
-                    <ol>
-                        <li>if self.permitted_coods[0][0]:</li>
-                        <li><span id='spazio'></span>self.nodi += 1</li>
-                        <li><span id='spazio'></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2)</li>
-                        <li><span id='spazio'></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled")</li>
-                        <li><span id='spazio'></span></li>
-                        <li><span id='spazio'></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1)</li>
-                        <li><span id='spazio'></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)]))</li>
-                        <li><span id='spazio'></span></li>
-                        <li><span id='spazio'></span>if event.num == 2:</li>
-                        <li><span id='spazio' style='--spaziatura: 2'></span>x,y = self.temp_coods[0]</li>
-                        <li><span id='spazio' style='--spaziatura: 2'></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)]</li>
-                        <li><span id='spazio'></span></li>
-                        <li>else:</li>
-                        <li><span id='spazio'></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1])</li>
-                    </ol>
-                </code>
+            
+            <code>
+                <ol>
+                    <li>if self.permitted_coods[0][0]:</li>
+                    <li><span id='spazio'></span>self.nodi += 1</li>
+                    <li><span id='spazio'></span>nodo1 = self.canvas.create_oval((x1,y1),(x2,y2), fill="#202123", outline="white", activewidth=2)</li>
+                    <li><span id='spazio'></span>text_nodo1 = self.canvas.create_text(self.temp_coods[0], text=str(self.nodi), activefill="red", fill="white", state="disabled")</li>
+                    <li><span id='spazio'></span></li>
+                    <li><span id='spazio'></span>ogg_nodo1 = Nodo(self.temp_coods[0], self.nodi, nodo1)</li>
+                    <li><span id='spazio'></span>self.canvas.itemconfig(nodo1, tags=([pickle.dumps(ogg_nodo1)]))</li>
+                    <li><span id='spazio'></span></li>
+                    <li><span id='spazio'></span>if event.num == 2:</li>
+                    <li><span id='spazio' style='--spaziatura: 2'></span>x,y = self.temp_coods[0]</li>
+                    <li><span id='spazio' style='--spaziatura: 2'></span>self.dict_nodes[f"{x} {y}"] = [(x,y), pickle.dumps(ogg_nodo1)]</li>
+                    <li><span id='spazio'></span></li>
+                    <li>else:</li>
+                    <li><span id='spazio'></span>ogg_nodo1 = pickle.loads(self.permitted_coods[0][1])</li>
+                </ol>
+            </code>
             
             <span id="codice">self.permitted_coods</span> è una matrice 2x2 in cui dice lo stato attuale nell'esatto punto in cui ho premuto, il primo elemento è un <span id="codice">booleano</span> 
             in cui mi dice se è uno spazio vuoto o meno, ciò lo determina usando i <span id="codice">tags</span>, se c'è una determianta condizione usando quel tag, sa se è uno spazio vuoto o meno.
@@ -405,9 +392,7 @@
             prende le coordinate dall'array <span id="codice">self.temp_coods</span> e lo inserire in un dizionario (conosciuto come <span id="codice">dict</span>) che ha come <span id="codice">key</span> le coordinate sottoforma di stringa e come 
             <span id="codice">value</span> le coordinate insieme all'<span id="codice">oggetto Nodo</span> interpretato da <span id="codice">pickle</span>.
             Quando invece rileva qualcosa recupera l'oggetto contenuto in <span id="codice">self.permitted_coods[0][1]</span> utilizzando <span id="codice">pickle</span>. <br>
-            
-            
-        </font>
+        </section>
         
         <br>
         <script src="script.js"></script>

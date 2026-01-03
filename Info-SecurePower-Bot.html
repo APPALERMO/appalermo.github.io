@@ -6,32 +6,20 @@
     </head>
     <p style="display: none; color:rgb(0,80,255);" id="futureTitle">Secure Power</p>
     <body class="contenuto">
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Come è nata l'idea
-            </p>
-        </font>
-        
-        <font family="Verdana">
+        <section>
+            <h2 id="titolo">Com'è nata l'idea</h2>
+            
             <p>
                 L'idea è nata da un'esigenza di sicurezza: in quel periodo nel mio paese si erano verificati numerosi furti.
                 Ho deciso quindi di creare un piccolo sistema capace di avvisarmi all'accensione del computer per scoraggiare l'utilizzo.
             </p>
-        </font>
-        
-        <br>
-        
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Fase di Sviluppo
-            </p>
-        </font>
-        
-        <font family="Verdana">
+        </section>
+        <section>
+            <h2 id="titolo">Fase di Sviluppo</h2>
             <p>
                 Inizialmente il progetto si basava su un bot telegram che forniva solo la notifica. Successivamente restava attivo
                 finché il PC rimaneva acceso. Con questo passo ho aggiunto delle nuove funzionalità:
-                <ul>
+                <ul class="row">
                     <li>
                         <b>Sistema di Verifica</b>:
                         <div>
@@ -63,7 +51,7 @@
                 Infatti il dominio richiama il nome del progetto, ma oltre al suo vero scopo verrà usato per ospitare pagine dinamiche come un pannello admin complesso e un servizio di appunti
                 per studenti di quinta superiore. <br>
                 La nuova versione ha portato diversi cambiamenti: 
-                <ul>
+                <ul class="row">
                     <li>
                         <b>Rimozione delle funzioni inutili/inutilizzate</b>:
                         <div>Funzioni come il sistema fotografico è stato rimosso</div>
@@ -81,41 +69,52 @@
                             Le notifiche sono state gestite dal servizio di <span id="codice">Pushbullet</span>
                         </div>
                     </li>
+                    
+                    <li>
+                        <b>Promemoria personalizzati</b>:
+                        <div>
+                            Questo sistema permette di avere dei piccoli promemoria quando si accende il computer. Viene mostrato
+                            sia sulla notifica del telefono che come notifica sul computer
+                        </div>
+                    </li>
+                    
                 </ul>
                 <hr>
                 Infine, il <span id="codice">25/07/2025</span> ho creato l'applicazione mobile creata inizialmente in <span id="codice">Java</span>,
                 ma dopo alcune difficoltà nella gestione dell'interfaccia utente, l'ho riscritta utilizzando il framework <span id="codice">Flutter</span>. 
-                <!-- TODO: Aggiungere sistema promemoria -->
             </p>
-        </font>
+        </section>
         
-        <br>
-        
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Video Dimostrazione
+        <section>
+            <h2 id="titolo">Sistema Domotico Integrato</h2>
+            
+            <p>
+                Il sistema si basa su un <span id="codice">ESP8266</span> che funge da server locale sulla rete domestica, 
+                a cui sono connessi vari moduli <span id="codice">ESP01</span> per il rilevamento dati. <br>
+                Il server locale comunica con il server centrale ospitato su Render, che coordina tutte le funzionalità del sistema. 
+                Questo permette di:
+                
+                <ul>
+                    <li>
+                        Controllare dispositivi opportunamente collegati come una lampada LED
+                    </li>
+                    <li>
+                        Monitorare la temperatura della camera
+                    </li>
+                </ul>
             </p>
-        </font>
+        </section>
         
-        
-        <center>
-            <h1 class="coming-soon">COMING . . . <br>. . . SOON</h1>
-        </center>
-        
-        <br>
-        <br>
-        
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Sistema Domotico Integrato
-            </p>
-        </font>
-        
-        <font family="Verdana">
+        <section>
+            <h2 id="titolo">Video Dimostrazione</h2>
+            
             <center>
                 <h1 class="coming-soon">COMING . . . <br>. . . SOON</h1>
             </center>
-        </font>
+        </section>
+        
+        <br>
+        <br>
         
         <br>
         <script src="script.js"></script>
