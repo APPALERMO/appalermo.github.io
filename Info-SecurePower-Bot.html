@@ -14,8 +14,8 @@
         
         <font family="Verdana">
             <p>
-                L'idea è nata da un principio di sicurezza perché era un periodo in cui nel mio paese ci sono stati molti furti e quindi ho detto "Se succedee qualcosa fuori dal comune so come agire" 
-                dato che tengo i file personali e altri progetti.
+                L'idea è nata da un'esigenza di sicurezza: in quel periodo nel mio paese si erano verificati numerosi furti.
+                Ho deciso quindi di creare un piccolo sistema capace di avvisarmi all'accensione del computer per scoraggiare l'utilizzo.
             </p>
         </font>
         
@@ -29,28 +29,63 @@
         
         <font family="Verdana">
             <p>
-                Per rendere un po più semplice il tutto ho deciso di integrare il tutto su un bot Telegram. Il primo problema era apparentemente quello che, quando avviavo il programma 
-                il bot mi manda in automatico il messaggio,senza digitare ulteriori comandi, che hanno acceso il computer. Quindi ho impostato una variabile sempre vera.
-                Ho inziato con un bot semplice che mi manda il messaggio dicendomi la famosa frase, e da li con dei bottoni inline, uno che sono io e mi risponde "Ok Apposto", e un altro 
-                che dice che non sono io,che se premuto, mi spegne il computer. Dopo un po ho agigunto un altro bottone: quello che scatta foto. Questo è stato il primo update che 
-                ho fatto al bot, il bottone se premuto scatta tre foto dalla fotocamera del computer e poi le manda nella chat privata, e poi mi invia un ulteriore messaggio chiedendo se sono 
-                io o meno. Più in la ne ho aggiunti due altri, ovvero: Registrazione schermo e Screenshot. Quello della Registrazione schermo, semplicemente, fa un video di 20 secondi allo schermo del computer, 
-                con l'aggiunta del messaggio che mi chiede di confermare se sono io o meno. Invece, il pulsante dello Screenshot mi manda uno screenshot 
-                del computer, sempre poi con l'aggiunta del messaggio che mi chiede se sono io. . . <br>
-                L'ultima modifica che ho fatto è la seguente: salva l'orario e la data in un file excel e ogni tanto, chiedo se me lo può mandare e me lo invia, in modo da vedere tutte le 
-                attività recenti e non.
-                <br><br><br>
-                
-                <h3>- Aggiornamento 01/08/2024 </h3>
-                
-                L'applicazione SecurePower si è staccata dalle dipendenze di <span id="codice">Telegram</span> e attualmente per monitorare il tutto c'è la versione web che funge da parte grafica
-                e per la notifica dell'accensione, momentaneamente, c'è l'ausilio di <span id="codice">Pushbullet</span>.
-                
-                <h3>- Aggiornamento 26/07/2025 </h3>
-                
-                L'applicazione si distaccatata dalle dipendenze web ed ora è in formato applicativo disponibile solo su <span id="codice">Android</span>. In 
-                un primo momento è stata fatta in Java, ma dopo alcune complicanze e grafica troppo semplice con poche caratteristiche front-end, si è passati a farla 
-                usando il framework di <span id="codice">Flutter</span>. Grazie ad esso ora l'applicazione si distacca dalle dipendenze di <span id="codice">Pushbullet</span> per la recezione delle notifiche
+                Inizialmente il progetto si basava su un bot telegram che forniva solo la notifica. Successivamente restava attivo
+                finché il PC rimaneva acceso. Con questo passo ho aggiunto delle nuove funzionalità:
+                <ul>
+                    <li>
+                        <b>Sistema di Verifica</b>:
+                        <div>
+                            All'accensione del PC il messaggio conteneva due pulsanti, uno per confermare che fossi io e l'altro per
+                            spegnere il computer
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <b>Sistema di Fotografia</b>:
+                        <div>
+                            Utilizzava fotocamera del computer e scattava una foto a chi era davanti.
+                            Inoltre era stato implementato un sistema di screenshot e di registrazione schermo per monitorare il computer 
+                        </div>
+                    </li>
+                    
+                    <li>
+                        <b>Sistema di Log</b>:
+                        <div>
+                            Dentro un file Excel vengono salvati i movimenti da me adottati con tanto di data, ora ed azione eseguita
+                        </div>
+                    </li>
+                    
+                </ul>
+                <hr>
+                Il <span id="codice">01/08/2024</span> viene pubblicata la versione 2.0 del progetto. Presenta molte migliorie tra cui il distacco
+                da telegram e l'introduzione di un'interfaccia web per l'applicazione. Questo è il passo che segna la nascita del mio servizio <span id="codice">Web & Websocket</span>
+                ospitato su <a class="passami-sopra" href="https://serversecurepowerappalermo.onrender.com/" target="_blank">Render</a>. 
+                Infatti il dominio richiama il nome del progetto, ma oltre al suo vero scopo verrà usato per ospitare pagine dinamiche come un pannello admin complesso e un servizio di appunti
+                per studenti di quinta superiore. <br>
+                La nuova versione ha portato diversi cambiamenti: 
+                <ul>
+                    <li>
+                        <b>Rimozione delle funzioni inutili/inutilizzate</b>:
+                        <div>Funzioni come il sistema fotografico è stato rimosso</div>
+                    </li>
+                    <li>
+                        <b>Semplicità</b>:
+                        <div>
+                            Ho puntato sulla semplicità del progetto e della comunicazione tra dispositivi eliminando funzioni che 
+                            appesantiscano il servizio
+                        </div>
+                    </li>
+                    <li>
+                        <b>Nuova Gestione Notifiche</b>:
+                        <div>
+                            Le notifiche sono state gestite dal servizio di <span id="codice">Pushbullet</span>
+                        </div>
+                    </li>
+                </ul>
+                <hr>
+                Infine, il <span id="codice">25/07/2025</span> ho creato l'applicazione mobile creata inizialmente in <span id="codice">Java</span>,
+                ma dopo alcune difficoltà nella gestione dell'interfaccia utente, l'ho riscritta utilizzando il framework <span id="codice">Flutter</span>. 
+                <!-- TODO: Aggiungere sistema promemoria -->
             </p>
         </font>
         
@@ -64,7 +99,7 @@
         
         
         <center>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/QnlCQ-TmADk?si=LiontLxpSnyNg9I3&amp;controls=0&amp;start=12" allowfullscreen></iframe>
+            <h1 class="coming-soon">COMING . . . <br>. . . SOON</h1>
         </center>
         
         <br>
@@ -72,30 +107,15 @@
         
         <font family="Verdana" size="6">
             <p id="titolo">
-                Estenzione
+                Sistema Domotico Integrato
             </p>
         </font>
         
         <font family="Verdana">
-            <p>
-                
-                Recentemente il <span id="codice">SecurePower</span> ha un'estenzione fisica! Formato da un ESP8266 è capace di connettersi al server
-                che gestisce il programma, e quindi di avvisare o di inviare notifiche in determinate situazioni, in questo caso quando si apre la porta.
-                Inoltre è dotato di un buzzer che può essere attivato a distanza e far suonare una specie di allarme.
-                
-            </p>
+            <center>
+                <h1 class="coming-soon">COMING . . . <br>. . . SOON</h1>
+            </center>
         </font>
-        
-        <font family="Verdana" size="6">
-            <p id="titolo">
-                Video Dimostrazione
-            </p>
-        </font>
-        
-        
-        <center>
-            <iframe width="315" height="560" src="https://www.youtube.com/embed/Z55sAQOmlGM" allowfullscreen></iframe>
-        </center>
         
         <br>
         <script src="script.js"></script>

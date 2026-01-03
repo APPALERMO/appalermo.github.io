@@ -2,8 +2,10 @@
 <html onscroll="scrollTo(0,0)">
 <head>
     <title>Sito web di APPA</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>li{margin:0}</style>
 </head>
 <body>
@@ -11,7 +13,7 @@
     <div class="welcome">
         <center>
             <p style="margin:0;" id="bevnenutoTitle">Benvenuto</p>
-            <div style="display: flex;width: 30%;justify-content: space-evenly;align-items: center;" id="btWelcome">
+            <div class="btWelcome">
                 <button class="btn" onclick="location.pathname = '/'">Home</button>
                 <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
                 <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
@@ -78,11 +80,10 @@
                 <li> <a class="passami-sopra" href="tombola/">Tombola</a> </li>
                 <li> <a class="passami-sopra" href="parabola/">Grafico Equazioni di Secondo Grado</a> </li>
             </ul>
-        </center>
-        
-        <!-- <a href="supporto/" style="position:absolute;left:50%;color: white;padding-bottom: 2%;transform: translate(-50%, 50%);text-decoration: none;">Richiedi Assistenza</a> -->
-        
-    </div>
+        </div>
+            
+            <!-- <a href="supporto/" style="position:absolute;left:50%;color: white;padding-bottom: 2%;transform: translate(-50%, 50%);text-decoration: none;">Richiedi Assistenza</a> -->
+    </center>
     
 </body>
 <script src="script.js"></script>

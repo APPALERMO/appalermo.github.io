@@ -2,19 +2,21 @@ let altezza = 100
 const scale = 0.29
 
 const index = `<!DOCTYPE html>
-<html>
+<html onscroll="scrollTo(0,0)">
 <head>
     <title>Sito web di APPA</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css">
-    
+    <style>li{margin:0}</style>
 </head>
 <body>
     
     <div class="welcome">
         <center>
             <p style="margin:0;" id="bevnenutoTitle">Benvenuto</p>
-            <div style="display: flex;width: 30%;justify-content: space-evenly;align-items: center;" id="btWelcome">
+            <div class="btWelcome">
                 <button class="btn" onclick="location.pathname = '/'">Home</button>
                 <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
                 <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
@@ -30,15 +32,18 @@ const index = `<!DOCTYPE html>
     
     <center>
         <div class="contenuto" id="contenuto"> -|- </div>
-    </center> 
+    </center>
     
 </body>
 <script src="script.js"></script>
 </html> 
+
+
 `
 
+// <iframe width="560" height="315" src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
 const html_preview_jarvis = `<center>
-    <iframe width="560" height="315" src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
+    <iframe src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
 </center>`
 
 function cambiacontenuto(file) {
@@ -48,14 +53,8 @@ function cambiacontenuto(file) {
     })   
 }
 
-window.onload = () => {
-    
-    // modificaNotifica('contenutonotifica', 'social.html');social()
-    
-    const head = document.querySelector("head")
-    head.innerHTML +=`<meta name="viewport" content="width=${screen.width}, initial-scale=${scale}"></meta>`
-    
-    
+window.onload = () => {    
+    // alert(`${screen.width}x${screen.height}`)
     let path = location.pathname.replace("/", "")
     if(path.includes(".html")){
         const pageContent = document.querySelector("body").innerHTML
@@ -95,60 +94,18 @@ window.onload = () => {
     // riconoscere tema chiaro e scuro    
     let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    if(!darkTeme && false){
+    if(!darkTeme){
         const html = document.querySelector("html")
-        /*
-        --bg-html: white;
-        --color-text-html: #333;
-        --bg-contenuto: darkGray;
-        --bg-notifica: gray;
-        */
         
-        
-        html.style.setProperty("--bg-html", "white")
-        html.style.setProperty("--color-text-html", "#333")
+        html.style.setProperty("--bg-html", "rgb(245, 245, 247)")
+        html.style.setProperty("--color-text-html", "rgb(28, 28, 30)")
         // html.style.setProperty("--bg-contenuto", "linear-gradient(180deg, darkgray -25%, white 100%)")
         // html.style.setProperty("--bg-notifica", "linear-gradient(180deg, white 0%,gray 22%, gray 55%, white)")
-        html.style.setProperty("--bg-contenuto", "darkGray")
-        html.style.setProperty("--bg-notifica","gray")
+        html.style.setProperty("--bg-contenuto", "rgb(255, 255, 255)")
+        html.style.setProperty("--bg-notifica","rgb(248, 249, 250)")
         
-        html.style.setProperty("--bg-codice", "#abb2bf")
-        html.style.setProperty("--color-codice", "rgb(40, 44, 52)")
-        
-    }
-    
-    
-    // per dispositivi mobile
-    if(screen.width <= 800){
-        const contenuto = document.getElementById("contenuto")
-        const welcome = document.querySelector(".welcome")
-        const btn = document.querySelectorAll(".btn")
-        const bottonetornaindietro = document.querySelector(".bottonetornaindietro")
-        const btWelcome = document.getElementById("btWelcome")
-        
-        btWelcome.style.width = "50%"
-        welcome.style.fontSize = "100px"
-        welcome.style.width = `100%`
-        
-        btn.forEach(
-            (bt) => {
-                bt.style.marginBottom = "7%"
-                bt.style.marginTop = "3%"
-                bt.style.transform = "scale(1.6)"
-            }
-        )
-        
-        contenuto.style.width = "80%"
-        contenuto.style.padding = "0 2% 0 2%"
-        // contenuto.style.textAlign = "center"
-        
-        // contenuto.style.paddingLeft = "10%"
-        // contenuto.style.paddingRight = "3%"
-        
-        
-        bottonetornaindietro.style.transform = "scale(0.5)"
-        bottonetornaindietro.style.left = "-5%"
-        bottonetornaindietro.style.margin = "0"
+        html.style.setProperty("--bg-codice", "rgb(246, 248, 250)")
+        html.style.setProperty("--color-codice", "#24292f")
         
     }
 }
