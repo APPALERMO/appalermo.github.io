@@ -45,14 +45,14 @@ const html_preview_jarvis = `<center>
     <iframe src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
 </center>`
 
-function cambiacontenuto(file) {
+const cambiacontenuto = (file) => {
     const divContent = document.getElementById("contenuto")
     $.get(file, function(data){
         divContent.innerHTML = data
     })   
 }
 
-window.onload = () => {    
+document.addEventListener("DOMContentLoaded", () => {    
     // alert(`${screen.width}x${screen.height}`)
     let path = location.pathname.replace("/", "")
     if(path.includes(".html")){
@@ -93,7 +93,7 @@ window.onload = () => {
     // riconoscere tema chiaro e scuro    
     let darkTeme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     
-    if(!darkTeme){
+    if(!darkTeme && false){
         const html = document.querySelector("html")
         
         html.style.setProperty("--bg-html", "rgb(245, 245, 247)")
@@ -107,84 +107,44 @@ window.onload = () => {
         html.style.setProperty("--color-codice", "#24292f")
         
     }
-}
+})
 
-
-function aboutG() {
+const about = () => {
     const contenuto = document.getElementById("contenuto")
     const notifica = document.getElementById("notifica")
     
-    $(document).ready(()=>{
-        altezza = $("#notifica").outerHeight()
-        
-    })
+    const px = notifica.offsetHeight
     
-    
-    if(contenuto.className == "contenuto" || contenuto.className == "contenuto-alzato") {
-        notifica.style.display = "unset"
-        contenuto.className = "contenuto-sceso"
-        document.documentElement.style.setProperty("--altezza", `${altezza}px`)
-        
-    }else { 
-        contenuto.className = "contenuto-alzato"
-        notifica.style.display = "none"
-        
-    }
+    if(contenuto.style.marginTop == `${px}px`) 
+        contenuto.style.marginTop = "0px"
+    else 
+        contenuto.style.marginTop = `${px}px`
     
 }
 
-function about(px) {
-    const contenuto = document.getElementById("contenuto")
-    
-    if(contenuto.className == "contenuto" || contenuto.className == "contenuto-alzato") {
-        contenuto.className = "contenuto-sceso"
-        document.documentElement.style.setProperty("--altezza", `${px}px`)
-        
-        
-    }else { 
-        contenuto.className = "contenuto-alzato"
-        
-        setTimeout(() => {
-            contenuto.className = "contenuto"
-        }, 3000)
-        
-    }
-    
-}
-
-function social(){
+const social = async () => {
+    await modificaNotifica('contenutonotifica', 'social.html')
     
     const notifica = document.getElementById("notifica")
+    const contenutonotifica = document.getElementById("contenutonotifica")
     
-    // notifica.style.left = "32%"
-    notifica.style.display = "unset"    
-    // notifica.style.paddingLeft = "55px"
+    notifica.style.display = "unset"
     
-    try{
-        document.getElementById("contenutonotifica").style.display = "flex"
-        document.getElementById("contenutonotifica").style.gap = "2.5vw"
-    }catch{
-        console.log(Error)
-        location.reload()
-    }
+    contenutonotifica.style.display = "flex"
+    contenutonotifica.style.gap = "2.5vw"
+    contenutonotifica.style.flexWrap = "wrap"
+    contenutonotifica.style.justifyContent = "center"
     
     // about(185.7)
     // about(180)
-    about(160)
+    about(notifica.offsetHeight)
     
 }
 
 
-function modificaNotifica(id, file) {
+const modificaNotifica = async (id, file) => {
     const divContent = document.getElementById(id)
-    $.get(file, (data) =>{
+    await $.get(file, (data) =>{
         divContent.innerHTML = data
     })   
-}
-
-function reset(){
-    const notifica = document.getElementById("notifica")
-    
-    notifica.style.left = "50%"
-    notifica.style.paddingLeft = "10px"
 }

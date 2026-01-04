@@ -51,6 +51,7 @@ html{
     overflow: hidden;
     
     border: 1px solid;
+    transition: 1s margin-top;
     
 }
 
@@ -210,8 +211,6 @@ code > ol{
 
 #notifica{
     position: absolute;
-    /* height: 0%;
-    width: 3%; */
     left: 50%;
     background: var(--bg-notifica);
     padding-left: 10px;
@@ -222,44 +221,10 @@ code > ol{
     border: 1px solid;
     border-radius: 10px;
     
+    width: max-content;
+    max-width: 80%;
+    user-select: none;
     
-    
-}
-
-.contenuto-sceso{
-    width: 60%;
-    background: var(--bg-contenuto);
-    text-align: left;
-    
-    color: var(--color-text-html);
-    border-radius: 10px;
-    padding: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-    animation: scendi 3s linear;
-    top: var(--altezza);
-    
-    border: 1px solid;
-    
-}
-
-
-.contenuto-alzato{
-    width: 60%;
-    background: var(--bg-contenuto);
-    text-align: left;
-    
-    color: var(--color-text-html);
-    border-radius: 10px;
-    padding: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-    animation: sali 3s linear;
-    top: 0%;
-    
-    border: 1px solid;
-    
-
 }
 
 .welcome {
@@ -363,6 +328,9 @@ iframe {
 
 
 @media only screen and (max-width: 600px) {
+    .welcome {
+        margin-top: -2.5vw;
+    }
     .btWelcome {
         width: auto;
         padding: 5%;
