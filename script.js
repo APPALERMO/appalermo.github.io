@@ -18,7 +18,7 @@ const index = `<!DOCTYPE html>
             <div class="btWelcome">
                 <button class="btn" onclick="location.pathname = '/'">Home</button>
                 <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
-                <button class="btn" onclick="modificaNotifica('contenutonotifica', 'social.html');social()">Social</button>
+                <button class="btn" onclick="social()">Social</button>
             </div>
         </center>
     </div>
@@ -35,10 +35,7 @@ const index = `<!DOCTYPE html>
     
 </body>
 <script src="script.js"></script>
-</html> 
-
-
-`
+</html>`
 
 // <iframe width="560" height="315" src="https://youtube.com/embed/wrB7YsRmpKc?feature=share" allowfullscreen></iframe>
 const html_preview_jarvis = `<center>
