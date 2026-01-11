@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html onscroll="scrollTo(0,0)">
+<head>
+    <title>Sito web di APPA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    
+    <div class="welcome">
+        <center>
+            <p style="margin:0;" id="bevnenutoTitle">Benvenuto</p>
+            <div class="btWelcome">
+                <button class="btn" onclick="location.pathname = '/'">Home</button>
+                <button class="btn" onclick="location.pathname = '/news/'">Novità</button>
+                <button class="btn" onclick="social()">Social</button>
+            </div>
+        </center>
+    </div>
+    
+    <div style="display: none;" id="notifica">
+        <p id="contenutonotifica">
+            ciao bro
+        </p>
+    </div>
+    
+    <center>
+        <div class="contenuto" id="contenuto" style="text-align: center;">
+            <h1>Ciao!</h1>
+            <h3>
+                Questo sito è stato spostato su un'altro host. <br>
+                Dovrei essere reindirizzato a momenti
+            </h3>
+            
+            <p id="renderict-timer"></p>
+            <br>
+            <h3>Se non vieni reindirizzato clicca <a href="https://serversecurepowerappalermo.onrender.com/" class="passami-sopra">qui</a></h3>
+            
+        </div>
+    </center>
+    
+</body>
+<script src="script.js"></script>
+</html> 

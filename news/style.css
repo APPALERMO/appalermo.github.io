@@ -1,6 +1,0 @@
-.contentNews {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 3px;
-    margin-bottom:3%;
-}
